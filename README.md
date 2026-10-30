@@ -81,7 +81,7 @@ These are copied verbatim, keeping only the modules needed for the build.
 
 ```
 lake build                       # 0 sorry
-lake env lean AxiomAudit.lean    # 586 theorems, only propext / Classical.choice / Quot.sound
+lake env lean AxiomAudit.lean    # 556 theorems, only propext / Classical.choice / Quot.sound
 ```
 
 There is no paper yet. A paper will be drafted after the formalization is final, and it will
