@@ -50,6 +50,15 @@ unmodified Navier–Stokes, and it does not resolve the Clay Millennium problem.
    inequality `M' ≤ M²` is satisfied by `1/(1−t)`, which is unbounded on `[0,1)`. So the
    ceiling comes from the `κ M³` term alone.
 
+6. **Concrete instance (unconditional).** `MetriplecticWorldModel/Instance.lean`: the scalar
+   toy instance `C = 0`, `κ > 0`, `M t = y₀ e^{-t}` with `κ y₀² ≤ 1`. It **proves**
+   `instance_maxPointRealization`, `instance_tetheredMaxRate` and `instance_modelContinuation`,
+   so `instance_global_regularity` (global smoothness plus the uniform ceiling) holds with no
+   open hypothesis. It is a one-dimensional ODE instance, not a Galerkin truncation of
+   Navier–Stokes; it shows the model hypotheses are jointly satisfiable.
+   `stretchingCZ_sat_and_nontrivial` and `entropyCasimir_zero_bracket` are satisfiability
+   examples.
+
 ## Open named `Prop`s
 
 Each one is passed as an explicit argument. None is proved here.
@@ -58,8 +67,9 @@ Each one is passed as an explicit argument. None is proved here.
 * `MaxPointRealization C κ Cabs M M'`: for every `t ≥ 0`, there is maximizer data satisfying
   the five may-form `Prop`s: `EnergyIdentity`, `StretchingCZ`, `ViscousAtMax`,
   `TetherFeedback` and `CrossControlled`.
-  * `StretchingCZ` is a pure `y³` bound. It is false as an `L∞` estimate for Navier–Stokes,
-    and it is an assumption of this model as well.
+  * `StretchingCZ` is a pure `y³` bound. It is a hypothesis on the model's maximizer data only. As an `L∞` estimate
+    for unmodified Navier–Stokes it is not known (the true bound has a log loss), and nothing here
+    claims it for Navier–Stokes. In the concrete instance it holds by the model closure `St = C y³`.
   * `TetherFeedback` holds only in the tethered model.
 * `ModelContinuation Smooth M`: a continuation criterion of Beale–Kato–Majda type for the model.
 * `EntropyCasimir P S`: the entropy is a Casimir of `P`.
@@ -81,7 +91,7 @@ These are copied verbatim, keeping only the modules needed for the build.
 
 ```
 lake build                       # 0 sorry
-lake env lean AxiomAudit.lean    # 556 theorems, only propext / Classical.choice / Quot.sound
+lake env lean AxiomAudit.lean    # 567 theorems, only propext / Classical.choice / Quot.sound
 ```
 
 There is no paper yet. A paper will be drafted after the formalization is final, and it will
