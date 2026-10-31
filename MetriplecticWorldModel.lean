@@ -14,3 +14,5 @@ import MetriplecticWorldModel.RegularizedKernel
 import MetriplecticWorldModel.NewtonLaplacian
 import MetriplecticWorldModel.BiotSavartNewton
 import MetriplecticWorldModel.HelicityGateaux
+import MetriplecticWorldModel.PoincareR3
+import MetriplecticWorldModel.KineticEnergyRep

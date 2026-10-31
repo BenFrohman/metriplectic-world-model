@@ -63,7 +63,7 @@ theorem instance_maxPointRealization (κ y0 : ℝ) (hκ : 0 < κ) (hy0 : 0 < y0)
   · simp [CrossControlled, instData]
 
 /-- Smoothness predicate of the instance: `M` is `C^∞` at `t`. -/
-def instSmooth (y0 : ℝ) (t : ℝ) : Prop := ContDiffAt ℝ ⊤ (instM y0) t
+def instSmooth (y0 : ℝ) (t : ℝ) : Prop := ContDiffAt ℝ ((⊤ : ℕ∞) : WithTop ℕ∞) (instM y0) t
 
 theorem instance_modelContinuation (y0 : ℝ) : ModelContinuation (instSmooth y0) (instM y0) :=
   fun _ t _ => by unfold instSmooth instM; fun_prop
