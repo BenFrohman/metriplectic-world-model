@@ -230,7 +230,7 @@ theorem curl_curl_newtonVec {ω : CoadjointOrbit} (hω : IsTestOrbit ω) (x : T3
   have sw : ∀ k, HasCompactSupport (w k) := fun k => by
     have := hω.2.comp_left (g := fun v : EuclideanSpace ℝ (Fin 3) => v k) (by simp)
     simpa [Function.comp_def] using this
-  have smw : ∀ k, ContDiff ℝ ((⊤ : ℕ∞) : WithTop ℕ∞) (w k) := fun k => (hω.1 k).of_le le_top
+  have smw : ∀ k, ContDiff ℝ ((⊤ : ℕ∞) : WithTop ℕ∞) (w k) := fun k => hω.1 k
   set ψ : Fin 3 → T3 → ℝ := fun k => newtonPotential (w k) with hψ
   have smψ : ∀ k, ContDiff ℝ ((⊤ : ℕ∞) : WithTop ℕ∞) (ψ k) := fun k =>
     contDiff_newtonPotential (sw k) (smw k)

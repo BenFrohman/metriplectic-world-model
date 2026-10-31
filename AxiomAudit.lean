@@ -78,3 +78,11 @@ open Lean Elab Command
 #print axioms MetriplecticWorldModel.curl_curl_newtonVec
 #print axioms MetriplecticWorldModel.curlBiotSavartTest
 #print axioms MetriplecticWorldModel.helicity_casimir_test_closed
+#print axioms MetriplecticWorldModel.biotSavart_selfAdjoint
+#print axioms MetriplecticWorldModel.helicity_gateaux
+#print axioms MetriplecticWorldModel.curl_eq_of_isGateauxRepOn
+#print axioms MetriplecticWorldModel.curl_eq_two_of_helicity_rep
+#print axioms MetriplecticWorldModel.helicity_casimir_of_rep
+#print axioms MetriplecticWorldModel.helicity_casimir_canonical
+#print axioms MetriplecticWorldModel.kineticEnergy_reps_curl_eq
+#print axioms MetriplecticWorldModel.streamFunctionRepModGradOn_of_exists

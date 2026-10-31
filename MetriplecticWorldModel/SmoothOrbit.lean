@@ -27,7 +27,8 @@ open NavierStokes3D ArnoldGeometric FrohmanianTether
 
 namespace MetriplecticWorldModel
 
-def IsSmoothOrbit (ω : CoadjointOrbit) : Prop := ∀ i, ContDiff ℝ ⊤ (fun y => ω.val y i)
+def IsSmoothOrbit (ω : CoadjointOrbit) : Prop :=
+  ∀ i, ContDiff ℝ ((⊤ : ℕ∞) : WithTop ℕ∞) (fun y => ω.val y i)
 
 theorem IsSmoothOrbit.differentiable {ω : CoadjointOrbit} (h : IsSmoothOrbit ω) :
     ∀ i x, DifferentiableAt ℝ (fun y => ω.val y i) x :=

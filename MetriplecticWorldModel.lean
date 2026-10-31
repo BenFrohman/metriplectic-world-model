@@ -13,3 +13,4 @@ import MetriplecticWorldModel.NewtonKernel
 import MetriplecticWorldModel.RegularizedKernel
 import MetriplecticWorldModel.NewtonLaplacian
 import MetriplecticWorldModel.BiotSavartNewton
+import MetriplecticWorldModel.HelicityGateaux
