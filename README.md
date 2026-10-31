@@ -124,11 +124,26 @@ Each one is passed as an explicit argument. None is proved here.
    * `CurlBiotSavartOn S` names that restricted identity. `helicity_casimir_of_curlBiotSavart` is **proved conditional** on it: helicity is a Casimir of `ArnoldBracketOf` at ω in `S` when `D S = u`. The factor 2 does not affect the Casimir property.
    * **Open:** `CurlBiotSavartOn` for smooth compactly supported ω. It needs the Newton potential, `Δ(1/|x|) = −4πδ`, which Mathlib does not have. Also open: that `D S = 2u` is the true Gâteaux derivative of helicity, which needs Biot–Savart self-adjointness (a Fubini argument with a singular kernel). Also open: the restricted Helmholtz uniqueness (de Rham / Poincaré lemma plus the fundamental lemma for div-free test fields). The class of variations ε in `IsGateauxRepresentative` would also have to be restricted.
 
+11. **The restricted class and the first Newton-potential piece** (`TestClass.lean`).
+   * `IsTestOrbit ω`: smooth (`C^∞`), compactly supported and divergence-free. `not_isTestOrbit_pointSpike` is **proved**: the counterexample from item 10 is excluded.
+   * `IsGateauxRepOn` is the Gâteaux condition, tested only on variations in the class.
+   * Restated named `Prop`s, both **open**:
+     * `StreamFunctionRepModGradOn ω hω`: `C²` representatives are unique modulo `C²` gradients, with `curl ψ = u`.
+     * `CurlBiotSavartTest := CurlBiotSavartOn IsTestOrbit`.
+   * `helicity_casimir_test` is **proved conditional** on `CurlBiotSavartTest`.
+   * `integrableOn_ball_norm_rpow_neg` is **proved**: for `s < 3`, `‖x‖^(-s)` is integrable on every ball of ℝ³. So the Newton kernel `1/(4π|x|)` and the Biot–Savart kernel magnitude `|x|⁻²` are locally integrable. This is the first step toward the Newton potential.
+   * **Remaining steps toward `CurlBiotSavartTest`, all open:**
+     1. `1/|x|` is smooth and harmonic away from 0.
+     2. Differentiate the convolution `N * ω` under the integral sign, for compactly supported smooth ω.
+     3. Green's identity on `ℝ³ \ B_ε` with `ε → 0`, giving `Δ(N * ω) = ω`.
+     4. `curl curl = ∇div − Δ`, together with `div ω = 0`.
+     5. Identify `curl(N * ω)` with the repo's `BiotSavart`.
+
 ## Coined names
 
 **Author's name:** `Pi_u` is Benjamin Frohman's own May 31 name (`Tether_May31.lean.txt:43`). In this repo it is the orthogonal projection `x − (⟪u,x⟫/‖u‖²)•u`. Lemmas derived from it (e.g. `Pi_u_form_symm_degen`) carry the name.
 
-**Coined in this build (not the author's names):** `split_exists_unique`, `canonical_metric_bracket`, `canonical_metric_bracket_sign`, `Pi_u_form_symm_degen` (name derived from `Pi_u`), `realization_of_rate`, `gateaux_rep_of_not_differentiable`, `not_streamFunctionRepresentative`, `IsSmoothOrbit`, `grad`, `curl_grad_eq_zero`, `curl_add_grad`, `StreamFunctionRepModGrad`, `kineticEnergyCurlIdentity_of_modGrad`, `ModelVorticityPDE`, `StretchingLogLoss`, `maxpoint_rate_logLoss`, `classicalBracket_antisymm`, `ClassicalBracket_antisymm`, `ViscousBracket`, `viscousBracket_symm`, `viscousBracket_nonneg`, `not_streamFunctionRepModGrad`, `ArnoldBracketOf`, `arnoldBracketOf_antisymm`, `arnoldBracketOf_eq_zero_of_curl_parallel`, `entropyCasimir_arnold`, `spike`, `fderiv_spike`, `pointSpike`, `pointSpike_val_zero`, `velocity_pointSpike`, `not_curl_biotSavart_eq`, `CurlBiotSavartOn`, `helicity_casimir_of_curlBiotSavart`.
+**Coined in this build (not the author's names):** `split_exists_unique`, `canonical_metric_bracket`, `canonical_metric_bracket_sign`, `Pi_u_form_symm_degen` (name derived from `Pi_u`), `realization_of_rate`, `gateaux_rep_of_not_differentiable`, `not_streamFunctionRepresentative`, `IsSmoothOrbit`, `grad`, `curl_grad_eq_zero`, `curl_add_grad`, `StreamFunctionRepModGrad`, `kineticEnergyCurlIdentity_of_modGrad`, `ModelVorticityPDE`, `StretchingLogLoss`, `maxpoint_rate_logLoss`, `classicalBracket_antisymm`, `ClassicalBracket_antisymm`, `ViscousBracket`, `viscousBracket_symm`, `viscousBracket_nonneg`, `not_streamFunctionRepModGrad`, `ArnoldBracketOf`, `arnoldBracketOf_antisymm`, `arnoldBracketOf_eq_zero_of_curl_parallel`, `entropyCasimir_arnold`, `spike`, `fderiv_spike`, `pointSpike`, `pointSpike_val_zero`, `velocity_pointSpike`, `not_curl_biotSavart_eq`, `CurlBiotSavartOn`, `helicity_casimir_of_curlBiotSavart`, `IsTestOrbit`, `not_isTestOrbit_pointSpike`, `IsGateauxRepOn`, `StreamFunctionRepModGradOn`, `CurlBiotSavartTest`, `helicity_casimir_test`, `integrableOn_ball_norm_rpow_neg`.
 
 ## Ported libraries
 
