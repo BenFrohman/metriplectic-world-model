@@ -109,3 +109,9 @@ open Lean Elab Command
 #print axioms MetriplecticWorldModel.entropyCasimir_of_arnoldCasimirField
 #print axioms MetriplecticWorldModel.arnoldCasimirField_of_curl_parallel
 #print axioms MetriplecticWorldModel.arnoldCasimirField_helicity
+#print axioms MetriplecticWorldModel.ceiling_of_upper_dini
+#print axioms MetriplecticWorldModel.sup_eq_sSup_image
+#print axioms MetriplecticWorldModel.sup_continuous_of_uniform_support
+#print axioms MetriplecticWorldModel.field_uniform_ceiling
+#print axioms MetriplecticWorldModel.fieldTetherFeedback_cubicTether
+#print axioms MetriplecticWorldModel.field_uniform_ceiling_cubicTether

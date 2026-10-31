@@ -18,3 +18,4 @@ import MetriplecticWorldModel.PoincareR3
 import MetriplecticWorldModel.KineticEnergyRep
 import MetriplecticWorldModel.MaxPointDanskin
 import MetriplecticWorldModel.EntropyCasimirArnold
+import MetriplecticWorldModel.DiniCeiling

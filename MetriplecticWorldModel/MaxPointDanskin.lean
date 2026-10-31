@@ -20,8 +20,8 @@ import MetriplecticWorldModel.Model
 * `maxPointRealization_of_field` (**proved**): `MaxPointRealization` from a solution of
   `ModelVorticityPDE`, with `EnergyIdentity`, `ViscousAtMax`, `CrossControlled` discharged;
   remaining hypotheses: `FieldStretchingBound`, `FieldTetherFeedback`, differentiability of `Y`.
-  (Danskin only gives a one-sided Dini bound; replacing `HasDerivAt Y` by it in the ceiling
-  argument is open.)
+  (Danskin only gives a one-sided Dini bound. UPDATE: `DiniCeiling.lean` runs the ceiling
+  argument from that bound alone, `field_uniform_ceiling`, with no differentiability of `Y`.)
 -/
 
 open Set Filter Topology
