@@ -1,6 +1,8 @@
 # Metriplectic World Model
 
 > **Work in progress.** Draft formalization; results are stated with their exact status (proved unconditionally / conditional on named Props). Nothing here solves the Clay problem or proves Navier–Stokes regularity.
+>
+> **Reserved DOI (draft, not yet published):** [10.5281/zenodo.23842298](https://doi.org/10.5281/zenodo.23842298)
 
 
 Lean 4 + Mathlib (`v4.30.0-rc1`). Author: Benjamin Stanley Frohman (ORCID 0009-0006-7068-3718).
