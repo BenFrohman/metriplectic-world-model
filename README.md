@@ -132,18 +132,23 @@ Each one is passed as an explicit argument. None is proved here.
      * `CurlBiotSavartTest := CurlBiotSavartOn IsTestOrbit`.
    * `helicity_casimir_test` is **proved conditional** on `CurlBiotSavartTest`.
    * `integrableOn_ball_norm_rpow_neg` is **proved**: for `s < 3`, `‖x‖^(-s)` is integrable on every ball of ℝ³. So the Newton kernel `1/(4π|x|)` and the Biot–Savart kernel magnitude `|x|⁻²` are locally integrable. This is the first step toward the Newton potential.
-   * **Remaining steps toward `CurlBiotSavartTest`, all open:**
+   * **Remaining steps toward `CurlBiotSavartTest`** (steps 1–2 now done, see item 12; 3–5 open):
      1. `1/|x|` is smooth and harmonic away from 0.
      2. Differentiate the convolution `N * ω` under the integral sign, for compactly supported smooth ω.
      3. Green's identity on `ℝ³ \ B_ε` with `ε → 0`, giving `Δ(N * ω) = ω`.
      4. `curl curl = ∇div − Δ`, together with `div ω = 0`.
      5. Identify `curl(N * ω)` with the repo's `BiotSavart`.
 
+12. **Newton-potential steps 1 and 2** (`NewtonKernel.lean`). All **proved**, no sorry:
+   * `scalarLaplacian_newtonRadial`: with `newtonRadial y = (‖y‖²)^(-1/2) = 1/|y|`, the sum of second partials `Σᵢ ∂ᵢ∂ᵢ (1/|y|) = 0` for every `y ≠ 0`. `contDiffAt_newtonRadial` proves it is `C^∞` there. This is **step 1**.
+   * `contDiff_newtonPotential` and `hasFDerivAt_newtonPotential`: for a smooth, compactly supported scalar `g`, `newtonRadial ⋆ g` is `C^∞`, and its derivative is `newtonRadial ⋆ Dg` (differentiation under the integral). This is **step 2**. It applies componentwise to ω and uses `locallyIntegrable_newtonRadial`.
+   * **Still open:** step 3, `Δ(N ⋆ g) = −4π g`. Mathlib has the divergence theorem only on boxes, with no Green's identity on `ℝ³ \ B_ε` and no spherical surface integrals, so this needs substantial new infrastructure. Steps 4–5 are also open. `CurlBiotSavartTest` therefore remains a **hypothesis**.
+
 ## Coined names
 
 **Author's name:** `Pi_u` is Benjamin Frohman's own May 31 name (`Tether_May31.lean.txt:43`). In this repo it is the orthogonal projection `x − (⟪u,x⟫/‖u‖²)•u`. Lemmas derived from it (e.g. `Pi_u_form_symm_degen`) carry the name.
 
-**Coined in this build (not the author's names):** `split_exists_unique`, `canonical_metric_bracket`, `canonical_metric_bracket_sign`, `Pi_u_form_symm_degen` (name derived from `Pi_u`), `realization_of_rate`, `gateaux_rep_of_not_differentiable`, `not_streamFunctionRepresentative`, `IsSmoothOrbit`, `grad`, `curl_grad_eq_zero`, `curl_add_grad`, `StreamFunctionRepModGrad`, `kineticEnergyCurlIdentity_of_modGrad`, `ModelVorticityPDE`, `StretchingLogLoss`, `maxpoint_rate_logLoss`, `classicalBracket_antisymm`, `ClassicalBracket_antisymm`, `ViscousBracket`, `viscousBracket_symm`, `viscousBracket_nonneg`, `not_streamFunctionRepModGrad`, `ArnoldBracketOf`, `arnoldBracketOf_antisymm`, `arnoldBracketOf_eq_zero_of_curl_parallel`, `entropyCasimir_arnold`, `spike`, `fderiv_spike`, `pointSpike`, `pointSpike_val_zero`, `velocity_pointSpike`, `not_curl_biotSavart_eq`, `CurlBiotSavartOn`, `helicity_casimir_of_curlBiotSavart`, `IsTestOrbit`, `not_isTestOrbit_pointSpike`, `IsGateauxRepOn`, `StreamFunctionRepModGradOn`, `CurlBiotSavartTest`, `helicity_casimir_test`, `integrableOn_ball_norm_rpow_neg`.
+**Coined in this build (not the author's names):** `split_exists_unique`, `canonical_metric_bracket`, `canonical_metric_bracket_sign`, `Pi_u_form_symm_degen` (name derived from `Pi_u`), `realization_of_rate`, `gateaux_rep_of_not_differentiable`, `not_streamFunctionRepresentative`, `IsSmoothOrbit`, `grad`, `curl_grad_eq_zero`, `curl_add_grad`, `StreamFunctionRepModGrad`, `kineticEnergyCurlIdentity_of_modGrad`, `ModelVorticityPDE`, `StretchingLogLoss`, `maxpoint_rate_logLoss`, `classicalBracket_antisymm`, `ClassicalBracket_antisymm`, `ViscousBracket`, `viscousBracket_symm`, `viscousBracket_nonneg`, `not_streamFunctionRepModGrad`, `ArnoldBracketOf`, `arnoldBracketOf_antisymm`, `arnoldBracketOf_eq_zero_of_curl_parallel`, `entropyCasimir_arnold`, `spike`, `fderiv_spike`, `pointSpike`, `pointSpike_val_zero`, `velocity_pointSpike`, `not_curl_biotSavart_eq`, `CurlBiotSavartOn`, `helicity_casimir_of_curlBiotSavart`, `IsTestOrbit`, `not_isTestOrbit_pointSpike`, `IsGateauxRepOn`, `StreamFunctionRepModGradOn`, `CurlBiotSavartTest`, `helicity_casimir_test`, `integrableOn_ball_norm_rpow_neg`, `newtonRadial`, `scalarLaplacian`, `contDiffAt_newtonRadial`, `inner_single_one`, `hasFDerivAt_normSq_rpow`, `normSq_rpow_partial`, `fderiv_newtonRadial_single`, `scalarLaplacian_newtonRadial`, `newtonRadial_eq`, `locallyIntegrable_newtonRadial`, `newtonPotential`, `contDiff_newtonPotential`, `hasFDerivAt_newtonPotential`.
 
 ## Ported libraries
 

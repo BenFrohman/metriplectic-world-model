@@ -47,3 +47,8 @@ open Lean Elab Command
 #print axioms MetriplecticWorldModel.canonical_metric_bracket_sign
 #print axioms MetriplecticWorldModel.realization_of_rate
 #print axioms MetriplecticWorldModel.not_streamFunctionRepresentative
+#print axioms MetriplecticWorldModel.scalarLaplacian_newtonRadial
+#print axioms MetriplecticWorldModel.contDiffAt_newtonRadial
+#print axioms MetriplecticWorldModel.locallyIntegrable_newtonRadial
+#print axioms MetriplecticWorldModel.contDiff_newtonPotential
+#print axioms MetriplecticWorldModel.hasFDerivAt_newtonPotential
