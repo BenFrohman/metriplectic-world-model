@@ -28,7 +28,9 @@ namespace MetriplecticWorldModel
 
 /-! ## 1. Velocity tether as metric bracket -/
 
-/-- Named Prop: the entropy functional `S` is a Casimir of the Lie–Poisson bracket `P`. -/
+/-- Named Prop: the entropy functional `S` is a Casimir of the Lie–Poisson bracket `P`.
+For the concrete bracket use `ArnoldCasimirField` (`EntropyCasimirArnold.lean`); instantiating
+`P` with the choice-based `ClassicalBracket` (`EntropyCasimirChoice`) is NOT provable as stated. -/
 def EntropyCasimir (P : Functional → Functional → ℝ) (S : Functional) : Prop := ∀ F, P F S = 0
 
 /-- The model's metriplectic structure at an orbit `ω`: `P` any antisymmetric bracket, metric

@@ -16,3 +16,5 @@ import MetriplecticWorldModel.BiotSavartNewton
 import MetriplecticWorldModel.HelicityGateaux
 import MetriplecticWorldModel.PoincareR3
 import MetriplecticWorldModel.KineticEnergyRep
+import MetriplecticWorldModel.MaxPointDanskin
+import MetriplecticWorldModel.EntropyCasimirArnold

@@ -16,6 +16,7 @@ import MetriplecticWorldModel.Model
   be met by choosing the data. Their mathematical content only appears once the data are tied
   to an actual vorticity field (the `|ω|` maximizer, its time derivative, `ν ω·Δω`, ...). That
   link is not formalized; so these `Prop`s cannot be "proved" in a meaningful sense here.
+  UPDATE: the link is now formalized in `MaxPointDanskin.lean` (`maxPointRealization_of_field`).
 * `gateaux_rep_of_not_differentiable` / `not_streamFunctionRepresentative` (**proved**):
   the encoding `IsGateauxRepresentative` quantifies over a differentiability hypothesis on `ω`,
   so at a non-differentiable `ω` every field is a representative; uniqueness fails, so
