@@ -2,3 +2,4 @@ import MetriplecticWorldModel.Bracket
 import MetriplecticWorldModel.Ceiling
 import MetriplecticWorldModel.Model
 import MetriplecticWorldModel.Instance
+import MetriplecticWorldModel.Canonical

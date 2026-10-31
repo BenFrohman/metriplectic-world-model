@@ -42,3 +42,6 @@ open Lean Elab Command
 #print axioms MetriplecticWorldModel.kappa_zero_no_ceiling
 #print axioms MetriplecticWorldModel.velocityTether_entropy_production
 #print axioms MetriplecticWorldModel.instance_global_regularity
+#print axioms MetriplecticWorldModel.split_exists_unique
+#print axioms MetriplecticWorldModel.canonical_metric_bracket
+#print axioms MetriplecticWorldModel.canonical_metric_bracket_sign

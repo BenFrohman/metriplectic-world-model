@@ -59,7 +59,26 @@ unmodified Navier–Stokes, and it does not resolve the Clay Millennium problem.
    `stretchingCZ_sat_and_nontrivial` and `entropyCasimir_zero_bracket` are satisfiability
    examples.
 
+7. **The two-part split and canonicity of the metric bracket (closed and proven unconditionally).**
+   `MetriplecticWorldModel/Canonical.lean`, no named `Prop`s:
+   * `split_exists_unique` (**proved**): every bilinear bracket is uniquely an antisymmetric
+     (Lie–Poisson, 2-form) part plus a symmetric (metric/tether) part.
+   * `canonical_metric_bracket` (**proved**, non-circular): on a real inner product space, a
+     bilinear form that is symmetric (C1), degenerate in the direction `u` (C2: `B u · = 0`),
+     and invariant under every linear isometry fixing `u` must equal `c ⟪Π_u x, Π_u y⟫`, with
+     `Π_u` the projection off `span {u}`. The hypotheses do not mention `Π_u` or the diagonal
+     of `B`, unlike the older `SaturatesTetherQuadratic`-based uniqueness, which assumed its answer.
+   * `canonical_metric_bracket_sign` (**proved**): with the tether sign (`B x x ≤ 0`), `c ≤ 0`.
+   * `projOff_form_symm_degen` (**proved**): the forced form does satisfy C1 and C2.
+   * Scope: this is a pointwise statement at one state. It does **not** force the `|ω|²`
+     weight, the value of `κ`, or the C3 feedback condition; deriving those from C1–C3 is
+     still open. The isometry-invariance hypothesis is an explicit theorem argument.
+
 ## Open named `Prop`s
+
+Open beyond these: deriving the `|ω|²` weight, `κ`, and C3 from C1–C3 (full gauge-uniqueness of `TetherKernelVel`).
+
+Names coined in this build (not the author's): `projOff`, `split_exists_unique`, `canonical_metric_bracket`, `canonical_metric_bracket_sign`, `projOff_form_symm_degen`.
 
 Each one is passed as an explicit argument. None is proved here.
 
@@ -91,7 +110,7 @@ These are copied verbatim, keeping only the modules needed for the build.
 
 ```
 lake build                       # 0 sorry
-lake env lean AxiomAudit.lean    # 567 theorems, only propext / Classical.choice / Quot.sound
+lake env lean AxiomAudit.lean    # 574 theorems, only propext / Classical.choice / Quot.sound
 ```
 
 There is no paper yet. A paper will be drafted after the formalization is final, and it will
