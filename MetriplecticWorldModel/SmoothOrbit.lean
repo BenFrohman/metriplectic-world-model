@@ -18,7 +18,7 @@ The original name is kept.
   energy, and every representative equals `ψ + grad φ` for some `C²` `φ`.
 * `kineticEnergyCurlIdentity_of_modGrad` (**proved**): that `Prop` implies
   `KineticEnergyCurlIdentity ω`. The `Prop` itself (Biot–Savart integration by parts plus
-  Helmholtz uniqueness) is not proved here.
+  Helmholtz uniqueness) is not proved here; it is false as stated (see `ChoiceFree.lean`).
 * `ModelVorticityPDE`: the model's evolution equation
   `∂ₜω + (u·∇)ω − (ω·∇)u = νΔω + Tterm`, `u = BiotSavart ω`, `div ω = 0` (definition only).
 -/
