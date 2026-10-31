@@ -8,9 +8,9 @@
 \theoremstyle{definition}\newtheorem{hyp}{Hypothesis}\newtheorem{remark}{Remark}
 \title{Work in progress: A Lean-verified conditional uniform ceiling for a cubic-tethered vorticity model\\[4pt]\large (conditional results; draft)}
 \author{Benjamin Stanley Frohman\\ ORCID \href{https://orcid.org/0009-0006-7068-3718}{0009-0006-7068-3718}}
-\date{Draft, October 31, 2026 --- public repository, not peer reviewed; DOI reserved, not yet published}
+\date{Draft, October 31, 2026 --- public repository, not peer reviewed; DOI 10.5281/zenodo.23842298}
 \begin{document}\maketitle
-\begin{center}\fbox{\textbf{Work in progress} --- draft, subject to change. Reserved DOI (not yet published): 10.5281/zenodo.23842298}\end{center}
+\begin{center}\fbox{\parbox{0.92\textwidth}{\textbf{Work in progress} --- draft, subject to change. DOI: \href{https://doi.org/10.5281/zenodo.23842298}{10.5281/zenodo.23842298}. Main paper: \href{https://doi.org/10.5281/zenodo.23842565}{10.5281/zenodo.23842565}.}}\end{center}
 \begin{center}\fbox{\parbox{0.92\textwidth}{\textbf{Scope.} This paper concerns a \emph{modified} vorticity equation with an added cubic damping tether. That model is \textbf{not} Navier--Stokes. The main result is \emph{conditional} on the named Prop \lean{FieldStretchingLogLoss}, which is \textbf{not proved}, and on six further hypotheses. The paper does \textbf{not} solve the Clay Millennium Problem, and it says nothing about regularity of unmodified 3D Navier--Stokes.}}\end{center}
 \begin{abstract}
 In the Lean~4/Mathlib repository \texttt{metriplectic-world-model} (commit \texttt{2274a23}), we prove a uniform-in-time ceiling on $\sup|\omega|$ for a vorticity model with cubic tether $-\kappa|\omega|^2\omega$ (\lean{field_uniform_ceiling_logLoss_cubicTether}). It is conditional on a pointwise log-loss stretching Prop and on six regularity, support and sign hypotheses, which we list verbatim. We explain why the known Calder\'on--Zygmund estimate does not supply the stretching Prop. The axioms used are only \lean{propext}, \lean{Classical.choice} and \lean{Quot.sound}.
