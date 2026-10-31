@@ -845,6 +845,15 @@ noncomputable def classical_bracket_integrand
 public noncomputable def ClassicalBracket (F G : CoadjointOrbit → ℝ) (ω : CoadjointOrbit) : ℝ :=
   ∫ x, classical_bracket_integrand F G ω x ∂(volume)
 
+/-- The Arnold bracket is antisymmetric (added in metriplectic-world-model). -/
+public theorem ClassicalBracket_antisymm (F G : CoadjointOrbit → ℝ) (ω : CoadjointOrbit) :
+    ClassicalBracket F G ω = -ClassicalBracket G F ω := by
+  unfold ClassicalBracket classical_bracket_integrand
+  rw [← MeasureTheory.integral_neg]
+  congr 1; funext x
+  simp only [pairing, cross]
+  rw [← cross_anticomm, WithLp.toLp_neg, inner_neg_right]
+
 /-- Kinetic energy Hamiltonian. -/
 public noncomputable def KineticEnergyHamiltonian (ω : CoadjointOrbit) : ℝ :=
   (1/2) * ∫ x, ‖BiotSavart ω.val x‖^2 ∂(volume)

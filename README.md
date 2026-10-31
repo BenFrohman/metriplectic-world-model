@@ -88,6 +88,17 @@ unmodified Navier–Stokes, and it does not resolve the Clay Millennium problem.
      false there. `KineticEnergyCurlIdentity` therefore cannot be proved for every `ω` as it is
      encoded. It needs the orbit restricted to smooth fields and uniqueness modulo gradients.
 
+9. **Smooth orbits, the model PDE, the Arnold and viscous brackets, and log-loss stretching** (`SmoothOrbit.lean`, `AuditFixes.lean`).
+   * `ModelVorticityPDE ν ω u T` is a *definition*: `∂ₜω + (u·∇)ω − (ω·∇)u = νΔω + T`, with `u = BiotSavart ω` and `div ω = 0`. No existence theorem is claimed for it.
+   * `curl_grad_eq_zero` and `curl_add_grad` are **proved**.
+   * `kineticEnergyCurlIdentity_of_modGrad` is **proved conditional** on the named `Prop` `StreamFunctionRepModGrad ω`. That `Prop` says the stream-function representative is unique modulo gradients on a smooth orbit. It replaces exact uniqueness, which is false at nonsmooth ω (item 8). The `Prop` itself is **open**: it needs Biot–Savart integration by parts and Helmholtz uniqueness.
+   * `EntropyCasimir` for the concrete Arnold bracket is **open**. Under the choice-based `FunctionalDerivative` it cannot be proved as stated.
+   * `classicalBracket_antisymm` is **proved**: the Arnold bracket `ClassicalBracket` is antisymmetric, so it is a valid `P`. The public lemma `ClassicalBracket_antisymm` was **added** (additively) to the ported `ArnoldGeometric.lean`, because its integrand is module-private.
+   * `ViscousBracket ν` is defined as `ν∫Σᵢ⟨∂ᵢ curl δF, ∂ᵢ curl δG⟩`. `viscousBracket_symm` and `viscousBracket_nonneg` are **proved**. It is symmetric and PSD, but it is **not** degenerate with respect to kinetic energy. So viscosity is not a metriplectic `G` in the strict sense.
+   * **Relabel:** every result that uses `StretchingCZ` rests on a hypothesis **known false as a pure L∞ bound** for Navier–Stokes, because the known bound has a log loss. `StretchingLogLoss d C₁ C₂` (`St ≤ C₁y³ + C₂y³log(1+y)`) is the honest alternative. Under it, `maxpoint_rate_logLoss` (**proved**) gives `y' ≤ (C₁+κ/4+4C₂²/κ)y² − (κ/4−Cabs)y³`. The tether still dominates when `κ > 4·Cabs`.
+   * **R³ vs T³:** the type named `T3` (original name kept) is actually ℝ³ (`EuclideanSpace ℝ (Fin 3)`), not the torus. No port to the torus was done.
+   * **Coined names (this round):** `IsSmoothOrbit`, `grad`, `curl_grad_eq_zero`, `curl_add_grad`, `StreamFunctionRepModGrad`, `kineticEnergyCurlIdentity_of_modGrad`, `ModelVorticityPDE`, `StretchingLogLoss`, `maxpoint_rate_logLoss`, `classicalBracket_antisymm`, `ClassicalBracket_antisymm`, `ViscousBracket`, `viscousBracket_symm`, `viscousBracket_nonneg`. The May/June 2026 rename map (`/workspace/may_june_rename_map.md`) was not found, so these could not be checked against it.
+
 ## Open named `Prop`s
 
 Open beyond these: deriving the `|ω|²` weight, `κ`, and C3 from C1–C3 (full gauge-uniqueness of `TetherKernelVel`).

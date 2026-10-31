@@ -4,3 +4,5 @@ import MetriplecticWorldModel.Model
 import MetriplecticWorldModel.Instance
 import MetriplecticWorldModel.Canonical
 import MetriplecticWorldModel.Realization
+import MetriplecticWorldModel.SmoothOrbit
+import MetriplecticWorldModel.AuditFixes
