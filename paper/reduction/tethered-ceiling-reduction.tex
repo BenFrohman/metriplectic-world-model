@@ -1,42 +1,50 @@
+% Copyright (c) 2026 Benjamin Stanley Frohman. Apache-2.0.
 \documentclass[11pt]{article}
-\usepackage[margin=1in]{geometry}
-\usepackage{fontspec}\setmonofont{DejaVu Sans Mono}[Scale=0.85]
-\usepackage{amsmath,amssymb,amsthm,hyperref,booktabs,longtable}
-\newcommand{\lean}[1]{\texttt{\detokenize{#1}}}
-\newcommand{\coined}{$^{\dagger}$}
-\newtheorem{theorem}{Theorem}\newtheorem{proposition}[theorem]{Proposition}
-\theoremstyle{definition}\newtheorem{hyp}{Hypothesis}\newtheorem{remark}{Remark}
-\title{Work in progress: A Lean-verified conditional uniform ceiling for a cubic-tethered vorticity model\\[4pt]\large (conditional results; draft)}
-\author{Benjamin Stanley Frohman\\ ORCID \href{https://orcid.org/0009-0006-7068-3718}{0009-0006-7068-3718}}
-\date{Draft, October 31, 2026 --- public repository, not peer reviewed; DOI 10.5281/zenodo.23842298}
-\begin{document}\maketitle
-\begin{center}\fbox{\parbox{0.92\textwidth}{\textbf{Work in progress} --- draft, subject to change. DOI: \href{https://doi.org/10.5281/zenodo.23842298}{10.5281/zenodo.23842298}. Main paper: \href{https://doi.org/10.5281/zenodo.23842565}{10.5281/zenodo.23842565}.}}\end{center}
-\begin{center}\fbox{\parbox{0.92\textwidth}{\textbf{Scope.} This paper concerns a \emph{modified} vorticity equation with an added cubic damping tether. That model is \textbf{not} Navier--Stokes. The main result is \emph{conditional} on the named Prop \lean{FieldStretchingLogLoss}, which is \textbf{not proved}, and on six further hypotheses. The paper does \textbf{not} solve the Clay Millennium Problem, and it says nothing about regularity of unmodified 3D Navier--Stokes.}}\end{center}
+\usepackage{frohman-paper}
+\renewcommand{\shorttitle}{Conditional uniform ceiling for a cubic-tethered vorticity model}
+\renewcommand{\papersubtitle}{Conditional results; draft --- public repository, not peer reviewed}
+\renewcommand{\paperdate}{Draft of 31 October 2026 \,(Lean development at commit \file{2274a23})}
+\renewcommand{\paperdoi}{10.5281/zenodo.23842298}
+\renewcommand{\companiondoi}{10.5281/zenodo.23842565}
+\renewcommand{\companionlabel}{Main paper:}
+\begin{document}
+\frohmantitle{A Lean-Verified Conditional Uniform Ceiling for a Cubic-Tethered Vorticity Model}
+
+\begin{scopebox}
+\textbf{Scope.} This paper concerns a \emph{modified} vorticity equation with an added cubic damping tether. That model is \textbf{not} Navier--Stokes. The main result is \emph{conditional} on the named Prop \lean{FieldStretchingLogLoss}, which is \textbf{not proved}, and on six further hypotheses. The paper does \textbf{not} solve the Clay Millennium Problem, and it says nothing about regularity of unmodified 3D Navier--Stokes.
+\end{scopebox}
+
 \begin{abstract}
-In the Lean~4/Mathlib repository \texttt{metriplectic-world-model} (commit \texttt{2274a23}), we prove a uniform-in-time ceiling on $\sup|\omega|$ for a vorticity model with cubic tether $-\kappa|\omega|^2\omega$ (\lean{field_uniform_ceiling_logLoss_cubicTether}). It is conditional on a pointwise log-loss stretching Prop and on six regularity, support and sign hypotheses, which we list verbatim. We explain why the known Calder\'on--Zygmund estimate does not supply the stretching Prop. The axioms used are only \lean{propext}, \lean{Classical.choice} and \lean{Quot.sound}.
+In the Lean~4/Mathlib~\cite{Lean4,Mathlib2020} repository \file{metriplectic-world-model} (commit \file{2274a23}), we prove a uniform-in-time ceiling on $\sup\abs{\omega}$ for a vorticity model with cubic tether $-\kappa\abs{\omega}^2\omega$ (\lean{field_uniform_ceiling_logLoss_cubicTether}). It is conditional on a pointwise log-loss stretching Prop and on six regularity, support and sign hypotheses, which we list verbatim. We explain why the known Calder\'on--Zygmund estimate does not supply the stretching Prop. The axioms used are only \lean{propext}, \lean{Classical.choice} and \lean{Quot.sound}.
 \end{abstract}
+\begin{mscblock}\textit{2020 Mathematics Subject Classification.} 35Q30, 76D05, 68V15; 35B45, 03B35.\par
+\textit{Keywords.} vorticity equation; cubic damping; maximum principle; Danskin's theorem; Lean~4; formal verification; work in progress.
+\end{mscblock}
+
 \section{The cubic-tethered vorticity model}
 The model is \lean{ModelVorticityPDE}~$\nu\ \omega\ u\ T$:
-\[u=\mathrm{BS}(\omega),\qquad \operatorname{div}\omega=0,\qquad \partial_t\omega+(u\cdot\nabla)\omega-(\omega\cdot\nabla)u=\nu\Delta\omega+T.\]
-It uses the cubic tether $T=\lean{cubicTether}~\kappa~\omega=-\kappa|\omega|^2\omega$. This is \emph{not} Navier--Stokes; the tether is an added damping term. Write $Y(t)=\sup_x|\omega(t,x)|$ and $\mathrm{ceiling}(M_0,C,\kappa)=\max(M_0,\max(C/\kappa,0))$.
+\begin{equation}\label{eq:model}u=\BS(\omega),\qquad \Div\omega=0,\qquad \partial_t\omega+(u\cdot\nabla)\omega-(\omega\cdot\nabla)u=\nu\Delta\omega+T.\end{equation}
+It uses the cubic tether $T=$\,\lean{cubicTether}~$\kappa$~$\omega$, i.e.\ $T=-\kappa\abs{\omega}^2\omega$. This is \emph{not} Navier--Stokes; the tether is an added damping term. Write
+\[Y(t)=\sup_x\abs{\omega(t,x)},\qquad \mathrm{ceiling}(M_0,C,\kappa)=\max\bigl(M_0,\max(C/\kappa,0)\bigr).\]
 
 \begin{hyp}[\lean{FieldStretchingLogLoss}~$\omega\ u\ Y\ C_1\ C_2$\coined; \textbf{not proved}]
 For every $t\ge0$ and every global maximizer $x_*$ of $|\omega(t,\cdot)|$:
-\[\omega\cdot(\omega\cdot\nabla)u\,(t,x_*)\le C_1Y^3+C_2Y^3\log(1+Y).\]
+\begin{equation}\label{eq:logloss}\omega\cdot(\omega\cdot\nabla)u\,(t,x_*)\le C_1Y^3+C_2Y^3\log(1+Y).\end{equation}
 \end{hyp}
 
 \begin{theorem}[\lean{field_uniform_ceiling_logLoss_cubicTether}\coined; conditional]
 Assume all of the following:
 \begin{enumerate}
 \item $\nu\ge0$, $\kappa>0$, $C_2\ge0$;
-\item \lean{ModelVorticityPDE}~$\nu\ \omega\ u\ (\lean{cubicTether}~\kappa~\omega)$;
+\item \lean{ModelVorticityPDE}~$\nu\ \omega\ u$ (\lean{cubicTether}~$\kappa$~$\omega$);
 \item a \emph{fixed} compact nonempty set $K$ with $\omega(s,x)=0$ for $x\notin K$, for all $s$;
 \item $\omega(t)\in C^2$ in space for every $t$;
 \item joint continuity of $\omega$ and of $\partial_t\omega$, and the pointwise time derivative $\partial_t\omega(s,x)$ exists for all $s,x$;
 \item $Y(s)$ is the least upper bound of $\{|\omega(s,x)|\}$ for all $s$;
 \item \lean{FieldStretchingLogLoss}~$\omega\ u\ Y\ C_1\ C_2$.
 \end{enumerate}
-Then for all $t\ge0$, $Y(t)\le\mathrm{ceiling}\big(Y(0),\,C_1+\kappa/4+4C_2^2/\kappa,\,3\kappa/4\big)$.
+Then for all $t\ge0$,
+\begin{equation}\label{eq:main}Y(t)\le\mathrm{ceiling}\Bigl(Y(0),\;C_1+\frac{\kappa}{4}+\frac{4C_2^2}{\kappa},\;\frac{3\kappa}{4}\Bigr).\end{equation}
 \end{theorem}
 \emph{Proof route.}
 \begin{itemize}
@@ -46,14 +54,15 @@ Then for all $t\ge0$, $Y(t)\le\mathrm{ceiling}\big(Y(0),\,C_1+\kappa/4+4C_2^2/\k
 \end{itemize}
 
 \paragraph{Why the known Calder\'on--Zygmund estimate does not suffice.}
-The classical log estimate (Beale--Kato--Majda, Kozono--Taniuchi type) reads
-\[\|\nabla u\|_\infty\le C\big(1+Y\,(1+\log^+(\|\omega\|_{C^\alpha}/Y))+\|\omega\|_{L^2}\big).\]
+The classical log estimate (Beale--Kato--Majda~\cite{BKM1984}, Kozono--Taniuchi~\cite{KozonoTaniuchi2000} type) reads
+\begin{equation}\label{eq:bkmlog}\norm{\nabla u}_{L^\infty}\le C\Bigl(1+Y\bigl(1+\log^+(\norm{\omega}_{C^\alpha}/Y)\bigr)+\norm{\omega}_{L^2}\Bigr).\end{equation}
 The logarithm contains a \emph{higher} norm, $\|\omega\|_{C^\alpha}$. The ceiling argument controls only $Y$, and a time-uniform bound on $\|\omega(t)\|_{C^\alpha}$ is essentially the regularity question itself. So the known estimate does not imply \lean{FieldStretchingLogLoss}, whose $Y$-only form is a strictly stronger hypothesis than anything known.
 
 The CZ estimate itself is also not formalized in that repository, which has no singular-integral or H\"older theory for $\nabla\mathrm{BS}$. The existence of solutions with uniformly fixed compact support (hypothesis 3) is likewise not established. Neither the theorem nor anything else in this paper says anything about unmodified Navier--Stokes.
 
 
 \paragraph{Lean hypotheses, verbatim.} The binders of \lean{field_uniform_ceiling_logLoss_cubicTether} are:
+\begin{tcolorbox}[colback=black!2,colframe=black!40,boxrule=0.4pt,arc=1pt]\small
 \begin{verbatim}
 (hν : 0 ≤ ν) (hκ : 0 < κ) (hC₂ : 0 ≤ C₂)
 (hpde : ModelVorticityPDE ν ω u (cubicTether κ ω))
@@ -66,9 +75,10 @@ The CZ estimate itself is also not formalized in that repository, which has no s
 (hY : ∀ s, IsLUB (range fun x => ‖ω s x‖) (Y s))
 (hS : FieldStretchingLogLoss ω u Y C₁ C₂)
 \end{verbatim}
+\end{tcolorbox}
 
 \section{Stated vs.\ proved}
-\begin{longtable}{p{0.42\textwidth}p{0.5\textwidth}}\toprule
+{\small\begin{longtable}{>{\raggedright\arraybackslash}p{0.44\textwidth}>{\raggedright\arraybackslash}p{0.48\textwidth}}\toprule
 Statement & Status\\\midrule
 Log loss + cubic tether $\Rightarrow$ \lean{FieldNetRate}, \lean{fieldNetRate_of_logLoss_cubicTether} & proved unconditionally (an implication between Props)\\
 Dini ceiling, \lean{field_uniform_ceiling_of_netRate} & proved conditionally on \lean{FieldNetRate} and hypotheses 1--6\\
@@ -77,26 +87,28 @@ Uniform ceiling, \lean{field_uniform_ceiling_logLoss_cubicTether} & proved condi
 CZ/BKM log estimate for $\nabla\mathrm{BS}$ & not proved (not formalized); would not imply \lean{FieldStretchingLogLoss} anyway\\
 Existence of solutions with fixed compact support & not proved\\
 Anything about unmodified NS / Clay & not proved, not claimed\\\bottomrule
-\end{longtable}
+\end{longtable}}
 
 \appendix
 \section{Theorem-to-Lean map}
-Names marked \coined{} were coined during formalization and are not the authors terminology; they may be renamed later.
-\begin{longtable}{p{0.37\textwidth}p{0.33\textwidth}p{0.2\textwidth}}\toprule
+Names marked \coined{} were coined during formalization and are not the author's terminology; they may be renamed later.
+{\small\begin{longtable}{>{\raggedright\arraybackslash}p{0.38\textwidth}>{\raggedright\arraybackslash}p{0.40\textwidth}>{\raggedright\arraybackslash}p{0.12\textwidth}}\toprule
 Lean name & File & Repo @ commit\\\midrule
-\lean{field_uniform_ceiling_logLoss_cubicTether}\coined & \texttt{MetriplecticWorldModel/LogLossCeiling.lean} & mwm @ \texttt{2274a23}\\
-\lean{fieldNetRate_of_logLoss_cubicTether}\coined & \texttt{MetriplecticWorldModel/LogLossCeiling.lean} & mwm @ \texttt{2274a23}\\
-\lean{field_uniform_ceiling_of_netRate}\coined & \texttt{MetriplecticWorldModel/LogLossCeiling.lean} & mwm @ \texttt{2274a23}\\
-\lean{FieldStretchingLogLoss}\coined, \lean{FieldNetRate}\coined{} (defs) & \texttt{MetriplecticWorldModel/LogLossCeiling.lean} & mwm @ \texttt{2274a23}\\
-\lean{cubicTether}\coined, \lean{fieldTetherFeedback_cubicTether}\coined & \texttt{MetriplecticWorldModel/DiniCeiling.lean} & mwm @ \texttt{2274a23}\\
-\lean{ceiling} (def) & \texttt{MetriplecticWorldModel/Ceiling.lean} & mwm @ \texttt{2274a23}\\
-\lean{ModelVorticityPDE}\coined{} (def) & \texttt{MetriplecticWorldModel/SmoothOrbit.lean} & mwm @ \texttt{2274a23}\\\bottomrule
-\end{longtable}
-mwm = \texttt{metriplectic-world-model}.
+\lean{field_uniform_ceiling_logLoss_cubicTether}\coined & \file{MetriplecticWorldModel/LogLossCeiling.lean} & mwm @ \file{2274a23}\\
+\lean{fieldNetRate_of_logLoss_cubicTether}\coined & \file{MetriplecticWorldModel/LogLossCeiling.lean} & mwm @ \file{2274a23}\\
+\lean{field_uniform_ceiling_of_netRate}\coined & \file{MetriplecticWorldModel/LogLossCeiling.lean} & mwm @ \file{2274a23}\\
+\lean{FieldStretchingLogLoss}\coined, \lean{FieldNetRate}\coined{} (defs) & \file{MetriplecticWorldModel/LogLossCeiling.lean} & mwm @ \file{2274a23}\\
+\lean{cubicTether}\coined, \lean{fieldTetherFeedback_cubicTether}\coined & \file{MetriplecticWorldModel/DiniCeiling.lean} & mwm @ \file{2274a23}\\
+\lean{ceiling} (def) & \file{MetriplecticWorldModel/Ceiling.lean} & mwm @ \file{2274a23}\\
+\lean{ModelVorticityPDE}\coined{} (def) & \file{MetriplecticWorldModel/SmoothOrbit.lean} & mwm @ \file{2274a23}\\\bottomrule
+\end{longtable}}
+mwm = \file{metriplectic-world-model}.
 
 \section{Axiom audit}
-At commit \texttt{2274a23}, \texttt{lake build} succeeds with 0 \texttt{sorry}. \texttt{lake env lean AxiomAudit.lean} (765 theorems) throws an error if any theorem uses an axiom other than \lean{propext}, \lean{Classical.choice} or \lean{Quot.sound}, and it completes without error. Every theorem above is in the audit.
+At commit \file{2274a23}, \texttt{lake build} succeeds with 0 \texttt{sorry}. \texttt{lake env lean AxiomAudit.lean} (765 theorems) throws an error if any theorem uses an axiom other than \lean{propext}, \lean{Classical.choice} or \lean{Quot.sound}, and it completes without error. Every theorem above is in the audit.
 
 \section*{License}
 \copyright\ 2026 Benjamin Stanley Frohman (ORCID 0009-0006-7068-3718). Apache License, Version 2.0.
+\bibliographystyle{amsplain}
+\bibliography{refs}
 \end{document}

@@ -1,0 +1,82 @@
+% frohman-paper.sty -- shared typesetting harness for the papers of
+% Benjamin Stanley Frohman (ORCID 0009-0006-7068-3718).
+% Copyright (c) 2026 Benjamin Stanley Frohman. Apache-2.0.
+% Engine: XeLaTeX (tectonic). Latin Modern text/math, DejaVu Sans Mono for Lean source.
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{frohman-paper}[2026/10/31 Frohman WIP paper harness]
+\RequirePackage[a4paper,margin=1.1in,headheight=14pt]{geometry}
+\RequirePackage{amsmath,amssymb,amsthm,mathtools}
+\RequirePackage{fontspec}
+\setmonofont{DejaVu Sans Mono}[Scale=0.82]
+\RequirePackage{microtype}
+\RequirePackage[dvipsnames]{xcolor}
+\RequirePackage{booktabs,longtable,array,enumitem}
+\RequirePackage[most]{tcolorbox}
+\RequirePackage{fancyhdr}
+\RequirePackage{xurl}
+\RequirePackage[colorlinks=true,linkcolor=blue!50!black,citecolor=green!40!black,urlcolor=blue!50!black]{hyperref}
+\RequirePackage[capitalise,nameinlink]{cleveref}
+\setlist{itemsep=2pt,topsep=4pt}
+\emergencystretch=3em
+\numberwithin{equation}{section}
+% ---------- theorem environments (numbered within section) ----------
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{hyp}[theorem]{Named hypothesis}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\crefname{hyp}{Hypothesis}{Hypotheses}
+% ---------- notation ----------
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\TT}{\mathbb{T}^3}
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
+\DeclarePairedDelimiter{\ip}{\langle}{\rangle}
+\DeclareMathOperator{\curl}{curl}
+\DeclareMathOperator{\Div}{div}
+\DeclareMathOperator{\spn}{span}
+\newcommand{\BS}{\mathrm{BS}}
+\newcommand{\dd}{\,\mathrm{d}}
+\newcommand{\Tstar}{T^{*}}
+% ---------- Lean identifiers (breakable, typewriter) ----------
+\DeclareUrlCommand\lean{\def\UrlFont{\upshape\ttfamily\color{RoyalBlue!70!black}}}
+\DeclareUrlCommand\file{\def\UrlFont{\upshape\ttfamily}}
+\newcommand{\coined}{\textsuperscript{\textcolor{gray}{\dag}}}
+% ---------- boxes ----------
+\newtcolorbox{wipbox}{enhanced,breakable,colback=red!3,colframe=red!55!black,boxrule=0.6pt,arc=1pt,left=6pt,right=6pt,top=4pt,bottom=4pt,fontupper=\small}
+\newtcolorbox{citebox}{enhanced,breakable,colback=blue!3,colframe=blue!50!black,boxrule=0.6pt,arc=1pt,left=6pt,right=6pt,top=4pt,bottom=4pt,fontupper=\small}
+\newtcolorbox{scopebox}{enhanced,breakable,colback=black!3,colframe=black!60,boxrule=0.6pt,arc=1pt,left=6pt,right=6pt,top=4pt,bottom=4pt,fontupper=\small}
+% ---------- front matter ----------
+\newcommand{\paperdoi}{}\newcommand{\companiondoi}{}\newcommand{\companionlabel}{}
+\newcommand{\shorttitle}{}\newcommand{\papersubtitle}{}\newcommand{\paperdate}{}
+\newcommand{\doi}[1]{\href{https://doi.org/#1}{\nolinkurl{#1}}}
+\newcommand{\frohmantitle}[1]{%
+  \thispagestyle{plain}%
+  \begin{center}
+  {\small\scshape\color{red!60!black} Work in progress --- draft, not peer reviewed\par}\vspace{10pt}
+  {\LARGE\bfseries #1\par}\vspace{6pt}
+  \ifx\papersubtitle\empty\else{\large\itshape\papersubtitle\par}\vspace{6pt}\fi
+  \vspace{6pt}{\large\scshape Benjamin Stanley Frohman\par}\vspace{2pt}
+  {\small ORCID \href{https://orcid.org/0009-0006-7068-3718}{0009-0006-7068-3718}\quad$\cdot$\quad\href{mailto:frohmanbenjamin@gmail.com}{\nolinkurl{frohmanbenjamin@gmail.com}}\par}\vspace{2pt}
+  {\small\paperdate\par}\vspace{2pt}
+  {\small DOI \doi{\paperdoi}\quad$\cdot$\quad \companionlabel\ \doi{\companiondoi}\par}
+  \end{center}\vspace{4pt}}
+\newenvironment{mscblock}{\par\smallskip\noindent\small}{\par\medskip}
+\newcommand{\msc}{\textit{2020 Mathematics Subject Classification.} 35Q30, 76D05, 68V15; 35B65, 03B35.\par}
+% ---------- page style ----------
+\pagestyle{fancy}\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[L]{\footnotesize\scshape B.\,S.~Frohman \textcolor{red!60!black}{$\cdot$ work in progress}}
+\fancyhead[R]{\footnotesize\itshape\shorttitle}
+\fancyfoot[C]{\thepage}
+\fancyfoot[R]{\footnotesize\copyright\ 2026 B.\,S.~Frohman $\cdot$ Apache-2.0}
+\fancypagestyle{plain}{\fancyhf{}\renewcommand{\headrulewidth}{0pt}\fancyfoot[C]{\thepage}\fancyfoot[R]{\footnotesize\copyright\ 2026 B.\,S.~Frohman $\cdot$ Apache-2.0}}
+\endinput

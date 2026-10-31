@@ -1,46 +1,55 @@
+% Copyright (c) 2026 Benjamin Stanley Frohman. Apache-2.0.
 \documentclass[11pt]{article}
-\usepackage[margin=1in]{geometry}
-\usepackage{amsmath,amssymb,amsthm,hyperref,xcolor,fancyhdr}
-\newcommand{\lean}[1]{\texttt{\detokenize{#1}}}
-\newcommand{\coined}{\textsuperscript{\textcolor{gray}{[coined]}}}
-\pagestyle{fancy}\fancyhf{}
-\fancyhead[C]{\textcolor{red}{\textbf{DRAFT --- tracks build in progress}}}
-\fancyfoot[C]{\thepage}\fancyfoot[R]{\footnotesize \copyright\ 2026 Benjamin Stanley Frohman. Apache-2.0.}
-\newtheorem{theorem}{Theorem}\newtheorem{proposition}[theorem]{Proposition}
-\theoremstyle{definition}\newtheorem{hyp}{Named hypothesis}
-\title{Work in progress: The Frohmanian Tethered Metriplectic World Model in Lean~4: Canonical Bracket Splitting, Encoding Obstructions, and the Newton Potential\\[4pt]\large Companion paper to \texttt{BenFrohman/metriplectic-world-model}}
-\author{Benjamin Stanley Frohman\\ORCID \href{https://orcid.org/0009-0006-7068-3718}{0009-0006-7068-3718}\\\texttt{frohmanbenjamin@gmail.com}}
-\date{Draft, 31 October 2026 (build of 31 October 2026, see repository log)}
-\begin{document}\maketitle
-\begin{center}\fbox{\parbox{0.92\textwidth}{\textbf{Work in progress} --- draft, subject to change. DOI: \href{https://doi.org/10.5281/zenodo.23842565}{10.5281/zenodo.23842565}. Companion reduction paper: \href{https://doi.org/10.5281/zenodo.23842298}{10.5281/zenodo.23842298}.}}\end{center}
-\begin{center}\fbox{\parbox{0.9\textwidth}{\textbf{Draft --- tracks build in progress.} This repository formalizes a \emph{model}: the tethered metriplectic system, which adds a symmetric tether bracket and cubic damping of peak vorticity to 3D vorticity dynamics. It proves nothing about unmodified Navier--Stokes ($\kappa=0$) and does not resolve the Clay Millennium problem.}}\end{center}
+\usepackage{frohman-paper}
+\renewcommand{\shorttitle}{The tethered metriplectic world model in Lean~4}
+\renewcommand{\papersubtitle}{Companion paper to \file{BenFrohman/metriplectic-world-model}}
+\renewcommand{\paperdate}{Draft of 31 October 2026 \,(build of 31 October 2026, see repository log)}
+\renewcommand{\paperdoi}{10.5281/zenodo.23842565}
+\renewcommand{\companiondoi}{10.5281/zenodo.23842298}
+\renewcommand{\companionlabel}{Companion reduction paper:}
+\begin{document}
+\frohmantitle{The Frohmanian Tethered Metriplectic World Model in Lean~4: Canonical Bracket Splitting, Encoding Obstructions, and the Newton Potential}
+
+\begin{wipbox}
+\textbf{Draft --- tracks build in progress.} This repository formalizes a \emph{model}: the tethered metriplectic system, which adds a symmetric tether bracket and cubic damping of peak vorticity to 3D vorticity dynamics. It proves nothing about unmodified Navier--Stokes ($\kappa=0$) and does not resolve the Clay Millennium problem.
+\end{wipbox}
+
 \begin{abstract}
-We report a Lean~4/Mathlib formalization (0 \texttt{sorry}; axioms only \lean{propext}, \lean{Classical.choice}, \lean{Quot.sound}) of the author's tethered metriplectic model. Proved unconditionally: the unique antisymmetric/symmetric splitting of a bilinear bracket (\lean{split_exists_unique}); a non-circular canonicity theorem forcing the metric bracket to the form $c\langle\Pi_u x,\Pi_u y\rangle$ (\lean{canonical_metric_bracket}); a uniform vorticity ceiling for the comparison inequality $M'\le CM^2-\kappa M^3$; a log-loss replacement for the stretching hypothesis giving a ceiling when $\kappa>4C_{\mathrm{abs}}$; several encoding counterexamples; the Newton-potential identity $\Delta(N\star g)=-4\pi g$ on $\mathbb{R}^3$ for $g\in C^2_c$; and $\operatorname{curl}\mathrm{BiotSavart}\,\omega=\omega$ for smooth, compactly supported, divergence-free $\omega$ (\lean{curlBiotSavartTest}). Conditional and open items are listed by their exact Prop names.
+We report a Lean~4/Mathlib~\cite{Lean4,Mathlib2020} formalization (0 \texttt{sorry}; axioms only \lean{propext}, \lean{Classical.choice}, \lean{Quot.sound}) of the author's tethered metriplectic model (in the sense of~\cite{Morrison1986}). Proved unconditionally: the unique antisymmetric/symmetric splitting of a bilinear bracket (\lean{split_exists_unique}); a non-circular canonicity theorem forcing the metric bracket to the form $c\ip{\Pi_u x,\Pi_u y}$ (\lean{canonical_metric_bracket}); a uniform vorticity ceiling for the comparison inequality $M'\le CM^2-\kappa M^3$; a log-loss replacement for the stretching hypothesis giving a ceiling when $\kappa>4C_{\mathrm{abs}}$; several encoding counterexamples; the Newton-potential identity $\Delta(N\star g)=-4\pi g$ on $\R^3$ for $g\in C^2_c$; and $\curl\BS\,\omega=\omega$ for smooth, compactly supported, divergence-free $\omega$ (\lean{curlBiotSavartTest}). Conditional and open items are listed by their exact Prop names.
 \end{abstract}
+\begin{mscblock}\textit{2020 Mathematics Subject Classification.} 35Q30, 76D05, 68V15; 37K05, 76B47, 03B35.\par
+\textit{Keywords.} metriplectic dynamics; vorticity; tether; Biot--Savart law; helicity; Lean~4; formal verification; work in progress.
+\end{mscblock}
+
 \section{Naming}
-\lean{Pi_u} is the author's own name (manuscript of 31 May 2026): the projection $\Pi_u x = x-(\langle u,x\rangle/\|u\|^2)u$ off $\operatorname{span}\{u\}$. All other identifiers defined in this repository are \emph{coined in this build} (marked \coined), including \lean{canonical_metric_bracket}, kept by the author's choice and flagged as coined. Modules under \texttt{FrohmanianSymplecticTether/} and \texttt{TetherMayForm/} are ported verbatim from earlier repositories.
+\lean{Pi_u} is the author's own name (manuscript of 31 May 2026): the projection off $\spn\{u\}$,
+\begin{equation}\label{eq:Piu}\Pi_u x = x-\frac{\ip{u,x}}{\norm{u}^2}\,u.\end{equation} All other identifiers defined in this repository are \emph{coined in this build} (marked \coined), including \lean{canonical_metric_bracket}, kept by the author's choice and flagged as coined. Modules under \file{FrohmanianSymplecticTether/} and \file{TetherMayForm/} are ported verbatim from earlier repositories.
 \section{Manuscript framing}
-The May/June 2026 manuscript introduces a tethered Lyapunov functional $S_\varepsilon$ and reduces regularity to the comparison ODE $y'=Cy^2-\kappa''y^3$ for the peak vorticity, through transport cancellation, viscous dissipation at the maximum, a H\"older--Sobolev gate, and Young absorption at $\varepsilon=\kappa/4$ (Proposition~2). Within the model, the cubic term comes from the tether. The manuscript's hypothesis (H5), a non-circular majorant for the vorticity, is the genuine gap; for $\kappa=0$ it is the Clay core. Here $\kappa$ has units of time and breaks Navier--Stokes scaling, which is why the model is distinct from NS. \emph{Normalization of $\kappa$:} where the Lean code fixes $\kappa=3/2$ (\lean{CalderonZygmundConstant3D}, defined as $(3/(8\pi))\cdot4\pi$), this is a convention; it is not a computed Calder\'on--Zygmund operator norm and not derived from a Conley--Zehnder index. The ceilings hold for every $\kappa>0$.
+The May/June 2026 manuscript introduces a tethered Lyapunov functional $S_\varepsilon$ and reduces regularity to the comparison ODE
+\begin{equation}\label{eq:cmp}y'=Cy^2-\kappa''y^3\end{equation}
+for the peak vorticity, through transport cancellation, viscous dissipation at the maximum, a H\"older--Sobolev gate, and Young absorption at $\varepsilon=\kappa/4$ (Proposition~2). Within the model, the cubic term comes from the tether. The manuscript's hypothesis (H5), a non-circular majorant for the vorticity, is the genuine gap; for $\kappa=0$ it is the Clay core. Here $\kappa$ has units of time and breaks Navier--Stokes scaling, which is why the model is distinct from NS. \emph{Normalization of $\kappa$:} where the Lean code fixes $\kappa=3/2$ (\lean{CalderonZygmundConstant3D}, defined as $(3/(8\pi))\cdot4\pi$), this is a convention; it is not a computed Calder\'on--Zygmund operator norm and not derived from a Conley--Zehnder index. The ceilings hold for every $\kappa>0$.
 \section{Brackets and canonicity (\texttt{Bracket.lean}, \texttt{Canonical.lean})}
 \begin{theorem}\lean{split_exists_unique}\coined: every bilinear bracket is uniquely an antisymmetric part plus a symmetric part.\end{theorem}
-\begin{theorem}\lean{canonical_metric_bracket}\coined: on a real inner product space, a bilinear form $B$ that is symmetric (C1), degenerate along $u$ (C2: $B(u,\cdot)=0$) and invariant under every linear isometry fixing $u$ equals $c\,\langle \Pi_u x,\Pi_u y\rangle$. The hypotheses do not mention $\Pi_u$. \lean{canonical_metric_bracket_sign}\coined: if $B(x,x)\le0$ then $c\le0$. \lean{Pi_u_form_symm_degen}\coined: the forced form satisfies C1, C2.\end{theorem}
+\begin{theorem}\lean{canonical_metric_bracket}\coined: on a real inner product space, a bilinear form $B$ that is symmetric (C1), degenerate along $u$ (C2: $B(u,\cdot)=0$) and invariant under every linear isometry fixing $u$ equals
+\[B(x,y)=c\,\ip{\Pi_u x,\Pi_u y}.\] The hypotheses do not mention $\Pi_u$. \lean{canonical_metric_bracket_sign}\coined: if $B(x,x)\le0$ then $c\le0$. \lean{Pi_u_form_symm_degen}\coined: the forced form satisfies C1, C2.\end{theorem}
 \noindent\emph{Scope:} pointwise at one state; does not force the $|\omega|^2$ weight, the value of $\kappa$, or C3. Also proved: \lean{energy_conserved}, \lean{energy_const_along}, \lean{entropy_production}, \lean{gen_entropy_eq}, \lean{entropy_monotone_along}\coined.
 \section{Ceiling and stretching (\texttt{Ceiling.lean}, \texttt{AuditFixes.lean})}
-\begin{theorem}\lean{uniform_ceiling}\coined: if $M'\le CM^2-\kappa M^3$, $\kappa>0$, then $M(t)\le\max(M(0),\max(C/\kappa,0))$ for $t\ge0$. Also \lean{absorbing}, \lean{ceiling_antitone_kappa}, \lean{kappa_zero_no_ceiling}\coined{} (at $\kappa=0$, $1/(1-t)$ satisfies $M'\le M^2$ and blows up).\end{theorem}
-\paragraph{Correction.} The hypothesis \lean{StretchingCZ} (a pure $y^3$ bound on stretching at the maximum) is \emph{false as a sup-norm bound} for Navier--Stokes: the known bound carries a logarithmic loss. Results using it are relabeled as model-only. Its honest replacement is \lean{StretchingLogLoss}~$d\,C_1\,C_2$\coined: $St\le C_1y^3+C_2y^3\log(1+y)$.
+\begin{theorem}\lean{uniform_ceiling}\coined: if $M'\le CM^2-\kappa M^3$ and $\kappa>0$, then
+\begin{equation}\label{eq:ceiling}M(t)\le\max\bigl(M(0),\max(C/\kappa,0)\bigr)\qquad(t\ge0).\end{equation} Also \lean{absorbing}, \lean{ceiling_antitone_kappa}, \lean{kappa_zero_no_ceiling}\coined{} (at $\kappa=0$, $1/(1-t)$ satisfies $M'\le M^2$ and blows up).\end{theorem}
+\paragraph{Correction.} The hypothesis \lean{StretchingCZ} (a pure $y^3$ bound on stretching at the maximum) is \emph{false as a sup-norm bound} for Navier--Stokes: the known bound carries a logarithmic loss. Results using it are relabeled as model-only. Its honest replacement is \lean{StretchingLogLoss}~$d\,C_1\,C_2$\coined: \[St\le C_1y^3+C_2y^3\log(1+y).\]
 \begin{theorem}\lean{maxpoint_rate_logLoss}\coined: under \lean{EnergyIdentity}, \lean{StretchingLogLoss}, \lean{ViscousAtMax}, \lean{TetherFeedback}, \lean{CrossControlled},
 \[y'\le\Bigl(C_1+\tfrac{\kappa}{4}+\tfrac{4C_2^2}{\kappa}\Bigr)y^2-\Bigl(\tfrac{\kappa}{4}-C_{\mathrm{abs}}\Bigr)y^3,\]
 so with \lean{uniform_ceiling} a uniform ceiling follows whenever $\kappa>4C_{\mathrm{abs}}$ (Young absorption at $\varepsilon=\kappa/4$).\end{theorem}
 \section{Encoding obstructions (\texttt{ChoiceFree}, \texttt{HelmholtzObstruction}, \texttt{TestClass})}
 \begin{itemize}
 \item \lean{not_streamFunctionRepModGrad}\coined: \lean{StreamFunctionRepModGrad} fails for every $\omega$ --- representatives are determined only a.e.; uniqueness must be stated almost everywhere (open).
-\item \lean{arnoldBracketOf_antisymm}, \lean{entropyCasimir_arnold}\coined: a choice-free Arnold bracket and a Casimir criterion.
+\item \lean{arnoldBracketOf_antisymm}, \lean{entropyCasimir_arnold}\coined: a choice-free Arnold bracket~\cite{Arnold1966} and a Casimir criterion.
 \item \lean{not_curl_biotSavart_eq}\coined: $\operatorname{curl}(\mathrm{BiotSavart}\,\omega)=\omega$ fails for the point spike in the current encoding; \lean{helicity_casimir_of_curlBiotSavart}\coined{} is conditional on \lean{CurlBiotSavartOn}.
 \item \lean{IsTestOrbit}\coined{} (smooth, compactly supported, div-free); \lean{not_isTestOrbit_pointSpike}, \lean{helicity_casimir_test}\coined{} (conditional on \lean{CurlBiotSavartTest}, discharged in \lean{helicity_casimir_test_closed}, Section~7); \lean{integrableOn_ball_norm_rpow_neg}\coined.
 \end{itemize}
 \section{Newton potential on $\mathbb{R}^3$ (\texttt{NewtonKernel}, \texttt{RegularizedKernel}, \texttt{NewtonLaplacian})}
 Proved: \lean{scalarLaplacian_newtonRadial} ($\Delta(1/|y|)=0$, $y\ne0$), \lean{contDiff_newtonPotential}, \lean{hasFDerivAt_newtonPotential} (differentiation under the integral); for $N_\varepsilon=(|y|^2+\varepsilon^2)^{-1/2}$: \lean{scalarLaplacian_regNewton} ($\Delta N_\varepsilon=-3\varepsilon^2(|y|^2+\varepsilon^2)^{-5/2}$), \lean{regNewton_le}, \lean{tendsto_regNewton}, \lean{integral_neg_scalarLaplacian_regNewton} ($\int-\Delta N_\varepsilon=4\pi$), \lean{tendsto_regPeak_approxIdentity} (all \coined). The regularized route avoids spherical Green identities, which Mathlib lacks.
-Step 3 is closed (\texttt{NewtonLaplacian}): \lean{integral_mul_scalarLaplacian_eq} ($\int K\,\Delta g=\int \Delta K\,g$ for $K\in C^2$, $g\in C^2_c$, by Mathlib integration by parts, no boundary terms), \lean{regNewton_conv_laplacian} ($N_\varepsilon\star\Delta g=(\Delta N_\varepsilon)\star g$), \lean{tendsto_regNewton_conv} (the $\varepsilon\to0$ limit, dominated by $N|h|$), \lean{scalarLaplacian_newtonPotential} ($\Delta(N\star g)=N\star\Delta g$), and
+Step 3 is closed (\file{NewtonLaplacian}): \lean{integral_mul_scalarLaplacian_eq} ($\int K\,\Delta g=\int \Delta K\,g$ for $K\in C^2$, $g\in C^2_c$, by Mathlib integration by parts, no boundary terms), \lean{regNewton_conv_laplacian} ($N_\varepsilon\star\Delta g=(\Delta N_\varepsilon)\star g$), \lean{tendsto_regNewton_conv} (the $\varepsilon\to0$ limit, dominated by $N|h|$), \lean{scalarLaplacian_newtonPotential} ($\Delta(N\star g)=N\star\Delta g$), and
 \begin{theorem}\lean{scalarLaplacian_newtonPotential_eq}\coined: for $g\in C^2_c(\mathbb{R}^3)$ and $N(y)=1/|y|$, $\Delta(N\star g)(x)=-4\pi g(x)$ for every $x$.\end{theorem}
 \section{Biot--Savart on the test class (\texttt{BiotSavartNewton})}
 With $G_j(t)=t_j/|t|^3$ (\lean{gradKer}\coined{} at $\varepsilon=0$):
@@ -58,9 +67,9 @@ With $G_j(t)=t_j/|t|^3$ (\lean{gradKer}\coined{} at $\varepsilon=0$):
 \section{Poincar\'e lemma and the kinetic-energy representative (\texttt{PoincareR3}, \texttt{KineticEnergyRep})}
 \begin{theorem}\lean{curlFreeIsGradient}\coined: every $C^2$ curl-free field on $\mathbb{R}^3$ is the gradient of a $C^2$ function.\end{theorem}
 \begin{theorem}\lean{decays_newtonPotential}\coined: if $g$ is continuous, compactly supported and $\int g=0$, then $|N\star g(x)|\le C(1+|x|)^{-2}$. Derivatives of $C^1_c$ functions and the coordinates of a divergence-free test field have mean zero (\lean{IsTestOrbit.integral_coord_eq_zero}\coined).\end{theorem}
-\begin{theorem}\lean{integral_pairing_curl_symm}\coined: $\int\langle a,\operatorname{curl}b\rangle=\int\langle\operatorname{curl}a,b\rangle$ for fields with decaying coordinates and first derivatives. Hence, with $\psi=(4\pi)^{-1}N\star\omega$ (\lean{keStream}\coined), $\int\langle B\omega,B\varepsilon\rangle=\int\langle\psi,\varepsilon\rangle$, so $\psi$ is a $C^\infty$ G\^ateaux representative of the kinetic energy with $\operatorname{curl}\psi=u$ (\lean{keStream_isGateauxRep}\coined).\end{theorem}
+\begin{theorem}\lean{integral_pairing_curl_symm}\coined: \[\int\ip{a,\curl b}\dd x=\int\ip{\curl a,b}\dd x\]for fields with decaying coordinates and first derivatives. Hence, with $\psi=(4\pi)^{-1}N\star\omega$ (\lean{keStream}\coined), $\int\langle B\omega,B\varepsilon\rangle=\int\langle\psi,\varepsilon\rangle$, so $\psi$ is a $C^\infty$ G\^ateaux representative of the kinetic energy with $\operatorname{curl}\psi=u$ (\lean{keStream_isGateauxRep}\coined).\end{theorem}
 \begin{theorem}\lean{streamFunctionRepModGradOn}\coined: \lean{StreamFunctionRepModGradOn} holds unconditionally on the test class.\end{theorem}
-\noindent\emph{Smoothness audit.} \lean{instSmooth} in \texttt{Instance.lean} stated analyticity where $C^\infty$ was meant (still true, now stated as $C^\infty$). \lean{contDiffAt_newtonRadial} states analyticity of $1/|x|$ off $0$; that is true and proved, so it is left as is.
+\noindent\emph{Smoothness audit.} \lean{instSmooth} in \file{Instance.lean} stated analyticity where $C^\infty$ was meant (still true, now stated as $C^\infty$). \lean{contDiffAt_newtonRadial} states analyticity of $1/|x|$ off $0$; that is true and proved, so it is left as is.
 \section{Maximizer data from a vorticity field (\texttt{MaxPointDanskin}, \texttt{EntropyCasimirArnold})}
 \begin{theorem}\lean{danskin_upper_dini}\coined: if $f,\partial_t f$ are jointly continuous on $\mathbb{R}\times K$, $K$ compact, then for some maximizer $x_\star$ of $f(t,\cdot)$ on $K$ and every $\varepsilon>0$, $\sup_K f(t+h)\le f(t,x_\star)+h(\partial_t f(t,x_\star)+\varepsilon)$ for small $h>0$; i.e.\ $D^+\sup_K f(t)\le\partial_t f(t,x_\star)$. \lean{vorticity_danskin_upper_dini}\coined\ applies it to $|\omega|^2$.\end{theorem}
 \begin{theorem}\lean{sup_mul_deriv_eq_inner}\coined: if $Y=\sup|\omega|$ is differentiable at $t$, then $YY'=\omega\cdot\partial_t\omega$ at every global maximizer. At such a point $\omega\cdot(v\cdot\nabla)\omega=0$ (\lean{inner_convective_eq_zero_of_max}\coined) and $\omega\cdot\Delta\omega\le0$ for $C^2$ fields (\lean{inner_laplacian_nonpos_of_max}\coined).\end{theorem}
@@ -72,7 +81,7 @@ With $G_j(t)=t_j/|t|^3$ (\lean{gradKer}\coined{} at $\varepsilon=0$):
 \begin{theorem}\lean{fieldTetherFeedback_cubicTether}\coined: for $T=-\kappa|\omega|^2\omega$ (\lean{cubicTether}\coined), \lean{FieldTetherFeedback} holds. Hence \lean{field_uniform_ceiling_cubicTether}\coined\ needs only \lean{FieldStretchingBound}. For a general tether it does not follow.\end{theorem}
 \section{Log-loss stretching with the cubic tether (\texttt{LogLossCeiling})}
 \begin{theorem}\lean{field_uniform_ceiling_logLoss_cubicTether}\coined: take a solution of \lean{ModelVorticityPDE} with the cubic tether, under the regularity and uniform-support hypotheses of \lean{field_uniform_ceiling}. Assume the named Prop \lean{FieldStretchingLogLoss}\coined, $\omega\cdot(\omega\cdot\nabla)u\le C_1Y^3+C_2Y^3\log(1+Y)$ at maxima. Then $\sup|\omega(t)|\le\mathrm{ceiling}(Y_0,\,C_1+\kappa/4+4C_2^2/\kappa,\,3\kappa/4)$ for every $\kappa>0$.\end{theorem}
-This is a reduction, not an unconditional result. The Calder\'on--Zygmund estimate is not formalized here. Its known form has $\log^+(\|\omega\|_{C^\alpha}/Y)$, a higher norm that is not controlled uniformly in time, so it would not close the argument. The $Y$-only log loss is a strictly stronger assumption.
+This is a reduction, not an unconditional result. The Calder\'on--Zygmund estimate is not formalized here. Its known form has $\log^+\bigl(\norm{\omega}_{C^\alpha}/Y\bigr)$, a higher norm that is not controlled uniformly in time, so it would not close the argument. The $Y$-only log loss is a strictly stronger assumption.
 \section{Status}
 \begin{itemize}
 \item \textbf{Proved unconditionally:} \lean{split_exists_unique}, \lean{canonical_metric_bracket} (+ sign, symm/degen), energy/entropy structure, \lean{uniform_ceiling}, \lean{maxpoint_rate_logLoss} (as an implication from its listed Props), the obstructions above, the Newton potential identity (steps 1--3), \lean{curlBiotSavartTest} (steps 4--5), Biot--Savart self-adjointness, the Poincar\'e lemma \lean{curlFreeIsGradient}, \lean{streamFunctionRepModGradOn} on the test class, $D\mathcal H=2u$ and the helicity Casimir of the concrete Arnold bracket on the test class (\lean{helicity_casimir_of_rep}), the scalar instance \lean{instance_global_regularity}, the Danskin bound \lean{danskin_upper_dini} and the maximum-principle lemmas.
@@ -82,4 +91,6 @@ This is a reduction, not an unconditional result. The Calder\'on--Zygmund estima
 \end{itemize}
 \section*{License}
 \copyright\ 2026 Benjamin Stanley Frohman (ORCID 0009-0006-7068-3718). Licensed under the Apache License, Version 2.0.
+\bibliographystyle{amsplain}
+\bibliography{refs}
 \end{document}
