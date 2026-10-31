@@ -115,3 +115,6 @@ open Lean Elab Command
 #print axioms MetriplecticWorldModel.field_uniform_ceiling
 #print axioms MetriplecticWorldModel.fieldTetherFeedback_cubicTether
 #print axioms MetriplecticWorldModel.field_uniform_ceiling_cubicTether
+#print axioms MetriplecticWorldModel.field_uniform_ceiling_of_netRate
+#print axioms MetriplecticWorldModel.fieldNetRate_of_logLoss_cubicTether
+#print axioms MetriplecticWorldModel.field_uniform_ceiling_logLoss_cubicTether

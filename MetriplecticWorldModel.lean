@@ -19,3 +19,4 @@ import MetriplecticWorldModel.KineticEnergyRep
 import MetriplecticWorldModel.MaxPointDanskin
 import MetriplecticWorldModel.EntropyCasimirArnold
 import MetriplecticWorldModel.DiniCeiling
+import MetriplecticWorldModel.LogLossCeiling
