@@ -27,7 +27,7 @@ majorant on compact intervals.
 Calderón–Zygmund stretching, uniqueness classification, Jacobi identity,
 Picard existence of the majorant ODE.
 
-`kappa` is `C_CZ(3) = (3/(8 π)) · 4 π = 3/2` from the strain kernel, not an axiom and not the stand-in `1`.
+`kappa = 3/2` (`CalderonZygmundConstant3D`) is a normalization convention, not a computed Calderón–Zygmund operator norm; the ceiling holds for any `κ > 0`.
 `IsSmoothAtTime` is `ContDiff ℝ (⊤ : ℕ∞)`, not a `constant`.
 Admissible corrections use the real predicates C1–C3, not `True`.
 -/

@@ -249,8 +249,12 @@ A draft companion paper is in `paper/` (marked DRAFT; it tracks the build in pro
 
 License: Apache-2.0.
 
+**κ normalization.** `CalderonZygmundConstant3D = (3/(8π))·4π = 3/2` is a normalization convention for κ, not a computed Calderón–Zygmund operator norm and not derived from Conley–Zehnder. The ceilings hold for any κ > 0; at κ = 0 (plain NS) the tether vanishes.
+
 ## Copyright, license and scope
 
 Copyright 2026 Benjamin Stanley Frohman (ORCID [0009-0006-7068-3718](https://orcid.org/0009-0006-7068-3718)). Licensed under the Apache License, Version 2.0; see `LICENSE` and `NOTICE`.
 
 What is proved vs. conditional: Proved results and the open named `Prop`s are listed above. This is a modified model, not unmodified Navier–Stokes. Every hypothesis is a named `Prop` passed as an explicit argument. Nothing in this repository claims to solve the Clay Millennium problem or global regularity for unmodified 3D Navier–Stokes.
+
+**Final status:** Tethered-model ceilings proved for every κ > 0 under the named Props listed above; κ = 3/2 is a convention. Nothing about unmodified Navier–Stokes (κ = 0) or the Clay problem is claimed.

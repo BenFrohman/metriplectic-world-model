@@ -266,21 +266,20 @@ These choices ensure that the novel geometric content (the explicit construction
 -- full resolution of ForMathlib. ns prefix for the open list was triggering unknown during reorg).
 -- The key lemmas (projector_orthogonality etc.) are documented via the centralized ForMathlib module.
 
-/-! ## Calderón–Zygmund Constant (universal, solution-independent)
+/-! ## Tether normalization `κ = 3/2` (a convention, not a computed constant)
 
-`C_CZ(3)` is the spherical L¹ of the operator-norm density of the 3D Biot–Savart
-strain kernel
-`(K z ω)_{ij} = (3/(8 π)) [(z × ω)_i z_j + (z × ω)_j z_i] / |z|^5`
-(Constantin–Fefferman / Majda–Bertozzi). The angular density has operator norm
-`3/(8 π)` at every pole of `S²`, so
-`C_CZ(3) = (3/(8 π)) · area(S²) = (3/(8 π)) · 4 π = 3/2`.
-This is **not** the nondimensional stand-in `1`. The operational multiplier `4`
-in `4 C_CZ(3)` is the quartic product-rule factor, **not** a 4D spatial constant.
-The L² Fourier multiplier of `∇u` from `ω` is separately `≤ 1`; the strain
-multiplier is `≤ 1/2`. Young absorption is homogeneous in `κ = C_CZ(3)`.
+`CalderonZygmundConstant3D` is defined as `(3/(8 π)) · 4 π`, which simplifies to `3/2`.
+**This is a normalization convention for the tether strength `κ`.** It is *not* a computed
+Calderón–Zygmund operator norm of the Biot–Savart strain kernel, and it is not derived from a
+Conley–Zehnder index or any other invariant: nothing in this repository ties `3/2` to an operator
+norm, and `CalderonZygmundConstant3D_eq_three_halves` only evaluates the definition. The name is
+kept for continuity with the May/June 2026 sources. The ceiling results
+(`uniform_ceiling`, `field_uniform_ceiling_logLoss_cubicTether`) hold for **every** `κ > 0`,
+so no specific value is needed; at `κ = 0` (plain Navier–Stokes) the tether term vanishes.
+The factor `4` in `4 C_CZ(3)` is the quartic product-rule factor.
 -/
 
-/-- `C_CZ(3) = (3/(8 π)) · 4 π`. Evaluates to `3/2`, not `1`. -/
+/-- Normalization convention `(3/(8 π)) · 4 π = 3/2` for `κ` (not a computed CZ operator norm). -/
 @[expose] public noncomputable def CalderonZygmundConstant3D : ℝ :=
   biotSavartStrainKernelPrefactor * sphereAreaS2
 
