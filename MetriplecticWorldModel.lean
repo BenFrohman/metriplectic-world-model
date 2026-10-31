@@ -12,3 +12,4 @@ import MetriplecticWorldModel.TestClass
 import MetriplecticWorldModel.NewtonKernel
 import MetriplecticWorldModel.RegularizedKernel
 import MetriplecticWorldModel.NewtonLaplacian
+import MetriplecticWorldModel.BiotSavartNewton

@@ -122,17 +122,17 @@ Each one is passed as an explicit argument. None is proved here.
    * `not_curl_biotSavart_eq` is **proved**: `curl (BiotSavart ω) = ω` fails for some `CoadjointOrbit`. The witness is `pointSpike`: `e₀` at the origin, `0` elsewhere. It is admitted because `div` uses `fderiv`, which is `0` where the field is not differentiable. Its Biot–Savart velocity is `0`, since the integrand vanishes almost everywhere, but the field is nonzero at the origin.
    * So the identity, the helicity derivative `2u`, and Helmholtz uniqueness (smooth or a.e.) can only hold on a restricted class of orbits, for example smooth and compactly supported ω and variations.
    * `CurlBiotSavartOn S` names that restricted identity. `helicity_casimir_of_curlBiotSavart` is **proved conditional** on it: helicity is a Casimir of `ArnoldBracketOf` at ω in `S` when `D S = u`. The factor 2 does not affect the Casimir property.
-   * **Open:** `CurlBiotSavartOn` for smooth compactly supported ω. It needs the Newton potential, `Δ(1/|x|) = −4πδ`, which Mathlib does not have. Also open: that `D S = 2u` is the true Gâteaux derivative of helicity, which needs Biot–Savart self-adjointness (a Fubini argument with a singular kernel). Also open: the restricted Helmholtz uniqueness (de Rham / Poincaré lemma plus the fundamental lemma for div-free test fields). The class of variations ε in `IsGateauxRepresentative` would also have to be restricted.
+   * `CurlBiotSavartOn` for smooth compactly supported divergence-free ω is now **proved** (`curlBiotSavartTest`, item 14), via a Newton potential built in this repo. **Still open:** that `D S = 2u` is the true Gâteaux derivative of helicity, which needs Biot–Savart self-adjointness (a Fubini argument with a singular kernel). Also open: the restricted Helmholtz uniqueness (de Rham / Poincaré lemma plus the fundamental lemma for div-free test fields). The class of variations ε in `IsGateauxRepresentative` would also have to be restricted.
 
 11. **The restricted class and the first Newton-potential piece** (`TestClass.lean`).
    * `IsTestOrbit ω`: smooth (`C^∞`), compactly supported and divergence-free. `not_isTestOrbit_pointSpike` is **proved**: the counterexample from item 10 is excluded.
    * `IsGateauxRepOn` is the Gâteaux condition, tested only on variations in the class.
-   * Restated named `Prop`s, both **open**:
+   * Restated named `Prop`s (`StreamFunctionRepModGradOn` **open**; `CurlBiotSavartTest` was open here and is proved in item 14):
      * `StreamFunctionRepModGradOn ω hω`: `C²` representatives are unique modulo `C²` gradients, with `curl ψ = u`.
-     * `CurlBiotSavartTest := CurlBiotSavartOn IsTestOrbit`.
+     * `CurlBiotSavartTest := CurlBiotSavartOn IsTestOrbit` (now **proved**, item 14).
    * `helicity_casimir_test` is **proved conditional** on `CurlBiotSavartTest`.
    * `integrableOn_ball_norm_rpow_neg` is **proved**: for `s < 3`, `‖x‖^(-s)` is integrable on every ball of ℝ³. So the Newton kernel `1/(4π|x|)` and the Biot–Savart kernel magnitude `|x|⁻²` are locally integrable. This is the first step toward the Newton potential.
-   * **Remaining steps toward `CurlBiotSavartTest`** (steps 1–3 now done, see items 12–13; 4–5 open):
+   * **Steps toward `CurlBiotSavartTest`** (all five now done, see items 12–14; `CurlBiotSavartTest` is **proved** in item 14):
      1. `1/|x|` is smooth and harmonic away from 0.
      2. Differentiate the convolution `N * ω` under the integral sign, for compactly supported smooth ω.
      3. `Δ(N * ω) = −4π ω` (done by a regularized-kernel route, item 13, not via spheres).
@@ -155,13 +155,19 @@ Each one is passed as an explicit argument. None is proved here.
    * (b) `tendsto_regNewton_conv`: `∫ N_ε(t) h(x−t) dt → ∫ N(t) h(x−t) dt` as `ε → 0` (dominated by `N·|h|`).
    * (c) `scalarLaplacian_newtonPotential`: `Δ(N ⋆ g)(x) = ∫ N(t) Δg(x−t) dt` (step 2 unpacked coordinatewise via `convolution_precompR_apply`).
    * `scalarLaplacian_newtonPotential_eq`: **`Δ(N ⋆ g) = −4π g` pointwise**, with `N = 1/|y|`. Assembled from (a)–(c), `regPeak_scale` and the approximate identity.
-   * **Still open:** steps 4 (`curl curl = ∇div − Δ` with `div ω = 0`) and 5 (identify `curl(N ⋆ ω)/4π` with the repo's `BiotSavart`). `CurlBiotSavartTest` therefore remains a **hypothesis**.
+   * Steps 4 and 5 were completed in item 14.
+
+14. **Steps 4–5 closed; `CurlBiotSavartTest` proved** (`BiotSavartNewton.lean`). All **proved**, no sorry, no hypotheses:
+   * `newtonPotential_deriv_eq`: for `h ∈ C¹_c`, `N ⋆ ∂ⱼh = −∫ (tⱼ/|t|³) h(x−t) dt`. The singular integration by parts is done with the regularized kernel (`regNewton_conv_deriv`, `gradKer`) and the limit `ε → 0` on both sides (`tendsto_regNewton_conv`, `tendsto_gradKer_conv`, dominated by `|t|⁻²|h|`).
+   * `biotSavart_eq_curl_newtonVec` (**step 5**): on the test class, the repo's `BiotSavart ω = (4π)⁻¹ curl (N ⋆ ω)` pointwise (`newtonVec` = componentwise Newton potential).
+   * `curl_curl_newtonVec` (**step 4**): `curl curl (N ⋆ ω) = 4π ω`, from symmetry of second derivatives (`fderiv_fderiv_swap`), `div (N ⋆ ω) = N ⋆ div ω = 0` and `Δ(N ⋆ ωₖ) = −4π ωₖ` (item 13).
+   * `curlBiotSavartTest : CurlBiotSavartTest` — **proved**. Hence `helicity_casimir_test_closed`: the helicity Casimir statement on the test class with no `CurlBiotSavartTest` hypothesis. It still takes `D S = u` as an explicit argument; that `2u` is the true Gâteaux derivative of helicity (Biot–Savart self-adjointness) and `StreamFunctionRepModGradOn` remain **open**.
 
 ## Coined names
 
 **Author's name:** `Pi_u` is Benjamin Frohman's own May 31 name (`Tether_May31.lean.txt:43`). In this repo it is the orthogonal projection `x − (⟪u,x⟫/‖u‖²)•u`. Lemmas derived from it (e.g. `Pi_u_form_symm_degen`) carry the name.
 
-**Coined in this build (not the author's names):** `split_exists_unique`, `canonical_metric_bracket`, `canonical_metric_bracket_sign`, `Pi_u_form_symm_degen` (name derived from `Pi_u`), `realization_of_rate`, `gateaux_rep_of_not_differentiable`, `not_streamFunctionRepresentative`, `IsSmoothOrbit`, `grad`, `curl_grad_eq_zero`, `curl_add_grad`, `StreamFunctionRepModGrad`, `kineticEnergyCurlIdentity_of_modGrad`, `ModelVorticityPDE`, `StretchingLogLoss`, `maxpoint_rate_logLoss`, `classicalBracket_antisymm`, `ClassicalBracket_antisymm`, `ViscousBracket`, `viscousBracket_symm`, `viscousBracket_nonneg`, `not_streamFunctionRepModGrad`, `ArnoldBracketOf`, `arnoldBracketOf_antisymm`, `arnoldBracketOf_eq_zero_of_curl_parallel`, `entropyCasimir_arnold`, `spike`, `fderiv_spike`, `pointSpike`, `pointSpike_val_zero`, `velocity_pointSpike`, `not_curl_biotSavart_eq`, `CurlBiotSavartOn`, `helicity_casimir_of_curlBiotSavart`, `IsTestOrbit`, `not_isTestOrbit_pointSpike`, `IsGateauxRepOn`, `StreamFunctionRepModGradOn`, `CurlBiotSavartTest`, `helicity_casimir_test`, `integrableOn_ball_norm_rpow_neg`, `newtonRadial`, `scalarLaplacian`, `contDiffAt_newtonRadial`, `inner_single_one`, `hasFDerivAt_normSq_rpow`, `normSq_rpow_partial`, `fderiv_newtonRadial_single`, `scalarLaplacian_newtonRadial`, `newtonRadial_eq`, `locallyIntegrable_newtonRadial`, `newtonPotential`, `contDiff_newtonPotential`, `hasFDerivAt_newtonPotential`, `regNewton`, `hasFDerivAt_regSq_rpow`, `regSq_rpow_partial`, `scalarLaplacian_regNewton`, `regNewton_nonneg`, `regNewton_le`, `tendsto_regNewton`, `hasDerivAt_regRadialPrimitive`, `tendsto_regRadialPrimitive`, `integral_regRadial`, `integral_neg_scalarLaplacian_regNewton`, `regPeak`, `regPeak_nonneg`, `integral_regPeak`, `tendsto_regPeak_decay`, `tendsto_regPeak_approxIdentity`, `integral_mul_dd_eq`, `integral_mul_scalarLaplacian_eq`, `scalarLaplacian_comp_sub`, `contDiff_regNewton`, `regNewton_neg`, `regNewton_conv_laplacian`, `regPeak_scale`, `ae_ne_zero_T3`, `integrable_newtonRadial_mul`, `tendsto_regNewton_conv`, `newtonPotential_apply`, `fderiv_newtonPotential_apply`, `scalarLaplacian_newtonPotential`, `scalarLaplacian_newtonPotential_eq`.
+**Coined in this build (not the author's names):** `split_exists_unique`, `canonical_metric_bracket`, `canonical_metric_bracket_sign`, `Pi_u_form_symm_degen` (name derived from `Pi_u`), `realization_of_rate`, `gateaux_rep_of_not_differentiable`, `not_streamFunctionRepresentative`, `IsSmoothOrbit`, `grad`, `curl_grad_eq_zero`, `curl_add_grad`, `StreamFunctionRepModGrad`, `kineticEnergyCurlIdentity_of_modGrad`, `ModelVorticityPDE`, `StretchingLogLoss`, `maxpoint_rate_logLoss`, `classicalBracket_antisymm`, `ClassicalBracket_antisymm`, `ViscousBracket`, `viscousBracket_symm`, `viscousBracket_nonneg`, `not_streamFunctionRepModGrad`, `ArnoldBracketOf`, `arnoldBracketOf_antisymm`, `arnoldBracketOf_eq_zero_of_curl_parallel`, `entropyCasimir_arnold`, `spike`, `fderiv_spike`, `pointSpike`, `pointSpike_val_zero`, `velocity_pointSpike`, `not_curl_biotSavart_eq`, `CurlBiotSavartOn`, `helicity_casimir_of_curlBiotSavart`, `IsTestOrbit`, `not_isTestOrbit_pointSpike`, `IsGateauxRepOn`, `StreamFunctionRepModGradOn`, `CurlBiotSavartTest`, `helicity_casimir_test`, `integrableOn_ball_norm_rpow_neg`, `newtonRadial`, `scalarLaplacian`, `contDiffAt_newtonRadial`, `inner_single_one`, `hasFDerivAt_normSq_rpow`, `normSq_rpow_partial`, `fderiv_newtonRadial_single`, `scalarLaplacian_newtonRadial`, `newtonRadial_eq`, `locallyIntegrable_newtonRadial`, `newtonPotential`, `contDiff_newtonPotential`, `hasFDerivAt_newtonPotential`, `regNewton`, `hasFDerivAt_regSq_rpow`, `regSq_rpow_partial`, `scalarLaplacian_regNewton`, `regNewton_nonneg`, `regNewton_le`, `tendsto_regNewton`, `hasDerivAt_regRadialPrimitive`, `tendsto_regRadialPrimitive`, `integral_regRadial`, `integral_neg_scalarLaplacian_regNewton`, `regPeak`, `regPeak_nonneg`, `integral_regPeak`, `tendsto_regPeak_decay`, `tendsto_regPeak_approxIdentity`, `integral_mul_dd_eq`, `integral_mul_scalarLaplacian_eq`, `scalarLaplacian_comp_sub`, `contDiff_regNewton`, `regNewton_neg`, `regNewton_conv_laplacian`, `regPeak_scale`, `ae_ne_zero_T3`, `integrable_newtonRadial_mul`, `tendsto_regNewton_conv`, `newtonPotential_apply`, `fderiv_newtonPotential_apply`, `scalarLaplacian_newtonPotential`, `scalarLaplacian_newtonPotential_eq`, `gradKer`, `gradKer_bound`, `locallyIntegrable_norm_rpow_neg_two`, `integrable_rpow_neg_two_mul`, `tendsto_gradKer_conv`, `regNewton_conv_deriv`, `newtonPotential_deriv_eq`, `newtonVec`, `newtonVec_coord`, `directionalCoord_newtonVec`, `integrable_gradKer_mul`, `gradKer_zero_eq`, `biotSavart_eq_curl_newtonVec`, `fderiv_fderiv_swap`, `curl_curl_newtonVec`, `curlBiotSavartTest`, `helicity_casimir_test_closed`.
 
 ## Ported libraries
 
@@ -179,11 +185,10 @@ These are copied verbatim, keeping only the modules needed for the build.
 
 ```
 lake build                       # 0 sorry
-lake env lean AxiomAudit.lean    # 644 theorems, only propext / Classical.choice / Quot.sound
+lake env lean AxiomAudit.lean    # 664 theorems, only propext / Classical.choice / Quot.sound
 ```
 
-There is no paper yet. A paper will be drafted after the formalization is final, and it will
-match the formalization exactly.
+A draft companion paper is in `paper/` (marked DRAFT; it tracks the build in progress).
 
 License: Apache-2.0.
 
