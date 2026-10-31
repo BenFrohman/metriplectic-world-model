@@ -118,11 +118,17 @@ Each one is passed as an explicit argument. None is proved here.
 * `EntropyCasimir P S`: the entropy is a Casimir of `P`.
 * `KineticEnergyCurlIdentity ω` (ported): `curl(δH/δω) = u`.
 
+10. **Biot–Savart and Helmholtz in the current encoding** (`HelmholtzObstruction.lean`).
+   * `not_curl_biotSavart_eq` is **proved**: `curl (BiotSavart ω) = ω` fails for some `CoadjointOrbit`. The witness is `pointSpike`: `e₀` at the origin, `0` elsewhere. It is admitted because `div` uses `fderiv`, which is `0` where the field is not differentiable. Its Biot–Savart velocity is `0`, since the integrand vanishes almost everywhere, but the field is nonzero at the origin.
+   * So the identity, the helicity derivative `2u`, and Helmholtz uniqueness (smooth or a.e.) can only hold on a restricted class of orbits, for example smooth and compactly supported ω and variations.
+   * `CurlBiotSavartOn S` names that restricted identity. `helicity_casimir_of_curlBiotSavart` is **proved conditional** on it: helicity is a Casimir of `ArnoldBracketOf` at ω in `S` when `D S = u`. The factor 2 does not affect the Casimir property.
+   * **Open:** `CurlBiotSavartOn` for smooth compactly supported ω. It needs the Newton potential, `Δ(1/|x|) = −4πδ`, which Mathlib does not have. Also open: that `D S = 2u` is the true Gâteaux derivative of helicity, which needs Biot–Savart self-adjointness (a Fubini argument with a singular kernel). Also open: the restricted Helmholtz uniqueness (de Rham / Poincaré lemma plus the fundamental lemma for div-free test fields). The class of variations ε in `IsGateauxRepresentative` would also have to be restricted.
+
 ## Coined names
 
 **Author's name:** `Pi_u` is Benjamin Frohman's own May 31 name (`Tether_May31.lean.txt:43`). In this repo it is the orthogonal projection `x − (⟪u,x⟫/‖u‖²)•u`. Lemmas derived from it (e.g. `Pi_u_form_symm_degen`) carry the name.
 
-**Coined in this build (not the author's names):** `split_exists_unique`, `canonical_metric_bracket`, `canonical_metric_bracket_sign`, `Pi_u_form_symm_degen` (name derived from `Pi_u`), `realization_of_rate`, `gateaux_rep_of_not_differentiable`, `not_streamFunctionRepresentative`, `IsSmoothOrbit`, `grad`, `curl_grad_eq_zero`, `curl_add_grad`, `StreamFunctionRepModGrad`, `kineticEnergyCurlIdentity_of_modGrad`, `ModelVorticityPDE`, `StretchingLogLoss`, `maxpoint_rate_logLoss`, `classicalBracket_antisymm`, `ClassicalBracket_antisymm`, `ViscousBracket`, `viscousBracket_symm`, `viscousBracket_nonneg`, `not_streamFunctionRepModGrad`, `ArnoldBracketOf`, `arnoldBracketOf_antisymm`, `arnoldBracketOf_eq_zero_of_curl_parallel`, `entropyCasimir_arnold`.
+**Coined in this build (not the author's names):** `split_exists_unique`, `canonical_metric_bracket`, `canonical_metric_bracket_sign`, `Pi_u_form_symm_degen` (name derived from `Pi_u`), `realization_of_rate`, `gateaux_rep_of_not_differentiable`, `not_streamFunctionRepresentative`, `IsSmoothOrbit`, `grad`, `curl_grad_eq_zero`, `curl_add_grad`, `StreamFunctionRepModGrad`, `kineticEnergyCurlIdentity_of_modGrad`, `ModelVorticityPDE`, `StretchingLogLoss`, `maxpoint_rate_logLoss`, `classicalBracket_antisymm`, `ClassicalBracket_antisymm`, `ViscousBracket`, `viscousBracket_symm`, `viscousBracket_nonneg`, `not_streamFunctionRepModGrad`, `ArnoldBracketOf`, `arnoldBracketOf_antisymm`, `arnoldBracketOf_eq_zero_of_curl_parallel`, `entropyCasimir_arnold`, `spike`, `fderiv_spike`, `pointSpike`, `pointSpike_val_zero`, `velocity_pointSpike`, `not_curl_biotSavart_eq`, `CurlBiotSavartOn`, `helicity_casimir_of_curlBiotSavart`.
 
 ## Ported libraries
 
