@@ -8,7 +8,7 @@
 \theoremstyle{definition}\newtheorem{hyp}{Hypothesis}\newtheorem{remark}{Remark}
 \title{Work in progress: A Lean-verified conditional uniform ceiling for a cubic-tethered vorticity model\\[4pt]\large (conditional results; draft)}
 \author{Benjamin Stanley Frohman\\ ORCID \href{https://orcid.org/0009-0006-7068-3718}{0009-0006-7068-3718}}
-\date{Draft, October 31, 2026 --- private, not peer reviewed, no DOI}
+\date{Draft, October 31, 2026 --- public repository, not peer reviewed; DOI reserved, not yet published}
 \begin{document}\maketitle
 \begin{center}\fbox{\textbf{Work in progress} --- draft, subject to change. Reserved DOI (not yet published): 10.5281/zenodo.23842298}\end{center}
 \begin{center}\fbox{\parbox{0.92\textwidth}{\textbf{Scope.} This paper concerns a \emph{modified} vorticity equation with an added cubic damping tether. That model is \textbf{not} Navier--Stokes. The main result is \emph{conditional} on the named Prop \lean{FieldStretchingLogLoss}, which is \textbf{not proved}, and on six further hypotheses. The paper does \textbf{not} solve the Clay Millennium Problem, and it says nothing about regularity of unmodified 3D Navier--Stokes.}}\end{center}
@@ -98,5 +98,5 @@ mwm = \texttt{metriplectic-world-model}.
 At commit \texttt{2274a23}, \texttt{lake build} succeeds with 0 \texttt{sorry}. \texttt{lake env lean AxiomAudit.lean} (765 theorems) throws an error if any theorem uses an axiom other than \lean{propext}, \lean{Classical.choice} or \lean{Quot.sound}, and it completes without error. Every theorem above is in the audit.
 
 \section*{License}
-Copyright 2026 Benjamin Stanley Frohman. Apache License, Version 2.0.
+\copyright\ 2026 Benjamin Stanley Frohman (ORCID 0009-0006-7068-3718). Apache License, Version 2.0.
 \end{document}
