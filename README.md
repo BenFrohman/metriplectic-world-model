@@ -1,5 +1,8 @@
 # Metriplectic World Model
 
+> **Work in progress.** Draft formalization; results are stated with their exact status (proved unconditionally / conditional on named Props). Nothing here solves the Clay problem or proves Navier–Stokes regularity.
+
+
 Lean 4 + Mathlib (`v4.30.0-rc1`). Author: Benjamin Stanley Frohman (ORCID 0009-0006-7068-3718).
 
 **This repository formalizes a model.** The model is the Frohmanian tethered metriplectic
