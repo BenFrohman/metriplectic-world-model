@@ -74,11 +74,25 @@ unmodified Navier–Stokes, and it does not resolve the Clay Millennium problem.
      weight, the value of `κ`, or the C3 feedback condition; deriving those from C1–C3 is
      still open. The isometry-invariance hypothesis is an explicit theorem argument.
 
+8. **What the maximizer `Prop`s carry, and an encoding obstruction (proved).**
+   `MetriplecticWorldModel/Realization.lean`:
+   * `realization_of_rate` (**proved**): if `M > 0`, `0 ≤ C_abs` and `TetheredMaxRate C κ M M'`
+     hold, then `MaxPointRealization C κ C_abs M M'` holds. Together with
+     `tetheredMaxRate_of_realization`, this shows the five may-form `Prop`s, stated on bare real
+     `MaxPointData`, are bookkeeping for the rate inequality. Their real content needs the data
+     tied to an actual vorticity field (the maximizer of `|ω|`, `ν ω·Δω`, and so on). That link is
+     not formalized, so `EnergyIdentity`, `ViscousAtMax`, `TetherFeedback`, `CrossControlled`
+     and `StretchingCZ` stay open as statements about a real field.
+   * `not_streamFunctionRepresentative` (**proved**): at a non-differentiable `ω`, every field is
+     a Gâteaux representative under the current encoding, so `StreamFunctionRepresentative ω` is
+     false there. `KineticEnergyCurlIdentity` therefore cannot be proved for every `ω` as it is
+     encoded. It needs the orbit restricted to smooth fields and uniqueness modulo gradients.
+
 ## Open named `Prop`s
 
 Open beyond these: deriving the `|ω|²` weight, `κ`, and C3 from C1–C3 (full gauge-uniqueness of `TetherKernelVel`).
 
-Names coined in this build (not the author's): `projOff`, `split_exists_unique`, `canonical_metric_bracket`, `canonical_metric_bracket_sign`, `projOff_form_symm_degen`.
+Names coined in this build (not the author's): `projOff`, `split_exists_unique`, `canonical_metric_bracket`, `canonical_metric_bracket_sign`, `projOff_form_symm_degen`, `realization_of_rate`, `gateaux_rep_of_not_differentiable`, `not_streamFunctionRepresentative`.
 
 Each one is passed as an explicit argument. None is proved here.
 
@@ -110,7 +124,7 @@ These are copied verbatim, keeping only the modules needed for the build.
 
 ```
 lake build                       # 0 sorry
-lake env lean AxiomAudit.lean    # 574 theorems, only propext / Classical.choice / Quot.sound
+lake env lean AxiomAudit.lean    # 577 theorems, only propext / Classical.choice / Quot.sound
 ```
 
 There is no paper yet. A paper will be drafted after the formalization is final, and it will

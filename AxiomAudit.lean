@@ -45,3 +45,5 @@ open Lean Elab Command
 #print axioms MetriplecticWorldModel.split_exists_unique
 #print axioms MetriplecticWorldModel.canonical_metric_bracket
 #print axioms MetriplecticWorldModel.canonical_metric_bracket_sign
+#print axioms MetriplecticWorldModel.realization_of_rate
+#print axioms MetriplecticWorldModel.not_streamFunctionRepresentative
