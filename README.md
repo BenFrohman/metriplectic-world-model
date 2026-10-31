@@ -69,7 +69,7 @@ unmodified Navier–Stokes, and it does not resolve the Clay Millennium problem.
      `Π_u` the projection off `span {u}`. The hypotheses do not mention `Π_u` or the diagonal
      of `B`, unlike the older `SaturatesTetherQuadratic`-based uniqueness, which assumed its answer.
    * `canonical_metric_bracket_sign` (**proved**): with the tether sign (`B x x ≤ 0`), `c ≤ 0`.
-   * `projOff_form_symm_degen` (**proved**): the forced form does satisfy C1 and C2.
+   * `Pi_u_form_symm_degen` (**proved**): the forced form does satisfy C1 and C2.
    * Scope: this is a pointwise statement at one state. It does **not** force the `|ω|²`
      weight, the value of `κ`, or the C3 feedback condition; deriving those from C1–C3 is
      still open. The isometry-invariance hypothesis is an explicit theorem argument.
@@ -97,13 +97,11 @@ unmodified Navier–Stokes, and it does not resolve the Clay Millennium problem.
    * `ViscousBracket ν` is defined as `ν∫Σᵢ⟨∂ᵢ curl δF, ∂ᵢ curl δG⟩`. `viscousBracket_symm` and `viscousBracket_nonneg` are **proved**. It is symmetric and PSD, but it is **not** degenerate with respect to kinetic energy. So viscosity is not a metriplectic `G` in the strict sense.
    * **Relabel:** every result that uses `StretchingCZ` rests on a hypothesis **known false as a pure L∞ bound** for Navier–Stokes, because the known bound has a log loss. `StretchingLogLoss d C₁ C₂` (`St ≤ C₁y³ + C₂y³log(1+y)`) is the honest alternative. Under it, `maxpoint_rate_logLoss` (**proved**) gives `y' ≤ (C₁+κ/4+4C₂²/κ)y² − (κ/4−Cabs)y³`. The tether still dominates when `κ > 4·Cabs`.
    * **R³ vs T³:** the type named `T3` (original name kept) is actually ℝ³ (`EuclideanSpace ℝ (Fin 3)`), not the torus. No port to the torus was done.
-   * **Coined names (this round):** `IsSmoothOrbit`, `grad`, `curl_grad_eq_zero`, `curl_add_grad`, `StreamFunctionRepModGrad`, `kineticEnergyCurlIdentity_of_modGrad`, `ModelVorticityPDE`, `StretchingLogLoss`, `maxpoint_rate_logLoss`, `classicalBracket_antisymm`, `ClassicalBracket_antisymm`, `ViscousBracket`, `viscousBracket_symm`, `viscousBracket_nonneg`. The May/June 2026 rename map (`/workspace/may_june_rename_map.md`) was not found, so these could not be checked against it.
 
 ## Open named `Prop`s
 
 Open beyond these: deriving the `|ω|²` weight, `κ`, and C3 from C1–C3 (full gauge-uniqueness of `TetherKernelVel`).
 
-Names coined in this build (not the author's): `projOff`, `split_exists_unique`, `canonical_metric_bracket`, `canonical_metric_bracket_sign`, `projOff_form_symm_degen`, `realization_of_rate`, `gateaux_rep_of_not_differentiable`, `not_streamFunctionRepresentative`.
 
 Each one is passed as an explicit argument. None is proved here.
 
@@ -118,6 +116,12 @@ Each one is passed as an explicit argument. None is proved here.
 * `ModelContinuation Smooth M`: a continuation criterion of Beale–Kato–Majda type for the model.
 * `EntropyCasimir P S`: the entropy is a Casimir of `P`.
 * `KineticEnergyCurlIdentity ω` (ported): `curl(δH/δω) = u`.
+
+## Coined names
+
+**Author's name:** `Pi_u` is Benjamin Frohman's own May 31 name (`Tether_May31.lean.txt:43`). In this repo it is the orthogonal projection `x − (⟪u,x⟫/‖u‖²)•u`. Lemmas derived from it (e.g. `Pi_u_form_symm_degen`) carry the name.
+
+**Coined in this build (not the author's names):** `split_exists_unique`, `canonical_metric_bracket`, `canonical_metric_bracket_sign`, `Pi_u_form_symm_degen` (name derived from `Pi_u`), `realization_of_rate`, `gateaux_rep_of_not_differentiable`, `not_streamFunctionRepresentative`, `IsSmoothOrbit`, `grad`, `curl_grad_eq_zero`, `curl_add_grad`, `StreamFunctionRepModGrad`, `kineticEnergyCurlIdentity_of_modGrad`, `ModelVorticityPDE`, `StretchingLogLoss`, `maxpoint_rate_logLoss`, `classicalBracket_antisymm`, `ClassicalBracket_antisymm`, `ViscousBracket`, `viscousBracket_symm`, `viscousBracket_nonneg`.
 
 ## Ported libraries
 
