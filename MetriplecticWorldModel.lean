@@ -10,3 +10,4 @@ import MetriplecticWorldModel.ChoiceFree
 import MetriplecticWorldModel.HelmholtzObstruction
 import MetriplecticWorldModel.TestClass
 import MetriplecticWorldModel.NewtonKernel
+import MetriplecticWorldModel.RegularizedKernel

@@ -52,3 +52,9 @@ open Lean Elab Command
 #print axioms MetriplecticWorldModel.locallyIntegrable_newtonRadial
 #print axioms MetriplecticWorldModel.contDiff_newtonPotential
 #print axioms MetriplecticWorldModel.hasFDerivAt_newtonPotential
+#print axioms MetriplecticWorldModel.scalarLaplacian_regNewton
+#print axioms MetriplecticWorldModel.regNewton_le
+#print axioms MetriplecticWorldModel.tendsto_regNewton
+#print axioms MetriplecticWorldModel.integral_regRadial
+#print axioms MetriplecticWorldModel.integral_neg_scalarLaplacian_regNewton
+#print axioms MetriplecticWorldModel.tendsto_regPeak_approxIdentity
