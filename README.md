@@ -2,7 +2,7 @@
 
 > **Work in progress.** Draft formalization; results are stated with their exact status (proved unconditionally / conditional on named Props). Nothing here solves the Clay problem or proves Navier–Stokes regularity.
 >
-> **DOIs:** reduction paper [10.5281/zenodo.23842298](https://doi.org/10.5281/zenodo.23842298); main paper [10.5281/zenodo.23842565](https://doi.org/10.5281/zenodo.23842565)
+> **DOIs:** reduction paper [10.5281/zenodo.23842297](https://doi.org/10.5281/zenodo.23842297); main paper [10.5281/zenodo.23842564](https://doi.org/10.5281/zenodo.23842564)
 
 
 Lean 4 + Mathlib (`v4.30.0-rc1`). Author: Benjamin Stanley Frohman (ORCID 0009-0006-7068-3718).
