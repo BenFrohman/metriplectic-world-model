@@ -102,7 +102,7 @@ unmodified Navier–Stokes, and it does not resolve the Clay Millennium problem.
    * `classicalBracket_antisymm` is **proved**: the Arnold bracket `ClassicalBracket` is antisymmetric, so it is a valid `P`. The public lemma `ClassicalBracket_antisymm` was **added** (additively) to the ported `ArnoldGeometric.lean`, because its integrand is module-private.
    * `ViscousBracket ν` is defined as `ν∫Σᵢ⟨∂ᵢ curl δF, ∂ᵢ curl δG⟩`. `viscousBracket_symm` and `viscousBracket_nonneg` are **proved**. It is symmetric and PSD, but it is **not** degenerate with respect to kinetic energy. So viscosity is not a metriplectic `G` in the strict sense.
    * **Relabel:** every result that uses `StretchingCZ` rests on a hypothesis **known false as a pure L∞ bound** for Navier–Stokes, because the known bound has a log loss. `StretchingLogLoss d C₁ C₂` (`St ≤ C₁y³ + C₂y³log(1+y)`) is the honest alternative. Under it, `maxpoint_rate_logLoss` (**proved**) gives `y' ≤ (C₁+κ/4+4C₂²/κ)y² − (κ/4−Cabs)y³`. The tether still dominates when `κ > 4·Cabs`.
-   * **R³ vs T³:** the type named `T3` (original name kept) is actually ℝ³ (`EuclideanSpace ℝ (Fin 3)`), not the torus. No port to the torus was done.
+   * **$\mathbb{R}^3$ vs. $\mathbb{T}^3$:** the type named `T3` (original name kept) is actually ℝ³ (`EuclideanSpace ℝ (Fin 3)`), not the torus. No port to the torus was done.
 
 ## Open named `Prop`s
 
@@ -242,7 +242,7 @@ These are copied verbatim, keeping only the modules needed for the build.
 
 ```
 lake build                       # 0 sorry
-lake env lean AxiomAudit.lean    # 765 theorems, only propext / Classical.choice / Quot.sound
+lake env lean AxiomAudit.lean    # 765 theorem constants (kernel count; 342 theorem/lemma declarations in source), only propext / Classical.choice / Quot.sound
 ```
 
 A draft companion paper is in `paper/` (marked DRAFT; it tracks the build in progress).
