@@ -257,4 +257,6 @@ Copyright 2026 Benjamin Stanley Frohman (ORCID [0009-0006-7068-3718](https://orc
 
 What is proved vs. conditional: Proved results and the open named `Prop`s are listed above. This is a modified model, not unmodified Navier–Stokes. Every hypothesis is a named `Prop` passed as an explicit argument. Nothing in this repository claims to solve the Clay Millennium problem or global regularity for unmodified 3D Navier–Stokes.
 
+See [`NAMING.md`](NAMING.md) for the canonical names (Frohmanian Tether Hypothesis, symbol 𝔉𝕋) and the old-name glossary.
+
 **Final status:** Tethered-model ceilings proved for every κ > 0 under the named Props listed above; κ = 3/2 is a convention. Nothing about unmodified Navier–Stokes (κ = 0) or the Clay problem is claimed.
