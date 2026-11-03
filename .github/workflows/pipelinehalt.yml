@@ -1,0 +1,45 @@
+# PipelineHalt paper-vs-Lean alignment check (report-only).
+# PipelineHalt is currently a private repository. This workflow is manual-only
+# (workflow_dispatch). If the PIPELINEHALT_TOKEN secret is missing, it skips
+# with a note. It never fails the run: open halt questions are reported, not enforced.
+name: PipelineHalt (report-only)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  pipelinehalt:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check PipelineHalt access
+        id: access
+        env:
+          TOKEN: ${{ secrets.PIPELINEHALT_TOKEN }}
+        run: |
+          if [ -z "$TOKEN" ]; then
+            echo "::notice::PipelineHalt is private; set PIPELINEHALT_TOKEN to run this check. Skipping."
+            echo "ok=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "ok=true" >> "$GITHUB_OUTPUT"
+          fi
+      - uses: actions/setup-node@v4
+        if: steps.access.outputs.ok == 'true'
+        with:
+          node-version: 20
+      - name: Build PipelineHalt
+        if: steps.access.outputs.ok == 'true'
+        env:
+          TOKEN: ${{ secrets.PIPELINEHALT_TOKEN }}
+        run: |
+          git clone --depth 1 "https://x-access-token:${TOKEN}@github.com/BenFrohman/PipelineHalt.git" "$RUNNER_TEMP/ph"
+          cd "$RUNNER_TEMP/ph" && npm ci && npm run build
+      - name: Run PipelineHalt (report-only)
+        if: steps.access.outputs.ok == 'true'
+        continue-on-error: true
+        run: |
+          node "$RUNNER_TEMP/ph/dist/src/bin.js" check --ci \
+            --anchor .pipelinehalt/anchor.json --lean . \
+            --report-md pipelinehalt-report.md --pending pipelinehalt-pending.json || true
+          [ -f pipelinehalt-report.md ] && cat pipelinehalt-report.md >> "$GITHUB_STEP_SUMMARY" || true

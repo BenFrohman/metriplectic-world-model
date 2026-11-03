@@ -1,0 +1,183 @@
+{
+  "source": "paper/metriplectic-world-model.tex",
+  "claims": [
+    {
+      "id": "theorem-1",
+      "number": "Theorem 1",
+      "statement": "\\lean{split_exists_unique}\\coined: every bilinear bracket is uniquely an antisymmetric part plus a symmetric part.",
+      "kind": "theorem",
+      "source": "paper/metriplectic-world-model.tex:35"
+    },
+    {
+      "id": "theorem-2",
+      "number": "Theorem 2",
+      "statement": "\\lean{canonical_metric_bracket}\\coined: on a real inner product space, a bilinear form $B$ that is symmetric (C1), degenerate along $u$ (C2: $B(u,\\cdot)=0$) and invariant under every linear isometry fixing $u$ equals \\[B(x,y)=c\\,\\ip{\\Pi_u x,\\Pi_u y}.\\] The hypotheses do not mention $\\Pi_u$. \\lean{canonical_metric_bracket_sign}\\coined: if $B(x,x)\\le0$ then $c\\le0$. \\lean{Pi_u_form_symm_degen}\\coined: the forced form satisfies C1, C2.",
+      "kind": "theorem",
+      "source": "paper/metriplectic-world-model.tex:36"
+    },
+    {
+      "id": "eq:ceiling",
+      "number": "Theorem 3",
+      "statement": "\\lean{uniform_ceiling}\\coined: if $M'\\le CM^2-\\kappa M^3$ and $\\kappa>0$, then \\begin{equation}M(t)\\le\\max\\bigl(M(0),\\max(C/\\kappa,0)\\bigr)\\qquad(t\\ge0).\\end{equation} Also \\lean{absorbing}, \\lean{ceiling_antitone_kappa}, \\lean{kappa_zero_no_ceiling}\\coined{} (at $\\kappa=0$, $1/(1-t)$ satisfies $M'\\le M^2$ and blows up).",
+      "kind": "theorem",
+      "source": "paper/metriplectic-world-model.tex:40"
+    },
+    {
+      "id": "theorem-4",
+      "number": "Theorem 4",
+      "statement": "\\lean{maxpoint_rate_logLoss}\\coined: under \\lean{EnergyIdentity}, \\lean{StretchingLogLoss}, \\lean{ViscousAtMax}, \\lean{TetherFeedback}, \\lean{CrossControlled}, \\[y'\\le\\Bigl(C_1+\\tfrac{\\kappa}{4}+\\tfrac{4C_2^2}{\\kappa}\\Bigr)y^2-\\Bigl(\\tfrac{\\kappa}{4}-C_{\\mathrm{abs}}\\Bigr)y^3,\\] so with \\lean{uniform_ceiling} a uniform ceiling follows whenever $\\kappa>4C_{\\mathrm{abs}}$ (Young absorption at $\\varepsilon=\\kappa/4$).",
+      "kind": "theorem",
+      "source": "paper/metriplectic-world-model.tex:43"
+    },
+    {
+      "id": "theorem-5",
+      "number": "Theorem 5",
+      "statement": "\\lean{scalarLaplacian_newtonPotential_eq}\\coined: for $g\\in C^2_c(\\mathbb{R}^3)$ and $N(y)=1/|y|$, $\\Delta(N\\star g)(x)=-4\\pi g(x)$ for every $x$.",
+      "kind": "theorem",
+      "source": "paper/metriplectic-world-model.tex:56"
+    },
+    {
+      "id": "theorem-6",
+      "number": "Theorem 6",
+      "statement": "\\lean{newtonPotential_deriv_eq}\\coined: for $h\\in C^1_c$, $N\\star\\partial_jh=-\\int G_j(t)\\,h(x-t)\\,dt$. (Regularized identity \\lean{regNewton_conv_deriv}, then $\\varepsilon\\to0$ on both sides; the right side is dominated by $|t|^{-2}|h|$.)",
+      "kind": "theorem",
+      "source": "paper/metriplectic-world-model.tex:59"
+    },
+    {
+      "id": "theorem-7",
+      "number": "Theorem 7",
+      "statement": "\\lean{biotSavart_eq_curl_newtonVec}\\coined: for \\lean{IsTestOrbit}~$\\omega$, $\\mathrm{BiotSavart}\\,\\omega=(4\\pi)^{-1}\\operatorname{curl}(N\\star\\omega)$ pointwise, $N\\star\\omega$ taken componentwise (\\lean{newtonVec}).",
+      "kind": "theorem",
+      "source": "paper/metriplectic-world-model.tex:60",
+      "title": "Step 5"
+    },
+    {
+      "id": "theorem-8",
+      "number": "Theorem 8",
+      "statement": "\\lean{curl_curl_newtonVec}\\coined: for \\lean{IsTestOrbit}~$\\omega$, $\\operatorname{curl}\\operatorname{curl}(N\\star\\omega)=4\\pi\\omega$, using symmetry of second derivatives (\\lean{fderiv_fderiv_swap}), $\\operatorname{div}(N\\star\\omega)=N\\star\\operatorname{div}\\omega=0$, and the step-3 theorem.",
+      "kind": "theorem",
+      "source": "paper/metriplectic-world-model.tex:61",
+      "title": "Step 4"
+    },
+    {
+      "id": "theorem-9",
+      "number": "Theorem 9",
+      "statement": "\\lean{curlBiotSavartTest}\\coined: \\lean{CurlBiotSavartTest} holds, i.e.\\ $\\operatorname{curl}\\mathrm{BiotSavart}\\,\\omega=\\omega$ for every smooth, compactly supported, divergence-free $\\omega$. Consequently \\lean{helicity_casimir_test_closed}\\coined: helicity is a Casimir of the Arnold bracket at such $\\omega$, given the explicit argument $D\\,S=u$.",
+      "kind": "theorem",
+      "source": "paper/metriplectic-world-model.tex:62"
+    },
+    {
+      "id": "theorem-10",
+      "number": "Theorem 10",
+      "statement": "\\lean{biotSavart_selfAdjoint}\\coined: for continuous compactly supported $a,b$, $\\int\\langle Ba,b\\rangle=\\int\\langle Bb,a\\rangle$ (Fubini with the majorant $|x-y|^{-2}|a(y)||b(x)|$, kernel symmetry, triple product).",
+      "kind": "theorem",
+      "source": "paper/metriplectic-world-model.tex:66"
+    },
+    {
+      "id": "theorem-11",
+      "number": "Theorem 11",
+      "statement": "\\lean{helicity_gateaux}\\coined: with $\\mathcal H(\\omega)=\\int\\langle B\\omega,\\omega\\rangle$ (\\lean{helicity}\\coined), $2B\\omega$ is a G\\^ateaux representative of $\\mathcal H$ on the test class.",
+      "kind": "theorem",
+      "source": "paper/metriplectic-world-model.tex:67"
+    },
+    {
+      "id": "theorem-12",
+      "number": "Theorem 12",
+      "statement": "\\lean{curl_eq_of_isGateauxRepOn}\\coined: two $C^1$ representatives of the same functional on the test class have equal curl. Hence \\lean{helicity_casimir_of_rep}\\coined: if $D\\,S$ is any $C^1$ representative of $\\mathcal H$, then $\\operatorname{curl} D\\,S=2\\omega$ and $S$ is a Casimir of the Arnold bracket \\lean{ArnoldBracketOf}; no hypothesis on the value of $D\\,S$.",
+      "kind": "theorem",
+      "source": "paper/metriplectic-world-model.tex:68"
+    },
+    {
+      "id": "theorem-13",
+      "number": "Theorem 13",
+      "statement": "\\lean{streamFunctionRepModGradOn_of_exists}\\coined: \\lean{StreamFunctionRepModGradOn} follows from one $C^2$ kinetic-energy representative $\\psi$ with $\\operatorname{curl}\\psi=u$ and the Poincar\\'e lemma \\lean{CurlFreeIsGradient}\\coined; the curl half of uniqueness is \\lean{kineticEnergy_reps_curl_eq}\\coined.",
+      "kind": "theorem",
+      "source": "paper/metriplectic-world-model.tex:69"
+    },
+    {
+      "id": "theorem-14",
+      "number": "Theorem 14",
+      "statement": "\\lean{curlFreeIsGradient}\\coined: every $C^2$ curl-free field on $\\mathbb{R}^3$ is the gradient of a $C^2$ function.",
+      "kind": "theorem",
+      "source": "paper/metriplectic-world-model.tex:71"
+    },
+    {
+      "id": "theorem-15",
+      "number": "Theorem 15",
+      "statement": "\\lean{decays_newtonPotential}\\coined: if $g$ is continuous, compactly supported and $\\int g=0$, then $|N\\star g(x)|\\le C(1+|x|)^{-2}$. Derivatives of $C^1_c$ functions and the coordinates of a divergence-free test field have mean zero (\\lean{IsTestOrbit.integral_coord_eq_zero}\\coined).",
+      "kind": "theorem",
+      "source": "paper/metriplectic-world-model.tex:72"
+    },
+    {
+      "id": "theorem-16",
+      "number": "Theorem 16",
+      "statement": "\\lean{integral_pairing_curl_symm}\\coined: \\[\\int\\ip{a,\\curl b}\\dd x=\\int\\ip{\\curl a,b}\\dd x\\]for fields with decaying coordinates and first derivatives. Hence, with $\\psi=(4\\pi)^{-1}N\\star\\omega$ (\\lean{keStream}\\coined), $\\int\\langle B\\omega,B\\varepsilon\\rangle=\\int\\langle\\psi,\\varepsilon\\rangle$, so $\\psi$ is a $C^\\infty$ G\\^ateaux representative of the kinetic energy with $\\operatorname{curl}\\psi=u$ (\\lean{keStream_isGateauxRep}\\coined).",
+      "kind": "theorem",
+      "source": "paper/metriplectic-world-model.tex:73"
+    },
+    {
+      "id": "theorem-17",
+      "number": "Theorem 17",
+      "statement": "\\lean{streamFunctionRepModGradOn}\\coined: \\lean{StreamFunctionRepModGradOn} holds unconditionally on the test class.",
+      "kind": "theorem",
+      "source": "paper/metriplectic-world-model.tex:74"
+    },
+    {
+      "id": "theorem-18",
+      "number": "Theorem 18",
+      "statement": "\\lean{danskin_upper_dini}\\coined: if $f,\\partial_t f$ are jointly continuous on $\\mathbb{R}\\times K$, $K$ compact, then for some maximizer $x_\\star$ of $f(t,\\cdot)$ on $K$ and every $\\varepsilon>0$, $\\sup_K f(t+h)\\le f(t,x_\\star)+h(\\partial_t f(t,x_\\star)+\\varepsilon)$ for small $h>0$; i.e.\\ $D^+\\sup_K f(t)\\le\\partial_t f(t,x_\\star)$. \\lean{vorticity_danskin_upper_dini}\\coined\\ applies it to $|\\omega|^2$.",
+      "kind": "theorem",
+      "source": "paper/metriplectic-world-model.tex:77"
+    },
+    {
+      "id": "theorem-19",
+      "number": "Theorem 19",
+      "statement": "\\lean{sup_mul_deriv_eq_inner}\\coined: if $Y=\\sup|\\omega|$ is differentiable at $t$, then $YY'=\\omega\\cdot\\partial_t\\omega$ at every global maximizer. At such a point $\\omega\\cdot(v\\cdot\\nabla)\\omega=0$ (\\lean{inner_convective_eq_zero_of_max}\\coined) and $\\omega\\cdot\\Delta\\omega\\le0$ for $C^2$ fields (\\lean{inner_laplacian_nonpos_of_max}\\coined).",
+      "kind": "theorem",
+      "source": "paper/metriplectic-world-model.tex:78"
+    },
+    {
+      "id": "theorem-20",
+      "number": "Theorem 20",
+      "statement": "\\lean{maxPointRealization_of_field}\\coined: for a solution of \\lean{ModelVorticityPDE} with $\\nu\\ge0$, $\\omega(t)\\in C^2_c$, $C^1$ in time, and $Y=\\sup|\\omega|>0$ differentiable, \\lean{MaxPointRealization} holds with \\lean{EnergyIdentity}, \\lean{ViscousAtMax} and \\lean{CrossControlled} discharged. The remaining hypotheses are \\lean{FieldStretchingBound}\\coined\\ and \\lean{FieldTetherFeedback}\\coined. Running the ceiling argument from the one-sided Dini bound alone is open.",
+      "kind": "theorem",
+      "source": "paper/metriplectic-world-model.tex:79"
+    },
+    {
+      "id": "theorem-21",
+      "number": "Theorem 21",
+      "statement": "\\lean{arnoldCasimirField_helicity}\\coined: $2u$ satisfies \\lean{ArnoldCasimirField}\\coined\\ ($\\forall a$, \\lean{ArnoldBracketOf} $\\omega\\,a\\,(2u)=0$) on the test class. This is the clean form of \\lean{EntropyCasimir} for the concrete bracket (\\lean{entropyCasimir_of_arnoldCasimirField}\\coined). The choice-based form \\lean{EntropyCasimirChoice}\\coined\\ is kept and marked not provable as stated.",
+      "kind": "theorem",
+      "source": "paper/metriplectic-world-model.tex:80"
+    },
+    {
+      "id": "theorem-22",
+      "number": "Theorem 22",
+      "statement": "\\lean{ceiling_of_upper_dini}\\coined: if $M$ is continuous on $[0,\\infty)$, $M(t+h)\\le M(t)+h(R(t)+\\varepsilon)$ for small $h>0$, and $R(t)<0$ whenever $M(t)>B$, then $M(0)\\le B$ implies $M\\le B$ on $[0,\\infty)$.",
+      "kind": "theorem",
+      "source": "paper/metriplectic-world-model.tex:82"
+    },
+    {
+      "id": "theorem-23",
+      "number": "Theorem 23",
+      "statement": "\\lean{field_uniform_ceiling}\\coined: take a solution of \\lean{ModelVorticityPDE} with $\\nu\\ge0$, $\\kappa>0$, $C^2$ in space, $C^1$ in time, and support in a fixed compact set. Under \\lean{FieldStretchingBound} and \\lean{FieldTetherFeedback}, $\\sup|\\omega(t)|\\le\\max(\\sup|\\omega(0)|,C/\\kappa,0)$ for all $t\\ge0$. No differentiability of $\\sup|\\omega|$ is assumed; its continuity is proved (\\lean{sup_continuous_of_uniform_support}\\coined).",
+      "kind": "theorem",
+      "source": "paper/metriplectic-world-model.tex:83"
+    },
+    {
+      "id": "theorem-24",
+      "number": "Theorem 24",
+      "statement": "\\lean{fieldTetherFeedback_cubicTether}\\coined: for $T=-\\kappa|\\omega|^2\\omega$ (\\lean{cubicTether}\\coined), \\lean{FieldTetherFeedback} holds. Hence \\lean{field_uniform_ceiling_cubicTether}\\coined\\ needs only \\lean{FieldStretchingBound}. For a general tether it does not follow.",
+      "kind": "theorem",
+      "source": "paper/metriplectic-world-model.tex:84"
+    },
+    {
+      "id": "theorem-25",
+      "number": "Theorem 25",
+      "statement": "\\lean{field_uniform_ceiling_logLoss_cubicTether}\\coined: take a solution of \\lean{ModelVorticityPDE} with the cubic tether, under the regularity and uniform-support hypotheses of \\lean{field_uniform_ceiling}. Assume the named Prop \\lean{FieldStretchingLogLoss}\\coined, $\\omega\\cdot(\\omega\\cdot\\nabla)u\\le C_1Y^3+C_2Y^3\\log(1+Y)$ at maxima. Then $\\sup|\\omega(t)|\\le\\mathrm{ceiling}(Y_0,\\,C_1+\\kappa/4+4C_2^2/\\kappa,\\,3\\kappa/4)$ for every $\\kappa>0$.",
+      "kind": "theorem",
+      "source": "paper/metriplectic-world-model.tex:86"
+    }
+  ],
+  "clarifications": {}
+}

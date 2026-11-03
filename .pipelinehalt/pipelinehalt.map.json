@@ -1,0 +1,208 @@
+{
+  "claims": {
+    "theorem-1": {
+      "lean": [
+        "split_exists_unique"
+      ],
+      "note": "auto: \\lean/\\texttt names cited in the claim that exist as declarations"
+    },
+    "theorem-2": {
+      "lean": [
+        "canonical_metric_bracket",
+        "canonical_metric_bracket_sign",
+        "Pi_u_form_symm_degen"
+      ],
+      "note": "auto: \\lean/\\texttt names cited in the claim that exist as declarations"
+    },
+    "eq:ceiling": {
+      "lean": [
+        "uniform_ceiling",
+        "absorbing",
+        "ceiling_antitone_kappa",
+        "kappa_zero_no_ceiling"
+      ],
+      "note": "auto: \\lean/\\texttt names cited in the claim that exist as declarations"
+    },
+    "theorem-4": {
+      "lean": [
+        "maxpoint_rate_logLoss",
+        "EnergyIdentity",
+        "StretchingLogLoss",
+        "ViscousAtMax",
+        "TetherFeedback",
+        "CrossControlled",
+        "uniform_ceiling"
+      ],
+      "note": "auto: \\lean/\\texttt names cited in the claim that exist as declarations"
+    },
+    "theorem-5": {
+      "lean": [
+        "scalarLaplacian_newtonPotential_eq"
+      ],
+      "note": "auto: \\lean/\\texttt names cited in the claim that exist as declarations"
+    },
+    "theorem-6": {
+      "lean": [
+        "newtonPotential_deriv_eq",
+        "regNewton_conv_deriv"
+      ],
+      "note": "auto: \\lean/\\texttt names cited in the claim that exist as declarations"
+    },
+    "theorem-7": {
+      "lean": [
+        "biotSavart_eq_curl_newtonVec",
+        "IsTestOrbit",
+        "newtonVec"
+      ],
+      "note": "auto: \\lean/\\texttt names cited in the claim that exist as declarations"
+    },
+    "theorem-8": {
+      "lean": [
+        "curl_curl_newtonVec",
+        "IsTestOrbit",
+        "fderiv_fderiv_swap"
+      ],
+      "note": "auto: \\lean/\\texttt names cited in the claim that exist as declarations"
+    },
+    "theorem-9": {
+      "lean": [
+        "curlBiotSavartTest",
+        "CurlBiotSavartTest",
+        "helicity_casimir_test_closed"
+      ],
+      "note": "auto: \\lean/\\texttt names cited in the claim that exist as declarations"
+    },
+    "theorem-10": {
+      "lean": [
+        "biotSavart_selfAdjoint"
+      ],
+      "note": "auto: \\lean/\\texttt names cited in the claim that exist as declarations"
+    },
+    "theorem-11": {
+      "lean": [
+        "helicity_gateaux",
+        "helicity"
+      ],
+      "note": "auto: \\lean/\\texttt names cited in the claim that exist as declarations"
+    },
+    "theorem-12": {
+      "lean": [
+        "curl_eq_of_isGateauxRepOn",
+        "helicity_casimir_of_rep",
+        "ArnoldBracketOf"
+      ],
+      "note": "auto: \\lean/\\texttt names cited in the claim that exist as declarations"
+    },
+    "theorem-13": {
+      "lean": [
+        "streamFunctionRepModGradOn_of_exists",
+        "StreamFunctionRepModGradOn",
+        "CurlFreeIsGradient",
+        "kineticEnergy_reps_curl_eq"
+      ],
+      "note": "auto: \\lean/\\texttt names cited in the claim that exist as declarations"
+    },
+    "theorem-14": {
+      "lean": [
+        "curlFreeIsGradient"
+      ],
+      "note": "auto: \\lean/\\texttt names cited in the claim that exist as declarations"
+    },
+    "theorem-15": {
+      "lean": [
+        "decays_newtonPotential",
+        "integral_coord_eq_zero"
+      ],
+      "note": "auto: \\lean/\\texttt names cited in the claim that exist as declarations"
+    },
+    "theorem-16": {
+      "lean": [
+        "integral_pairing_curl_symm",
+        "keStream",
+        "keStream_isGateauxRep"
+      ],
+      "note": "auto: \\lean/\\texttt names cited in the claim that exist as declarations"
+    },
+    "theorem-17": {
+      "lean": [
+        "streamFunctionRepModGradOn",
+        "StreamFunctionRepModGradOn"
+      ],
+      "note": "auto: \\lean/\\texttt names cited in the claim that exist as declarations"
+    },
+    "theorem-18": {
+      "lean": [
+        "danskin_upper_dini",
+        "vorticity_danskin_upper_dini"
+      ],
+      "note": "auto: \\lean/\\texttt names cited in the claim that exist as declarations"
+    },
+    "theorem-19": {
+      "lean": [
+        "sup_mul_deriv_eq_inner",
+        "inner_convective_eq_zero_of_max",
+        "inner_laplacian_nonpos_of_max"
+      ],
+      "note": "auto: \\lean/\\texttt names cited in the claim that exist as declarations"
+    },
+    "theorem-20": {
+      "lean": [
+        "maxPointRealization_of_field",
+        "ModelVorticityPDE",
+        "MaxPointRealization",
+        "EnergyIdentity",
+        "ViscousAtMax",
+        "CrossControlled",
+        "FieldStretchingBound",
+        "FieldTetherFeedback"
+      ],
+      "note": "auto: \\lean/\\texttt names cited in the claim that exist as declarations"
+    },
+    "theorem-21": {
+      "lean": [
+        "arnoldCasimirField_helicity",
+        "ArnoldCasimirField",
+        "ArnoldBracketOf",
+        "EntropyCasimir",
+        "entropyCasimir_of_arnoldCasimirField",
+        "EntropyCasimirChoice"
+      ],
+      "note": "auto: \\lean/\\texttt names cited in the claim that exist as declarations"
+    },
+    "theorem-22": {
+      "lean": [
+        "ceiling_of_upper_dini"
+      ],
+      "note": "auto: \\lean/\\texttt names cited in the claim that exist as declarations"
+    },
+    "theorem-23": {
+      "lean": [
+        "field_uniform_ceiling",
+        "ModelVorticityPDE",
+        "FieldStretchingBound",
+        "FieldTetherFeedback",
+        "sup_continuous_of_uniform_support"
+      ],
+      "note": "auto: \\lean/\\texttt names cited in the claim that exist as declarations"
+    },
+    "theorem-24": {
+      "lean": [
+        "fieldTetherFeedback_cubicTether",
+        "cubicTether",
+        "FieldTetherFeedback",
+        "field_uniform_ceiling_cubicTether",
+        "FieldStretchingBound"
+      ],
+      "note": "auto: \\lean/\\texttt names cited in the claim that exist as declarations"
+    },
+    "theorem-25": {
+      "lean": [
+        "field_uniform_ceiling_logLoss_cubicTether",
+        "ModelVorticityPDE",
+        "field_uniform_ceiling",
+        "FieldStretchingLogLoss"
+      ],
+      "note": "auto: \\lean/\\texttt names cited in the claim that exist as declarations"
+    }
+  }
+}
