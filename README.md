@@ -260,3 +260,7 @@ What is proved vs. conditional: Proved results and the open named `Prop`s are li
 See [`NAMING.md`](NAMING.md) for the canonical names (Frohmanian Tether Hypothesis, symbol 𝔉𝕋) and the old-name glossary.
 
 **Final status:** Tethered-model ceilings proved for every κ > 0 under the named Props listed above; κ = 3/2 is a convention. Nothing about unmodified Navier–Stokes (κ = 0) or the Clay problem is claimed.
+
+## Zenodo archive
+
+- [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23867474.svg)](https://doi.org/10.5281/zenodo.23867474) metriplectic-world-model — all versions: [10.5281/zenodo.23867474](https://doi.org/10.5281/zenodo.23867474); latest version: [10.5281/zenodo.23867475](https://doi.org/10.5281/zenodo.23867475)
