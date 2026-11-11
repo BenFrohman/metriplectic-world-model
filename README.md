@@ -264,3 +264,7 @@ See [`NAMING.md`](NAMING.md) for the canonical names (Frohmanian Tether Hypothes
 ## Zenodo archive
 
 - [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23867474.svg)](https://doi.org/10.5281/zenodo.23867474) metriplectic-world-model — all versions: [10.5281/zenodo.23867474](https://doi.org/10.5281/zenodo.23867474); latest version: [10.5281/zenodo.23867475](https://doi.org/10.5281/zenodo.23867475)
+
+## Citation
+
+Cite this work with [`CITATION.cff`](CITATION.cff) (GitHub's "Cite this repository" button). Zenodo DOI: [10.5281/zenodo.23842297](https://doi.org/10.5281/zenodo.23842297).
