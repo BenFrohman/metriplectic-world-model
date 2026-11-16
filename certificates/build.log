@@ -1,0 +1,463 @@
+✔ [8263/8309] Built FrohmanianSymplecticTether.Assumptions (579ms)
+✔ [8265/8309] Built TetherMayForm.Layer2 (3.9s)
+⚠ [8266/8309] Built TetherMayForm.Basic (7.0s)
+warning: TetherMayForm/Basic.lean:234:45: unused variable `hu`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+✔ [8267/8309] Built MetriplecticWorldModel.Canonical (11s)
+✔ [8268/8309] Built MetriplecticWorldModel.Ceiling (8.3s)
+✔ [8269/8309] Built MetriplecticWorldModel.Bracket (6.5s)
+✔ [8270/8309] Built TetherMayForm.Metriplectic (5.1s)
+✔ [8271/8309] Built TetherMayForm.RouteA (2.8s)
+✔ [8272/8309] Built TetherMayForm.Main (1.0s)
+✔ [8273/8309] Built TetherMayForm.TetheredLyapunov (1.0s)
+⚠ [8274/8309] Built TetherMayForm.Enstrophy (2.7s)
+warning: TetherMayForm/Enstrophy.lean:99:50: unused variable `hC`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: TetherMayForm/Enstrophy.lean:99:63: unused variable `hκ`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+ℹ [8275/8309] Built FrohmanianSymplecticTether.NS_Equations (27s)
+info: FrohmanianSymplecticTether/NS_Equations.lean:2526:2: Try this:
+  [apply] abel_nf
+info: FrohmanianSymplecticTether/NS_Equations.lean:3605:0: 'NavierStokes3D.curl_gradient' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3606:0: 'NavierStokes3D.local_existence' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3607:0: 'NavierStokes3D.smoothness_of_Tstar_top' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3608:0: 'NavierStokes3D.beale_kato_majda' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3609:0: 'NavierStokes3D.energy_zero_of_gronwall' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3610:0: 'NavierStokes3D.Tstar_eq_top_of_unbounded_existenceTimes' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3611:0: 'NavierStokes3D.Tstar_eq_top_of_uniform_restart' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3612:0: 'NavierStokes3D.Tstar_eq_top_of_katoRestartTime' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3613:0: 'NavierStokes3D.katoRestartTime_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3614:0: 'NavierStokes3D.katoSobolevIndex_lt' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3615:0: 'NavierStokes3D.strain_sup_le_of_CZ' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3616:0: 'NavierStokes3D.one_add_log_le_self' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3617:0: 'NavierStokes3D.kato_ponce_implies_quadratic' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3618:0: 'NavierStokes3D.kato_ponce_of_uniform_vorticity' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3619:0: 'NavierStokes3D.kato_Hs_bound_on_restart_interval' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3620:0: 'NavierStokes3D.exists_mem_existenceTimes_gt_of_lt_Tstar' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3621:0: 'NavierStokes3D.navier_stokes_eq_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3622:0: 'NavierStokes3D.kato_witness_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3623:0: 'NavierStokes3D.local_existence_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3624:0: 'NavierStokes3D.Tstar_pos_of_kato_witness' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3625:0: 'NavierStokes3D.eq_of_l2_energy_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3626:0: 'NavierStokes3D.ns_cauchy_of_energy_gronwall' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3627:0: 'NavierStokes3D.ns_cauchy_eq_of_energy_gronwall' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3628:0: 'NavierStokes3D.energy_zero_of_gronwall_Icc' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3629:0: 'NavierStokes3D.ns_cauchy_on_Icc_of_energy_gronwall' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3630:0: 'NavierStokes3D.uniqueness_of_existence_times_of_energy_gronwall' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3631:0: 'NavierStokes3D.time_deriv_shift' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3632:0: 'NavierStokes3D.ns_pde_shift' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3633:0: 'NavierStokes3D.smoothness_on_restart_interval' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3634:0: 'NavierStokes3D.mem_existenceTimes_add_of_kato_restart' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3635:0: 'NavierStokes3D.restart_of_kato_quantitative' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3636:0: 'NavierStokes3D.smoothness_below_Tstar_of_uniqueness' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3637:0: 'NavierStokes3D.curl_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3638:0: 'NavierStokes3D.mem_existenceTimes_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3639:0: 'NavierStokes3D.Tstar_zero_eq_top' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3640:0: 'NavierStokes3D.div_curl' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3641:0: 'NavierStokes3D.div_of_eq_curl' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3642:0: 'NavierStokes3D.div_smul_field' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3643:0: 'NavierStokes3D.curl_add' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3644:0: 'NavierStokes3D.convective_norm_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3645:0: 'NavierStokes3D.inner_convective_product_rule' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3646:0: 'NavierStokes3D.cyclicLiePairing_expand' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3647:0: 'NavierStokes3D.convective_norm_le_of_CZ' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3648:0: 'NavierStokes3D.stretching_inner_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3649:0: 'NavierStokes3D.stretching_inner_le_at_max' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3650:0: 'NavierStokes3D.stretching_quartic_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3651:0: 'NavierStokes3D.transport_inner_vanishes_of_grad_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3652:0: 'NavierStokes3D.vorticity_transport_inner' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3653:0: 'NavierStokes3D.stretching_pairing_le_at_spatial_max' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3654:0: 'NavierStokes3D.stretching_enstrophy_di_at_spatial_max' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3655:0: 'NavierStokes3D.pressureGradient_sub' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3656:0: 'NavierStokes3D.ns_momentum_difference' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3657:0: 'NavierStokes3D.inner_convective_eq_inner_grad_half_norm_sq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3658:0: 'NavierStokes3D.transported_energy_pairing_vanishes' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3659:0: 'NavierStokes3D.convective_difference' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3660:0: 'NavierStokes3D.inner_convective_le_strain' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3661:0: 'NavierStokes3D.time_deriv_sub' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3662:0: 'NavierStokes3D.transported_scalar_along_characteristic' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3663:0: 'NavierStokes3D.transported_scalar_maximum_principle' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3664:0: 'NavierStokes3D.reciprocal_of_quadratic_growth' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3665:0: 'NavierStokes3D.le_vorticity_sup_norm' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3666:0: 'NavierStokes3D.convective_coord' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3667:0: 'NavierStokes3D.convective_eq_sum_directional' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3668:0: 'NavierStokes3D.directionalCoord_convective' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3669:0: 'NavierStokes3D.curl_convective' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3670:0: 'NavierStokes3D.curl_convective_div_free' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3671:0: 'NavierStokes3D.curl_add3' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3672:0: 'NavierStokes3D.fderiv_prod_snd_slice' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3673:0: 'NavierStokes3D.deriv_prod_fst_slice' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3674:0: 'NavierStokes3D.time_space_mixed_partials' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3675:0: 'NavierStokes3D.deriv_euclidean_coord' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3676:0: 'NavierStokes3D.curl_time_deriv' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3677:0: 'NavierStokes3D.fderiv_field_coord' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3678:0: 'NavierStokes3D.laplacian_coord' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3679:0: 'NavierStokes3D.fderiv_apply_fderiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3680:0: 'NavierStokes3D.contDiffAt_directionalCoord' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3681:0: 'NavierStokes3D.directionalCoord_laplacian' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3682:0: 'NavierStokes3D.curl_laplacian' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3683:0: 'NavierStokes3D.differentiableAt_time_deriv_coord' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3684:0: 'NavierStokes3D.differentiableAt_convective_coord' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3685:0: 'NavierStokes3D.differentiableAt_pressureGradient_coord' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3686:0: 'NavierStokes3D.vorticity_transport_at' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3687:0: 'NavierStokes3D.vorticity_transport' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3688:0: 'NavierStokes3D.vorticity_transport_equation' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3689:0: 'NavierStokes3D.time_space_mixed_partials' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3690:0: 'NavierStokes3D.differentiableAt_coord' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3691:0: 'NavierStokes3D.fderiv_coord' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3692:0: 'NavierStokes3D.integration_by_parts_of_vanishing_flux' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3693:0: 'NavierStokes3D.inner_self_convective_eq_inner_grad_half_norm_sq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3694:0: 'NavierStokes3D.differentiableAt_coord_of_differentiableAt_field' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3695:0: 'NavierStokes3D.differentiableAt_half_norm_sq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3696:0: 'NavierStokes3D.convective_energy_pairing_vanishes' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/NS_Equations.lean:3697:0: 'NavierStokes3D.pressure_energy_pairing_vanishes' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [8276/8309] Built FrohmanianSymplecticTether.ArnoldGeometric (4.7s)
+warning: FrohmanianSymplecticTether/ArnoldGeometric.lean:371:6: This simp argument is unused:
+  PiLp.single_apply
+
+Hint: Omit it from the simp argument list.
+  simp [ContinuousLinearMap.sub_apply, fderiv_const_mul (hd 2), fderiv_const_mul (hd 1),
+  ̲  ̲ ̲ ̲ ̲ ̲fderiv_coord, E̵u̵c̵l̵i̵d̵e̵a̵n̵S̵p̵a̵c̵e̵.̵s̵i̵n̵g̵l̵e̵,̵
+  ̵ ̵ ̵ ̵ ̵ ̵ ̵P̵i̵L̵p̵.̵s̵i̵n̵g̵l̵e̵_̵a̵p̵p̵l̵y̵]̵E̲u̲c̲l̲i̲d̲e̲a̲n̲S̲p̲a̲c̲e̲.̲s̲i̲n̲g̲l̲e̲]̲
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: FrohmanianSymplecticTether/ArnoldGeometric.lean:377:6: This simp argument is unused:
+  PiLp.single_apply
+
+Hint: Omit it from the simp argument list.
+  simp [ContinuousLinearMap.sub_apply, fderiv_const_mul (hd 0), fderiv_const_mul (hd 2),
+  ̲  ̲ ̲ ̲ ̲ ̲fderiv_coord, E̵u̵c̵l̵i̵d̵e̵a̵n̵S̵p̵a̵c̵e̵.̵s̵i̵n̵g̵l̵e̵,̵
+  ̵ ̵ ̵ ̵ ̵ ̵ ̵P̵i̵L̵p̵.̵s̵i̵n̵g̵l̵e̵_̵a̵p̵p̵l̵y̵]̵E̲u̲c̲l̲i̲d̲e̲a̲n̲S̲p̲a̲c̲e̲.̲s̲i̲n̲g̲l̲e̲]̲
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: FrohmanianSymplecticTether/ArnoldGeometric.lean:383:6: This simp argument is unused:
+  PiLp.single_apply
+
+Hint: Omit it from the simp argument list.
+  simp [ContinuousLinearMap.sub_apply, fderiv_const_mul (hd 1), fderiv_const_mul (hd 0),
+  ̲  ̲ ̲ ̲ ̲ ̲fderiv_coord, E̵u̵c̵l̵i̵d̵e̵a̵n̵S̵p̵a̵c̵e̵.̵s̵i̵n̵g̵l̵e̵,̵
+  ̵ ̵ ̵ ̵ ̵ ̵ ̵P̵i̵L̵p̵.̵s̵i̵n̵g̵l̵e̵_̵a̵p̵p̵l̵y̵]̵E̲u̲c̲l̲i̲d̲e̲a̲n̲S̲p̲a̲c̲e̲.̲s̲i̲n̲g̲l̲e̲]̲
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+info: FrohmanianSymplecticTether/ArnoldGeometric.lean:1040:0: 'ArnoldGeometric.velocity_from_vorticity_eq_BiotSavart' depends on axioms: [propext, choice, Quot.sound]
+info: FrohmanianSymplecticTether/ArnoldGeometric.lean:1041:0: 'ArnoldGeometric.classical_bracket_reproduces_Euler' depends on axioms: [propext, choice, Quot.sound]
+info: FrohmanianSymplecticTether/ArnoldGeometric.lean:1042:0: 'ArnoldGeometric.BiotSavart_zero' depends on axioms: [propext, choice, Quot.sound]
+info: FrohmanianSymplecticTether/ArnoldGeometric.lean:1043:0: 'ArnoldGeometric.BiotSavart_smul' depends on axioms: [propext, choice, Quot.sound]
+info: FrohmanianSymplecticTether/ArnoldGeometric.lean:1044:0: 'ArnoldGeometric.BiotSavart_add' depends on axioms: [propext, choice, Quot.sound]
+info: FrohmanianSymplecticTether/ArnoldGeometric.lean:1045:0: 'ArnoldGeometric.BiotSavart_affine' depends on axioms: [propext, choice, Quot.sound]
+info: FrohmanianSymplecticTether/ArnoldGeometric.lean:1046:0: 'ArnoldGeometric.hasDerivAt_half_norm_sq' depends on axioms: [propext, choice, Quot.sound]
+info: FrohmanianSymplecticTether/ArnoldGeometric.lean:1047:0: 'ArnoldGeometric.hasDerivAt_half_norm_sq_at' depends on axioms: [propext, choice, Quot.sound]
+info: FrohmanianSymplecticTether/ArnoldGeometric.lean:1048:0: 'ArnoldGeometric.pairing_cross_self_right' depends on axioms: [propext, choice, Quot.sound]
+info: FrohmanianSymplecticTether/ArnoldGeometric.lean:1049:0: 'ArnoldGeometric.cross_smul_left' depends on axioms: [propext, choice, Quot.sound]
+info: FrohmanianSymplecticTether/ArnoldGeometric.lean:1050:0: 'ArnoldGeometric.FunctionalDerivative_eq_zero_of_not' depends on axioms: [propext, choice, Quot.sound]
+info: FrohmanianSymplecticTether/ArnoldGeometric.lean:1051:0: 'ArnoldGeometric.FunctionalDerivative_eq_choose' depends on axioms: [propext, choice, Quot.sound]
+info: FrohmanianSymplecticTether/ArnoldGeometric.lean:1052:0: 'ArnoldGeometric.kineticEnergy_hasDerivAt_velocity_pairing' depends on axioms: [propext, choice, Quot.sound]
+info: FrohmanianSymplecticTether/ArnoldGeometric.lean:1053:0: 'ArnoldGeometric.biotSavartKernel_of_ne' depends on axioms: [propext, choice, Quot.sound]
+info: FrohmanianSymplecticTether/ArnoldGeometric.lean:1054:0: 'ArnoldGeometric.cross_coord' depends on axioms: [propext, choice, Quot.sound]
+info: FrohmanianSymplecticTether/ArnoldGeometric.lean:1055:0: 'ArnoldGeometric.div_cross_right' depends on axioms: [propext, choice, Quot.sound]
+info: FrohmanianSymplecticTether/ArnoldGeometric.lean:1056:0: 'ArnoldGeometric.div_cross_offset' depends on axioms: [propext, choice, Quot.sound]
+info: FrohmanianSymplecticTether/ArnoldGeometric.lean:1057:0: 'ArnoldGeometric.differentiableAt_cross_offset_coord' depends on axioms: [propext, choice, Quot.sound]
+info: FrohmanianSymplecticTether/ArnoldGeometric.lean:1058:0: 'ArnoldGeometric.hasFDerivAt_norm_sq_offset' depends on axioms: [propext, choice, Quot.sound]
+info: FrohmanianSymplecticTether/ArnoldGeometric.lean:1059:0: 'ArnoldGeometric.hasFDerivAt_biotSavartKernel_of_ne' depends on axioms: [propext, choice, Quot.sound]
+info: FrohmanianSymplecticTether/ArnoldGeometric.lean:1060:0: 'ArnoldGeometric.differentiableAt_biotSavartKernel_off_diag' depends on axioms: [propext, choice, Quot.sound]
+info: FrohmanianSymplecticTether/ArnoldGeometric.lean:1061:0: 'ArnoldGeometric.div_biotSavart_integrand' depends on axioms: [propext, choice, Quot.sound]
+info: FrohmanianSymplecticTether/ArnoldGeometric.lean:1062:0: 'ArnoldGeometric.div_biotSavart_integrand_ae' depends on axioms: [propext, choice, Quot.sound]
+info: FrohmanianSymplecticTether/ArnoldGeometric.lean:1063:0: 'ArnoldGeometric.div_BiotSavart_of_interchange' depends on axioms: [propext, choice, Quot.sound]
+info: FrohmanianSymplecticTether/ArnoldGeometric.lean:1064:0: 'ArnoldGeometric.functional_derivative_eq_velocity_of_unique_repr' depends on axioms: [propext, choice, Quot.sound]
+info: FrohmanianSymplecticTether/ArnoldGeometric.lean:1065:0: 'ArnoldGeometric.gateaux_representative_unique' depends on axioms: [propext, choice, Quot.sound]
+info: FrohmanianSymplecticTether/ArnoldGeometric.lean:1066:0: 'ArnoldGeometric.kineticEnergyHamiltonian_hasDerivAt_velocity_pairing' depends on axioms: [propext, choice, Quot.sound]
+info: FrohmanianSymplecticTether/ArnoldGeometric.lean:1067:0: 'ArnoldGeometric.isVelocityGateauxRepresentative_kineticEnergy_at' depends on axioms: [propext, choice, Quot.sound]
+✔ [8277/8309] Built FrohmanianSymplecticTether.ForMathlib.Projection (1.5s)
+ℹ [8278/8309] Built FrohmanianSymplecticTether.SymplecticTether (2.9s)
+info: FrohmanianSymplecticTether/SymplecticTether.lean:1251:0: 'FrohmanianTether.tethered_jacobi_identity_conditional' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/SymplecticTether.lean:1252:0: 'FrohmanianTether.tetherKernel_comm' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/SymplecticTether.lean:1253:0: 'FrohmanianTether.antisymmetric_correction_diagonal_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/SymplecticTether.lean:1254:0: 'FrohmanianTether.tetherKernel_C2_of_no_gateaux' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/SymplecticTether.lean:1255:0: 'FrohmanianTether.tetherKernel_degenerates_on_kinetic_energy' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/SymplecticTether.lean:1256:0: 'FrohmanianTether.tetherKernel_C2_of_identifications' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/SymplecticTether.lean:1257:0: 'FrohmanianTether.functional_derivative_of_kinetic_energy_of_unique_repr' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: FrohmanianSymplecticTether/SymplecticTether.lean:1258:0: 'FrohmanianTether.div_biot_savart_of_eq_curl' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/SymplecticTether.lean:1259:0: 'FrohmanianTether.div_biot_savart_velocity_of_interchange' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/SymplecticTether.lean:1260:0: '_private.FrohmanianSymplecticTether.SymplecticTether.0.FrohmanianTether.degeneracy_for_mollified_sup_norm_proxy' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+⚠ [8279/8309] Built FrohmanianSymplecticTether.C2Analysis (2.4s)
+warning: FrohmanianSymplecticTether/C2Analysis.lean:34:41: This simp argument is unused:
+  real_inner_self_eq_norm_sq
+
+Hint: Omit it from the simp argument list.
+  simp [pairing, real_inner_smul_left,̵ ̵r̵e̵a̵l̵_̵i̵n̵n̵e̵r̵_̵s̵e̵l̵f̵_̵e̵q̵_̵n̵o̵r̵m̵_̵s̵q̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+ℹ [8280/8309] Built FrohmanianSymplecticTether.Uniqueness (2.8s)
+info: FrohmanianSymplecticTether/Uniqueness.lean:522:0: 'FrohmanianTether.uniqueness_of_kernel_density' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/Uniqueness.lean:523:0: 'FrohmanianTether.uniqueness_of_kernel_density_fun' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/Uniqueness.lean:524:0: 'FrohmanianTether.tetherKernel_has_canonical_density' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/Uniqueness.lean:525:0: 'FrohmanianTether.uniqueness_of_minimal_tether' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/Uniqueness.lean:526:0: 'FrohmanianTether.step2_degree_of_canonical_density' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/Uniqueness.lean:527:0: 'FrohmanianTether.step2_degree' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/Uniqueness.lean:528:0: 'FrohmanianTether.step5_higher_order' depends on axioms: [propext, Classical.choice, Quot.sound]
+✔ [8281/8309] Built FrohmanianSymplecticTether.UniquenessC123 (1.5s)
+⚠ [8282/8309] Built FrohmanianSymplecticTether.AnalyticPipeline (4.7s)
+warning: FrohmanianSymplecticTether/AnalyticPipeline.lean:254:11: unused variable `x`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+info: FrohmanianSymplecticTether/AnalyticPipeline.lean:467:0: 'AnalyticPipeline.holderConjugate_three_halves_three' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/AnalyticPipeline.lean:468:0: 'AnalyticPipeline.holder_I4' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/AnalyticPipeline.lean:469:0: 'AnalyticPipeline.holder_I4_le_sobolev' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/AnalyticPipeline.lean:470:0: 'AnalyticPipeline.stretching_bound_of_holder' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/AnalyticPipeline.lean:471:0: 'AnalyticPipeline.vorticity_sup_norm_riccati_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8283/8309] Built FrohmanianSymplecticTether.TetheredLyapunov (9.3s)
+info: FrohmanianSymplecticTether/TetheredLyapunov.lean:2099:0: 'TetheredLyapunov.hasDerivAt_norm_sq_of_hasDerivAt' depends on axioms: [propext, choice, Quot.sound]
+info: FrohmanianSymplecticTether/TetheredLyapunov.lean:2100:0: 'TetheredLyapunov.hasDerivAt_norm_pow_four' depends on axioms: [propext, choice, Quot.sound]
+info: FrohmanianSymplecticTether/TetheredLyapunov.lean:2101:0: 'TetheredLyapunov.hasDerivAt_quartic_tether_weight' depends on axioms: [propext, choice, Quot.sound]
+info: FrohmanianSymplecticTether/TetheredLyapunov.lean:2102:0: 'TetheredLyapunov.hasDerivAt_lyapunov_density' depends on axioms: [propext, choice, Quot.sound]
+info: FrohmanianSymplecticTether/TetheredLyapunov.lean:2103:0: 'TetheredLyapunov.lyapunovSε_eq' depends on axioms: [propext, choice, Quot.sound]
+info: FrohmanianSymplecticTether/TetheredLyapunov.lean:2104:0: 'TetheredLyapunov.lyapunovSminus_eq' depends on axioms: [propext, choice, Quot.sound]
+info: FrohmanianSymplecticTether/TetheredLyapunov.lean:2105:0: 'TetheredLyapunov.quartic_weight_source_eq' depends on axioms: [propext, choice, Quot.sound]
+info: FrohmanianSymplecticTether/TetheredLyapunov.lean:2106:0: 'TetheredLyapunov.lyapunovSminus_source_density' depends on axioms: [propext, choice, Quot.sound]
+info: FrohmanianSymplecticTether/TetheredLyapunov.lean:2107:0: 'TetheredLyapunov.hasDerivAt_lyapunov_plus_of_enstrophy_source' depends on axioms: [propext, choice, Quot.sound]
+info: FrohmanianSymplecticTether/TetheredLyapunov.lean:2108:0: 'TetheredLyapunov.hasDerivAt_lyapunov_minus_of_enstrophy_source' depends on axioms: [propext, choice, Quot.sound]
+info: FrohmanianSymplecticTether/TetheredLyapunov.lean:2109:0: 'TetheredLyapunov.lyapunovSminus_density_le_half_norm_sq' depends on axioms: [propext, choice, Quot.sound]
+info: FrohmanianSymplecticTether/TetheredLyapunov.lean:2110:0: 'TetheredLyapunov.lyapunovSminus_density_ge_of_abs_phi' depends on axioms: [propext, choice, Quot.sound]
+info: FrohmanianSymplecticTether/TetheredLyapunov.lean:2111:0: 'TetheredLyapunov.lyapunovSminus_density_neg_of_large_weight' depends on axioms: [propext, choice, Quot.sound]
+info: FrohmanianSymplecticTether/TetheredLyapunov.lean:2112:0: 'TetheredLyapunov.hasDerivAt_lyapunov_density_unweighted' depends on axioms: [propext, choice, Quot.sound]
+info: FrohmanianSymplecticTether/TetheredLyapunov.lean:2113:0: 'TetheredLyapunov.majorantField_factor' depends on axioms: [propext, choice, Quot.sound]
+info: FrohmanianSymplecticTether/TetheredLyapunov.lean:2114:0: 'TetheredLyapunov.global_regularity_zero' depends on axioms: [propext, choice, Quot.sound]
+info: FrohmanianSymplecticTether/TetheredLyapunov.lean:2115:0: 'TetheredLyapunov.global_regularity_of_restart' depends on axioms: [propext, choice, Quot.sound]
+info: FrohmanianSymplecticTether/TetheredLyapunov.lean:2116:0: 'TetheredLyapunov.global_regularity_of_kato_estimates' depends on axioms: [propext, choice, Quot.sound]
+info: FrohmanianSymplecticTether/TetheredLyapunov.lean:2117:0: 'TetheredLyapunov.riccati_ceiling_of_vorticity_di' depends on axioms: [propext, choice, Quot.sound]
+info: FrohmanianSymplecticTether/TetheredLyapunov.lean:2118:0: 'TetheredLyapunov.global_regularity_of_constructions' depends on axioms: [propext, choice, Quot.sound]
+info: FrohmanianSymplecticTether/TetheredLyapunov.lean:2119:0: 'TetheredLyapunov.enstrophy_di_of_spatial_max' depends on axioms: [propext, choice, Quot.sound]
+info: FrohmanianSymplecticTether/TetheredLyapunov.lean:2120:0: 'TetheredLyapunov.lyapunov_density_unweighted_di_at_spatial_max' depends on axioms: [propext, choice, Quot.sound]
+✔ [8284/8309] Built FrohmanianSymplecticTether.IndependentMajorant (1.2s)
+✔ [8285/8309] Built FrohmanianSymplecticTether.ClosureBlueprint (1.8s)
+ℹ [8286/8309] Built FrohmanianSymplecticTether.GlobalRegularity (2.7s)
+info: FrohmanianSymplecticTether/GlobalRegularity.lean:380:0: 'GlobalRegularity.frohmanian_tether_theorem' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/GlobalRegularity.lean:381:0: 'GlobalRegularity.global_regularity_for_NS' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/GlobalRegularity.lean:543:0: 'GlobalRegularity.stepField_not_physical' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/GlobalRegularity.lean:544:0: 'GlobalRegularity.repaired_hInt' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/GlobalRegularity.lean:545:0: 'GlobalRegularity.repaired_huniq_shift_at_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/GlobalRegularity.lean:546:0: 'GlobalRegularity.repaired_huniq_at_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/GlobalRegularity.lean:547:0: 'GlobalRegularity.frohmanianTetherBound_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/GlobalRegularity.lean:548:0: 'GlobalRegularity.frohmanianTetherRate_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FrohmanianSymplecticTether/GlobalRegularity.lean:549:0: 'GlobalRegularity.global_regularity_for_NS_nonvacuous_at_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8287/8309] Built FrohmanianSymplecticTether.FinalProductTheorem (2.5s)
+info: FrohmanianSymplecticTether/FinalProductTheorem.lean:557:0: 'FrohmanianSymplecticTether.FinalProductTheorem.kksSymplecticForm_skew' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: FrohmanianSymplecticTether/FinalProductTheorem.lean:558:0: 'FrohmanianSymplecticTether.FinalProductTheorem.kksPointwise_cyclic_jacobi_identity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: FrohmanianSymplecticTether/FinalProductTheorem.lean:559:0: 'FrohmanianSymplecticTether.FinalProductTheorem.FrohmanianMetriplecticPairing_diag_eq_metric' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: FrohmanianSymplecticTether/FinalProductTheorem.lean:560:0: 'FrohmanianSymplecticTether.FinalProductTheorem.unitCube_nonempty' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: FrohmanianSymplecticTether/FinalProductTheorem.lean:561:0: 'FrohmanianSymplecticTether.FinalProductTheorem.bddAbove_range_norm_of_attained_max' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: FrohmanianSymplecticTether/FinalProductTheorem.lean:562:0: 'FrohmanianSymplecticTether.FinalProductTheorem.vorticity_sup_norm_eq_of_isSpatialMax' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: FrohmanianSymplecticTether/FinalProductTheorem.lean:563:0: 'FrohmanianSymplecticTether.FinalProductTheorem.polar_pythagoras_directional_deriv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: FrohmanianSymplecticTether/FinalProductTheorem.lean:564:0: 'FrohmanianSymplecticTether.FinalProductTheorem.polar_pythagoras_3d_sum' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: FrohmanianSymplecticTether/FinalProductTheorem.lean:565:0: 'FrohmanianSymplecticTether.FinalProductTheorem.bochner_laplacian_3d_identity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: FrohmanianSymplecticTether/FinalProductTheorem.lean:566:0: 'FrohmanianSymplecticTether.FinalProductTheorem.concrete_bochner_polar_viscous_damping_at_max' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: FrohmanianSymplecticTether/FinalProductTheorem.lean:567:0: 'FrohmanianSymplecticTether.FinalProductTheorem.beltrami_lamb_vector_cross_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: FrohmanianSymplecticTether/FinalProductTheorem.lean:568:0: 'FrohmanianSymplecticTether.FinalProductTheorem.beltrami_casimir_projection_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: FrohmanianSymplecticTether/FinalProductTheorem.lean:569:0: 'FrohmanianSymplecticTether.FinalProductTheorem.beltrami_tetherPointwiseDensity_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: FrohmanianSymplecticTether/FinalProductTheorem.lean:570:0: 'FrohmanianSymplecticTether.FinalProductTheorem.constVelocity_ne_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: FrohmanianSymplecticTether/FinalProductTheorem.lean:571:0: 'FrohmanianSymplecticTether.FinalProductTheorem.navier_stokes_eq_constVelocity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: FrohmanianSymplecticTether/FinalProductTheorem.lean:572:0: 'FrohmanianSymplecticTether.FinalProductTheorem.nonzero_smooth_ns_solution_exists' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: FrohmanianSymplecticTether/FinalProductTheorem.lean:573:0: 'FrohmanianSymplecticTether.FinalProductTheorem.near_field_stretching_absorbed_by_viscous_direction_damping' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: FrohmanianSymplecticTether/FinalProductTheorem.lean:574:0: 'FrohmanianSymplecticTether.FinalProductTheorem.constantin_fefferman_near_far_cutoff_bridge' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: FrohmanianSymplecticTether/FinalProductTheorem.lean:575:0: 'FrohmanianSymplecticTether.FinalProductTheorem.frohmanian_metriplectic_system_canonical_uniqueness_and_global_regularity_product_theorem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✔ [8288/8309] Built FrohmanianSymplecticTether.VelocityTether (2.4s)
+✔ [8289/8309] Built MetriplecticWorldModel.Model (3.6s)
+✔ [8290/8309] Built MetriplecticWorldModel.Realization (4.8s)
+✔ [8291/8309] Built MetriplecticWorldModel.Instance (5.1s)
+⚠ [8292/8309] Built MetriplecticWorldModel.SmoothOrbit (5.1s)
+warning: MetriplecticWorldModel/SmoothOrbit.lean:44:34: `EuclideanSpace.single_apply` has been deprecated: Use `PiLp.single_apply` instead
+
+Note: The updated constant has a different type:
+  ∀ (p : ENNReal) (𝕜 : Type u_1) {ι : Type u_2} [inst : DecidableEq ι] [inst_1 : Zero 𝕜] (i : ι) (a : 𝕜) (j : ι),
+    (PiLp.single p i a).ofLp j = if j = i then a else 0
+instead of
+  ∀ {ι : Type u_1} {𝕜 : Type u_3} [inst : RCLike 𝕜] [inst_1 : DecidableEq ι] (i : ι) (a : 𝕜) (j : ι),
+    (EuclideanSpace.single i a).ofLp j = if j = i then a else 0
+
+Note: The updated constant is in a different namespace. Dot notation may need to be changed (e.g., from `x.single_apply` to `PiLp.single_apply x`).
+warning: MetriplecticWorldModel/SmoothOrbit.lean:44:34: This simp argument is unused:
+  EuclideanSpace.single_apply
+
+Hint: Omit it from the simp argument list.
+  simp [grad, Fin.sum_univ_three,̵ ̵E̵u̵c̵l̵i̵d̵e̵a̵n̵S̵p̵a̵c̵e̵.̵s̵i̵n̵g̵l̵e̵_̵a̵p̵p̵l̵y̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: MetriplecticWorldModel/SmoothOrbit.lean:63:31: `EuclideanSpace.single_apply` has been deprecated: Use `PiLp.single_apply` instead
+
+Note: The updated constant has a different type:
+  ∀ (p : ENNReal) (𝕜 : Type u_1) {ι : Type u_2} [inst : DecidableEq ι] [inst_1 : Zero 𝕜] (i : ι) (a : 𝕜) (j : ι),
+    (PiLp.single p i a).ofLp j = if j = i then a else 0
+instead of
+  ∀ {ι : Type u_1} {𝕜 : Type u_3} [inst : RCLike 𝕜] [inst_1 : DecidableEq ι] (i : ι) (a : 𝕜) (j : ι),
+    (EuclideanSpace.single i a).ofLp j = if j = i then a else 0
+
+Note: The updated constant is in a different namespace. Dot notation may need to be changed (e.g., from `x.single_apply` to `PiLp.single_apply x`).
+warning: MetriplecticWorldModel/SmoothOrbit.lean:63:31: `EuclideanSpace.single_apply` has been deprecated: Use `PiLp.single_apply` instead
+
+Note: The updated constant has a different type:
+  ∀ (p : ENNReal) (𝕜 : Type u_1) {ι : Type u_2} [inst : DecidableEq ι] [inst_1 : Zero 𝕜] (i : ι) (a : 𝕜) (j : ι),
+    (PiLp.single p i a).ofLp j = if j = i then a else 0
+instead of
+  ∀ {ι : Type u_1} {𝕜 : Type u_3} [inst : RCLike 𝕜] [inst_1 : DecidableEq ι] (i : ι) (a : 𝕜) (j : ι),
+    (EuclideanSpace.single i a).ofLp j = if j = i then a else 0
+
+Note: The updated constant is in a different namespace. Dot notation may need to be changed (e.g., from `x.single_apply` to `PiLp.single_apply x`).
+warning: MetriplecticWorldModel/SmoothOrbit.lean:63:31: `EuclideanSpace.single_apply` has been deprecated: Use `PiLp.single_apply` instead
+
+Note: The updated constant has a different type:
+  ∀ (p : ENNReal) (𝕜 : Type u_1) {ι : Type u_2} [inst : DecidableEq ι] [inst_1 : Zero 𝕜] (i : ι) (a : 𝕜) (j : ι),
+    (PiLp.single p i a).ofLp j = if j = i then a else 0
+instead of
+  ∀ {ι : Type u_1} {𝕜 : Type u_3} [inst : RCLike 𝕜] [inst_1 : DecidableEq ι] (i : ι) (a : 𝕜) (j : ι),
+    (EuclideanSpace.single i a).ofLp j = if j = i then a else 0
+
+Note: The updated constant is in a different namespace. Dot notation may need to be changed (e.g., from `x.single_apply` to `PiLp.single_apply x`).
+warning: MetriplecticWorldModel/SmoothOrbit.lean:63:31: This simp argument is unused:
+  EuclideanSpace.single_apply
+
+Hint: Omit it from the simp argument list.
+  simp ̵[̵E̵u̵c̵l̵i̵d̵e̵a̵n̵S̵p̵a̵c̵e̵.̵s̵i̵n̵g̵l̵e̵_̵a̵p̵p̵l̵y̵]̵
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+✔ [8293/8309] Built MetriplecticWorldModel.ChoiceFree (5.8s)
+✔ [8294/8309] Built MetriplecticWorldModel.MaxPointDanskin (7.6s)
+✔ [8295/8309] Built MetriplecticWorldModel.AuditFixes (8.5s)
+⚠ [8296/8309] Built MetriplecticWorldModel.HelmholtzObstruction (4.2s)
+warning: MetriplecticWorldModel/HelmholtzObstruction.lean:93:33: `EuclideanSpace.single_apply` has been deprecated: Use `PiLp.single_apply` instead
+
+Note: The updated constant has a different type:
+  ∀ (p : ENNReal) (𝕜 : Type u_1) {ι : Type u_2} [inst : DecidableEq ι] [inst_1 : Zero 𝕜] (i : ι) (a : 𝕜) (j : ι),
+    (PiLp.single p i a).ofLp j = if j = i then a else 0
+instead of
+  ∀ {ι : Type u_1} {𝕜 : Type u_3} [inst : RCLike 𝕜] [inst_1 : DecidableEq ι] (i : ι) (a : 𝕜) (j : ι),
+    (EuclideanSpace.single i a).ofLp j = if j = i then a else 0
+
+Note: The updated constant is in a different namespace. Dot notation may need to be changed (e.g., from `x.single_apply` to `PiLp.single_apply x`).
+warning: MetriplecticWorldModel/HelmholtzObstruction.lean:93:33: `EuclideanSpace.single_apply` has been deprecated: Use `PiLp.single_apply` instead
+
+Note: The updated constant has a different type:
+  ∀ (p : ENNReal) (𝕜 : Type u_1) {ι : Type u_2} [inst : DecidableEq ι] [inst_1 : Zero 𝕜] (i : ι) (a : 𝕜) (j : ι),
+    (PiLp.single p i a).ofLp j = if j = i then a else 0
+instead of
+  ∀ {ι : Type u_1} {𝕜 : Type u_3} [inst : RCLike 𝕜] [inst_1 : DecidableEq ι] (i : ι) (a : 𝕜) (j : ι),
+    (EuclideanSpace.single i a).ofLp j = if j = i then a else 0
+
+Note: The updated constant is in a different namespace. Dot notation may need to be changed (e.g., from `x.single_apply` to `PiLp.single_apply x`).
+warning: MetriplecticWorldModel/HelmholtzObstruction.lean:93:33: `EuclideanSpace.single_apply` has been deprecated: Use `PiLp.single_apply` instead
+
+Note: The updated constant has a different type:
+  ∀ (p : ENNReal) (𝕜 : Type u_1) {ι : Type u_2} [inst : DecidableEq ι] [inst_1 : Zero 𝕜] (i : ι) (a : 𝕜) (j : ι),
+    (PiLp.single p i a).ofLp j = if j = i then a else 0
+instead of
+  ∀ {ι : Type u_1} {𝕜 : Type u_3} [inst : RCLike 𝕜] [inst_1 : DecidableEq ι] (i : ι) (a : 𝕜) (j : ι),
+    (EuclideanSpace.single i a).ofLp j = if j = i then a else 0
+
+Note: The updated constant is in a different namespace. Dot notation may need to be changed (e.g., from `x.single_apply` to `PiLp.single_apply x`).
+warning: MetriplecticWorldModel/HelmholtzObstruction.lean:93:33: This simp argument is unused:
+  EuclideanSpace.single_apply
+
+Hint: Omit it from the simp argument list.
+  simp ̵[̵E̵u̵c̵l̵i̵d̵e̵a̵n̵S̵p̵a̵c̵e̵.̵s̵i̵n̵g̵l̵e̵_̵a̵p̵p̵l̵y̵]̵
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+✔ [8297/8309] Built MetriplecticWorldModel.DiniCeiling (4.8s)
+✔ [8298/8309] Built MetriplecticWorldModel.TestClass (3.9s)
+✔ [8299/8309] Built MetriplecticWorldModel.LogLossCeiling (5.4s)
+⚠ [8300/8309] Built MetriplecticWorldModel.NewtonKernel (4.8s)
+warning: MetriplecticWorldModel/NewtonKernel.lean:49:66: This simp argument is unused:
+  EuclideanSpace.inner_single_right
+
+Hint: Omit it from the simp argument list.
+  simp only [ContinuousLinearMap.smul_apply, innerSL_apply_apply,̵ ̵E̵u̵c̵l̵i̵d̵e̵a̵n̵S̵p̵a̵c̵e̵.̵i̵n̵n̵e̵r̵_̵s̵i̵n̵g̵l̵e̵_̵r̵i̵g̵h̵t̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: MetriplecticWorldModel/NewtonKernel.lean:77:130: This simp argument is unused:
+  EuclideanSpace.inner_single_right
+
+Hint: Omit it from the simp argument list.
+  simp only [ContinuousLinearMap.add_apply, ContinuousLinearMap.smul_apply,
+  ̲  ̲ ̲ ̲ ̲ ̲ContinuousLinearMap.neg_apply, i̵n̵n̵e̵r̵S̵L̵_̵a̵p̵p̵l̵y̵_̵a̵p̵p̵l̵y̵,̵ ̵E̵u̵c̵l̵i̵d̵e̵a̵n̵S̵p̵a̵c̵e̵.̵i̵n̵n̵e̵r̵_̵s̵i̵n̵g̵l̵e̵_̵r̵i̵g̵h̵t̵]̵i̲n̲n̲e̲r̲S̲L̲_̲a̲p̲p̲l̲y̲_̲a̲p̲p̲l̲y̲]̲
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [8301/8309] Built MetriplecticWorldModel.RegularizedKernel (4.6s)
+warning: MetriplecticWorldModel/RegularizedKernel.lean:85:8: `Real.rpow_le_rpow_of_exponent_nonpos` has been deprecated: Use `Real.rpow_le_rpow_of_nonpos` instead
+✔ [8302/8309] Built MetriplecticWorldModel.NewtonLaplacian (4.7s)
+✔ [8303/8309] Built MetriplecticWorldModel.BiotSavartNewton (7.4s)
+✔ [8304/8309] Built MetriplecticWorldModel.HelicityGateaux (6.9s)
+✔ [8305/8309] Built MetriplecticWorldModel.EntropyCasimirArnold (2.9s)
+⚠ [8306/8309] Built MetriplecticWorldModel.PoincareR3 (5.8s)
+warning: MetriplecticWorldModel/PoincareR3.lean:47:30: `EuclideanSpace.single_apply` has been deprecated: Use `PiLp.single_apply` instead
+
+Note: The updated constant has a different type:
+  ∀ (p : ENNReal) (𝕜 : Type u_1) {ι : Type u_2} [inst : DecidableEq ι] [inst_1 : Zero 𝕜] (i : ι) (a : 𝕜) (j : ι),
+    (PiLp.single p i a).ofLp j = if j = i then a else 0
+instead of
+  ∀ {ι : Type u_1} {𝕜 : Type u_3} [inst : RCLike 𝕜] [inst_1 : DecidableEq ι] (i : ι) (a : 𝕜) (j : ι),
+    (EuclideanSpace.single i a).ofLp j = if j = i then a else 0
+
+Note: The updated constant is in a different namespace. Dot notation may need to be changed (e.g., from `x.single_apply` to `PiLp.single_apply x`).
+⚠ [8307/8309] Built MetriplecticWorldModel.KineticEnergyRep (7.5s)
+warning: MetriplecticWorldModel/KineticEnergyRep.lean:197:32: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: MetriplecticWorldModel/KineticEnergyRep.lean:197:32: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: MetriplecticWorldModel/KineticEnergyRep.lean:196:22: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+✔ [8308/8309] Built MetriplecticWorldModel (2.5s)
+Build completed successfully (8309 jobs).
