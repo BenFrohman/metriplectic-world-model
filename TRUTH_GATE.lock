@@ -1,0 +1,19 @@
+{
+  "semantics_file": "MetriplecticWorldModel/Semantics.lean",
+  "semantics_module": "MetriplecticWorldModel.Semantics",
+  "paper_path": "paper/metriplectic-world-model.tex",
+  "paper_sha256": "02172077e81762a98db095e55a59a1cf1945cbe68cb26ecd26d0bd1fd1da68c5",
+  "main_theorems": [
+    "MetriplecticWorldModel.uniform_ceiling"
+  ],
+  "lock_region_sha256": "b506171f20fcfacd790193740a5e3c12f6bc34d577bde5a5a5b2ed99ca205b9d",
+  "draft_dirs": [
+    "MetriplecticWorldModel/Draft"
+  ],
+  "lean_roots": [
+    "MetriplecticWorldModel",
+    "MetriplecticWorldModel.lean",
+    "FrohmanianSymplecticTether",
+    "TetherMayForm"
+  ]
+}

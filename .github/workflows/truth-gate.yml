@@ -1,0 +1,34 @@
+# Author: Benjamin Stanley Frohman
+# Truth Gate (see TRUTH_GATE.md): lake build + scripts/verify-lock.sh.
+name: truth-gate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  truth-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan (toolchain from lean-toolchain)
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Mathlib cache
+        run: lake exe cache get
+      - name: lake build
+        run: lake build
+      - name: verify-lock
+        run: bash scripts/verify-lock.sh
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: truth-gate-report
+          path: truth-gate-report/
