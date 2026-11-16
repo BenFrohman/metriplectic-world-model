@@ -1,0 +1,68 @@
+import Lean
+import «FrohmanianSymplecticTether».«AnalyticPipeline»
+import «FrohmanianSymplecticTether».«ArnoldGeometric»
+import «FrohmanianSymplecticTether».«Assumptions»
+import «FrohmanianSymplecticTether».«C2Analysis»
+import «FrohmanianSymplecticTether».«ClosureBlueprint»
+import «FrohmanianSymplecticTether».«FinalProductTheorem»
+import «FrohmanianSymplecticTether».«ForMathlib».«Projection»
+import «FrohmanianSymplecticTether».«GlobalRegularity»
+import «FrohmanianSymplecticTether».«IndependentMajorant»
+import «FrohmanianSymplecticTether».«NS_Equations»
+import «FrohmanianSymplecticTether».«SymplecticTether»
+import «FrohmanianSymplecticTether».«TetheredLyapunov»
+import «FrohmanianSymplecticTether».«Uniqueness»
+import «FrohmanianSymplecticTether».«UniquenessC123»
+import «FrohmanianSymplecticTether».«VelocityTether»
+import «MetriplecticWorldModel»
+import «MetriplecticWorldModel».«AuditFixes»
+import «MetriplecticWorldModel».«BiotSavartNewton»
+import «MetriplecticWorldModel».«Bracket»
+import «MetriplecticWorldModel».«Canonical»
+import «MetriplecticWorldModel».«Ceiling»
+import «MetriplecticWorldModel».«ChoiceFree»
+import «MetriplecticWorldModel».«DiniCeiling»
+import «MetriplecticWorldModel».«EntropyCasimirArnold»
+import «MetriplecticWorldModel».«HelicityGateaux»
+import «MetriplecticWorldModel».«HelmholtzObstruction»
+import «MetriplecticWorldModel».«Instance»
+import «MetriplecticWorldModel».«KineticEnergyRep»
+import «MetriplecticWorldModel».«LogLossCeiling»
+import «MetriplecticWorldModel».«MaxPointDanskin»
+import «MetriplecticWorldModel».«Model»
+import «MetriplecticWorldModel».«NewtonKernel»
+import «MetriplecticWorldModel».«NewtonLaplacian»
+import «MetriplecticWorldModel».«PoincareR3»
+import «MetriplecticWorldModel».«Realization»
+import «MetriplecticWorldModel».«RegularizedKernel»
+import «MetriplecticWorldModel».«SmoothOrbit»
+import «MetriplecticWorldModel».«TestClass»
+import «TetherMayForm».«Basic»
+import «TetherMayForm».«Enstrophy»
+import «TetherMayForm».«Layer2»
+import «TetherMayForm».«Main»
+import «TetherMayForm».«Metriplectic»
+import «TetherMayForm».«RouteA»
+import «TetherMayForm».«TetheredLyapunov»
+
+open Lean Elab Command
+
+/-- Prints `#print axioms`-style lines for every theorem declared in the listed modules. -/
+elab "#kernel_certificate_audit" : command => do
+  let env ← getEnv
+  let mods : Array Name := #[`«FrohmanianSymplecticTether».«AnalyticPipeline», `«FrohmanianSymplecticTether».«ArnoldGeometric», `«FrohmanianSymplecticTether».«Assumptions», `«FrohmanianSymplecticTether».«C2Analysis», `«FrohmanianSymplecticTether».«ClosureBlueprint», `«FrohmanianSymplecticTether».«FinalProductTheorem», `«FrohmanianSymplecticTether».«ForMathlib».«Projection», `«FrohmanianSymplecticTether».«GlobalRegularity», `«FrohmanianSymplecticTether».«IndependentMajorant», `«FrohmanianSymplecticTether».«NS_Equations», `«FrohmanianSymplecticTether».«SymplecticTether», `«FrohmanianSymplecticTether».«TetheredLyapunov», `«FrohmanianSymplecticTether».«Uniqueness», `«FrohmanianSymplecticTether».«UniquenessC123», `«FrohmanianSymplecticTether».«VelocityTether», `«MetriplecticWorldModel», `«MetriplecticWorldModel».«AuditFixes», `«MetriplecticWorldModel».«BiotSavartNewton», `«MetriplecticWorldModel».«Bracket», `«MetriplecticWorldModel».«Canonical», `«MetriplecticWorldModel».«Ceiling», `«MetriplecticWorldModel».«ChoiceFree», `«MetriplecticWorldModel».«DiniCeiling», `«MetriplecticWorldModel».«EntropyCasimirArnold», `«MetriplecticWorldModel».«HelicityGateaux», `«MetriplecticWorldModel».«HelmholtzObstruction», `«MetriplecticWorldModel».«Instance», `«MetriplecticWorldModel».«KineticEnergyRep», `«MetriplecticWorldModel».«LogLossCeiling», `«MetriplecticWorldModel».«MaxPointDanskin», `«MetriplecticWorldModel».«Model», `«MetriplecticWorldModel».«NewtonKernel», `«MetriplecticWorldModel».«NewtonLaplacian», `«MetriplecticWorldModel».«PoincareR3», `«MetriplecticWorldModel».«Realization», `«MetriplecticWorldModel».«RegularizedKernel», `«MetriplecticWorldModel».«SmoothOrbit», `«MetriplecticWorldModel».«TestClass», `«TetherMayForm».«Basic», `«TetherMayForm».«Enstrophy», `«TetherMayForm».«Layer2», `«TetherMayForm».«Main», `«TetherMayForm».«Metriplectic», `«TetherMayForm».«RouteA», `«TetherMayForm».«TetheredLyapunov»]
+  for m in mods do
+    match env.getModuleIdx? m with
+    | none => IO.println s!"MODULE NOT LOADED {m}"
+    | some i =>
+      for n in (env.header.moduleData[i.toNat]!).constNames do
+        match env.find? n with
+        | some (.thmInfo _) =>
+          if !n.isInternal then
+            let ax ← collectAxioms n
+            let axs := ", ".intercalate (ax.toList.map toString)
+            if ax.isEmpty then IO.println s!"'{n}' does not depend on any axioms [module {m}]"
+            else IO.println s!"'{n}' depends on axioms: [{axs}] [module {m}]"
+        | _ => pure ()
+
+#kernel_certificate_audit

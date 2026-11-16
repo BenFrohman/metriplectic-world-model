@@ -1,0 +1,2 @@
+Scanned 50 tracked .lean files for sorry / admit / native_decide / axiom declarations (comments and strings ignored).
+RESULT: 0 hits

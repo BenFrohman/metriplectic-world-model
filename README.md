@@ -1,5 +1,9 @@
 # Metriplectic World Model
 
+## Kernel certificate
+
+[certificates/CERTIFICATE.md](certificates/CERTIFICATE.md): commit `86a5afb`, `leanprover/lean4:v4.30.0-rc1`. `lake build` passes; the sorry/axiom scan finds 0 hits; **765 theorems depend only on `propext`, `Classical.choice`, `Quot.sound`**; 45 of 45 modules replayed through the kernel, 0 failures ([CI run](https://github.com/BenFrohman/metriplectic-world-model/actions/runs/43937867300)).
+
 > **Work in progress.** Draft formalization; results are stated with their exact status (proved unconditionally / conditional on named Props). Nothing here solves the Clay problem or proves Navier–Stokes regularity.
 >
 > **DOIs:** reduction paper [10.5281/zenodo.23842297](https://doi.org/10.5281/zenodo.23842297); main paper [10.5281/zenodo.23842564](https://doi.org/10.5281/zenodo.23842564)
