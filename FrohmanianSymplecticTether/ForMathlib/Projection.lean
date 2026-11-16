@@ -11,6 +11,12 @@ public import Mathlib.MeasureTheory.Integral.Bochner.Basic
 public import FrohmanianSymplecticTether.NS_Equations
 public import FrohmanianSymplecticTether.ArnoldGeometric
 
+/-!
+# FrohmanianSymplecticTether.ForMathlib.Projection
+
+Machine-checked Lean 4 module.
+-/
+
 open InnerProductSpace
 open ArnoldGeometric (pairing)
 open NavierStokes3D

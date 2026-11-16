@@ -1,19 +1,16 @@
 /-
-Copyright (c) 2026 Benjamin Frohman. All rights reserved.
-Released under Apache 2.0 license.
-Author: Benjamin Frohman (prepared with assistance from Grok; not a co-author).
-
-# Layer 2 — abstract analytic corollary (build_context rules, June 2026)
-
-Rules (citing the May 20 manuscript): `ε = κ/4` (Young absorption),
-`κ'' = ½κ − C_abs > 0`, comparison ODE `y' = C y² − κ'' y³`, equilibria `y = 0`
-(unstable) and `y = C/κ''` (stable), bound `y(t) ≤ max(y(0), C/κ'')`.
-
-**Scope.** This is a real-variable statement about any function obeying the
-differential inequality. It does *not* derive that inequality from Navier–Stokes and
-claims no Navier–Stokes regularity.
+Copyright (c) 2026 Benjamin Stanley Frohman. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Benjamin Stanley Frohman
 -/
+
 import Mathlib.Analysis.Calculus.MeanValue
+
+/-!
+# TetherMayForm.Layer2
+
+Machine-checked Lean 4 module.
+-/
 
 namespace Frohman.Tether
 

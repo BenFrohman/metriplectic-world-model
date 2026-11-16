@@ -1,31 +1,20 @@
 /-
 Copyright (c) 2026 Benjamin Stanley Frohman. All rights reserved.
-Released under Apache 2.0 license.
-Author: Benjamin Stanley Frohman.
-
-# The velocity-slot tether (the model)
-
-`TetherKernelVel κ ω F G = -κ ∫ |ω|² ⟨Π_u curl(δF/δω), Π_u curl(δG/δω)⟩`.
-
-The earlier `TetherKernel` projects `δF/δω` directly. For `H = ½∫|u|²` that slot is the stream
-function `ψ`, and C2 fails (`shear_C2_fails`), so `TetherKernel` and the results built on it are
-scaffolding. Here the main results are redone for `TetherKernelVel`:
-
-* symmetry, the quadratic form, C1, C3, and the pointwise sign;
-* C2, from the stream-function identity `curl(δH/δω) = u` (`KineticEnergyCurlIdentity`, a named
-  hypothesis, implied by `StreamFunctionRepresentative`) plus finite energy;
-* polarization, from additivity of the projected slot plus integrability;
-* uniqueness from C3, the minimality bound and polarization;
-* non-uniqueness from C1–C3 alone (`2 · TetherKernelVel`), with C2 coming from the hypotheses
-  above rather than from a false identity;
-* degree 2 under `ω ↦ cω`, and Step 5 (no degree `≥ 3` remainder);
-* the metriplectic split and the `P1`–`P4` product theorem.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Benjamin Stanley Frohman
 -/
+
 module
 
 public import FrohmanianSymplecticTether.C2Analysis
 public import FrohmanianSymplecticTether.UniquenessC123
 public import FrohmanianSymplecticTether.FinalProductTheorem
+
+/-!
+# FrohmanianSymplecticTether.VelocityTether
+
+Machine-checked Lean 4 module.
+-/
 
 @[expose] public section
 

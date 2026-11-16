@@ -1,21 +1,25 @@
 /-
 Copyright (c) 2026 Benjamin Stanley Frohman. All rights reserved.
-Released under Apache 2.0 license.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Benjamin Stanley Frohman
+-/
+
+import TetherMayForm.Main
+
+/-!
+# TetherMayForm.TetheredLyapunov
+
 Author: Benjamin Stanley Frohman (prepared with assistance from Grok; not a co-author).
-
 # Tethered Lyapunov (rebuild of the May 28 2026 layout, LOCAL)
-
 Mirrors `Modules/TetheredLyapunov.lean` of `complete_implementation_2026-05-28`.
 The May file had `ComparisonODE`, `comparison_majorant_global_bound`,
 `lemma_3_1_uniform_bound_and_continuation` and `global_regularity`, all `sorry`.
 Here every step that can honestly be proved is proved; the Navier–Stokes inputs are
 named `Prop`s (no `sorry`, no axioms), so the remaining gap is fully visible.
-
 Abstraction: a candidate solution is recorded by `y t` (the controlled quantity, e.g.
 `‖ω(t)‖_∞`), its right derivative `y'`, and `SmoothOn T` ("the solution exists and is
 C^∞ on `[0,T]`"). `Torus.lean` connects this record to an actual velocity field on 𝕋³ (`toNSTetherSolution`).
 -/
-import TetherMayForm.Main
 
 namespace Frohman.Tether
 

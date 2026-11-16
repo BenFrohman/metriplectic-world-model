@@ -1,28 +1,19 @@
 /-
 Copyright (c) 2026 Benjamin Stanley Frohman. All rights reserved.
-Released under Apache 2.0 license.
-Author: Benjamin Stanley Frohman.
-
-# C2 for `TetherKernel`: where it holds, where it fails, and the fix
-
-For `H = ½∫|u|²` viewed as a functional of `ω`, the Gâteaux derivative is the stream function
-`ψ` with `curl ψ = u`, not `u`. `TetherKernel` projects `δH/δω = ψ`, so C2 needs `Π_u ψ = 0`.
-
-* **Holds** when `δH/δω` is a multiple of `u` (Beltrami: `curl u = λu` gives `ψ = u/λ`):
-  `tetherKernel_C2_of_parallel`.
-* **Fails** on the explicit two-mode shear on `T³`, `u = (sin z + sin 2z, cos z + cos 2z, 0)`,
-  `ψ = (sin z + ½ sin 2z, cos z + ½ cos 2z, 0)`, `ω = (sin z + 2 sin 2z, cos z + 2 cos 2z, 0)`:
-  `curl ψ = u`, `curl u = ω`, and the tether pairing of `H` with itself is `-(3/4)κπ ≠ 0` per
-  unit `(x,y)`-cell area (`shear_C2_fails`).
-* **Fix:** project the velocity slot `curl (δF/δω)` instead (`TetherKernelVel`). Then `H`
-  enters as `curl ψ = u` and `Π_u u = 0`: `tetherKernelVel_C2`. This is the same as treating
-  `H` as a functional of `u` (`δH/δu = u`). Since `curl` kills gradients, the velocity slot
-  also does not depend on the gauge choice in `δF/δω`.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Benjamin Stanley Frohman
 -/
+
 module
 
 public import FrohmanianSymplecticTether.SymplecticTether
 public import Mathlib.Analysis.SpecialFunctions.Integrals.Basic
+
+/-!
+# FrohmanianSymplecticTether.C2Analysis
+
+Machine-checked Lean 4 module.
+-/
 
 @[expose] public section
 

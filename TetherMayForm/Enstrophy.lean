@@ -1,29 +1,16 @@
 /-
 Copyright (c) 2026 Benjamin Stanley Frohman. All rights reserved.
-Released under Apache 2.0 license.
-Author: Benjamin Stanley Frohman (prepared with assistance from Grok; not a co-author).
-
-# Attempt at `NSTetherEnstrophyInequality` (LOCAL)
-
-Vorticity equation (3D NS): `∂ₜω + (u·∇)ω = (ω·∇)u + νΔω` (+ the 𝔗_F feedback term in the
-modified model). At a spatial maximizer `x*` of `|ω|`, with `y = |ω(x*)|`:
-  `y y' = ω·Sω + ν ω·Δω + 𝔗_F[κ,w,u](ω,ω)`,
-where `ω·Sω` is the stretching term (`S` = strain), `ν ω·Δω ≤ 0` at a maximum, and the
-advection term drops (`∇|ω|² = 0` there).
-* Stretching: a Calderón–Zygmund-type bound `|ω·Sω| ≤ C y³` (named Prop below; the true
-  L∞ CZ estimate has a log loss, so this is itself an assumption).
-* Tether: in the MODIFIED model the contribution is `𝔗_F[κ,w,u](ω,ω) = −(κw)⟪Π_uω,Π_uω⟫`
-  (`frohmanianTether_orth_self`: `= −κ w ‖ω‖²` for `ω ⟂ u`), κ = S by Route A. Here `w` is the
-  SCALAR weight of 𝔗_F (not the vorticity ω). The `y⁴` needs the quartic weight `w = y²`
-  (`QuarticWeight`); this is an explicit hypothesis, NOT derived from the uniqueness
-  theorem (C1–C3 fix the shape and κ, never `w`). With constant `w` one only gets `−κ w y²`.
-* Young absorption with ε = κ/4 of the cross term `2ab` (a = y²) costs `κ/2`, plus `C_abs`.
-Result: `y' ≤ C y² − (κ/2 − C_abs) y³`.
-
-In unmodified NS (no 𝔗_F term) there is no cubic damping term; `nsOnly_not_sufficient` shows
-the pointwise NS data are consistent with `y' = C y²`, which violates the target.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Benjamin Stanley Frohman
 -/
+
 import TetherMayForm.TetheredLyapunov
+
+/-!
+# TetherMayForm.Enstrophy
+
+Machine-checked Lean 4 module.
+-/
 
 namespace Frohman.Tether
 

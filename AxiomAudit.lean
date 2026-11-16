@@ -3,11 +3,18 @@ Copyright (c) 2026 Benjamin Stanley Frohman. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Benjamin Stanley Frohman
 -/
+
 -- Axiom audit over every theorem in the built module tree (new + ported).
 -- Run: `lake env lean AxiomAudit.lean`. Fails if any theorem uses an axiom outside
 -- {propext, Classical.choice, Quot.sound}.
 import Lean
 import MetriplecticWorldModel
+
+/-!
+# AxiomAudit
+
+Machine-checked Lean 4 module.
+-/
 
 open Lean Elab Command
 

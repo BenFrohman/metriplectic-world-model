@@ -9,6 +9,8 @@ module
 public import Mathlib.Logic.Basic   -- for minimal Prop infrastructure if needed
 
 /-!
+# FrohmanianSymplecticTether.Assumptions
+
 Original work by Benjamin Stanley Frohman.
 Lean 4 encoding of the NS global regularity proof.
 

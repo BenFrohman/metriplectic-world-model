@@ -44,7 +44,8 @@ public import Mathlib.Analysis.Calculus.ContDiff.Basic
 -- Cross-ref: all prior reference blocks (especially §5 module hygiene and the GlobalRegularity
 -- cleanup that removed the last hard errors) are still in force.
 
-/-! # Global Regularity: Final Integration and the Frohmanian Symplectic Tether Theorem
+/-!
+ # Global Regularity: Final Integration and the Frohmanian Symplectic Tether Theorem
 
 This module assembles everything and states the main theorem exactly as
 formulated in the audited LaTeX (including the three parts of Theorem 2.1

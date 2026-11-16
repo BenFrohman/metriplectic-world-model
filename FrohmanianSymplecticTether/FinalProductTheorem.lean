@@ -13,6 +13,12 @@ public import FrohmanianSymplecticTether.SymplecticTether
 public import FrohmanianSymplecticTether.AnalyticPipeline
 public import FrohmanianSymplecticTether.TetheredLyapunov
 
+/-!
+# FrohmanianSymplecticTether.FinalProductTheorem
+
+Machine-checked Lean 4 module.
+-/
+
 open InnerProductSpace MeasureTheory Filter Set
 open scoped Topology InnerProductSpace BigOperators
 open NavierStokes3D ArnoldGeometric ForMathlib FrohmanianTether AnalyticPipeline

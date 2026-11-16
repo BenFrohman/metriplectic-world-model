@@ -52,6 +52,12 @@ Dynamic living: see the Visual Portal and living_pde_visuals.py (majorant phase-
 -- lives at: mermaid/two_layer_may20_architecture.mmd (repo root).
 -/
 
+/-!
+# FrohmanianSymplecticTether.TetheredLyapunov
+
+Machine-checked Lean 4 module.
+-/
+
 universe u
 
 -- Converted to module per Lean ref §5. The analytic side (majorant, Lemma 3.1, global_regularity)
