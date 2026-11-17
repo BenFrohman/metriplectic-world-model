@@ -73,38 +73,57 @@ Reports are written to `truth-gate-report/`.
 ## The locked claim of this repository
 
 * Paper: `paper/metriplectic-world-model.tex`
-* sha256: `02172077e81762a98db095e55a59a1cf1945cbe68cb26ecd26d0bd1fd1da68c5`
-* Section: Section "Ceiling and stretching" (sec:ceiling), theorem `uniform_ceiling`, first sentence
-* Main theorem(s): `MetriplecticWorldModel.uniform_ceiling`
+* sha256: `c9ec8a5318183d43b11e4c7054f765ea42c2cf6633d28d1c6531f53ce9629c13`
+* Section: Section "Ceiling and stretching" (sec:ceiling), the whole theorem `uniform_ceiling` (uniform ceiling, absorbing set, antitone in κ, no ceiling at κ = 0)
+* Main theorem(s): `MetriplecticWorldModel.uniform_ceiling_full`
 * Lock file: `TRUTH_GATE.lock`; semantics: `MetriplecticWorldModel/Semantics.lean`
 
 Verbatim quote:
 
 ```
 \begin{theorem}\lean{uniform_ceiling}\coined: if $M'\le CM^2-\kappa M^3$ and $\kappa>0$, then
-\begin{equation}\label{eq:ceiling}M(t)\le\max\bigl(M(0),\max(C/\kappa,0)\bigr)\qquad(t\ge0).\end{equation}
+\begin{equation}\label{eq:ceiling}M(t)\le\max\bigl(M(0),\max(C/\kappa,0)\bigr)\qquad(t\ge0).\end{equation} Also \lean{absorbing}, \lean{ceiling_antitone_kappa}, \lean{kappa_zero_no_ceiling}\coined{} (at $\kappa=0$, $1/(1-t)$ satisfies $M'\le M^2$ and blows up). Explicitly, for $\kappa>0$ and $C\ge0$: if $M(0)\le C/\kappa$, then $M(t)\le C/\kappa$ for all $t\ge0$ (\lean{absorbing}); and for any $M_0$ and $0<\kappa_1\le\kappa_2$, $\max\bigl(M_0,\max(C/\kappa_2,0)\bigr)\le\max\bigl(M_0,\max(C/\kappa_1,0)\bigr)$ (\lean{ceiling_antitone_kappa}). At $\kappa=0$, $M(t)=1/(1-t)$ satisfies $M'(t)\le M(t)^2$ for $t<1$ and is unbounded on $[0,1)$ (\lean{kappa_zero_no_ceiling}). The four statements together are \lean{uniform_ceiling_full}.\end{theorem}
 ```
 
 ```lean
 def formal_claim : Prop :=
-  ∀ (C κ : ℝ), 0 < κ → ∀ (M M' : ℝ → ℝ),
-    (∀ t, 0 ≤ t → HasDerivAt M (M' t) t) →
-    (∀ t, 0 ≤ t → M' t ≤ C * M t ^ 2 - κ * M t ^ 3) →
-    ∀ t, 0 ≤ t → M t ≤ MetriplecticWorldModel.ceiling (M 0) C κ
+  (∀ (C κ : ℝ), 0 < κ → ∀ (M M' : ℝ → ℝ),
+      (∀ t, 0 ≤ t → HasDerivAt M (M' t) t) →
+      (∀ t, 0 ≤ t → M' t ≤ C * M t ^ 2 - κ * M t ^ 3) →
+      ∀ t, 0 ≤ t → M t ≤ MetriplecticWorldModel.ceiling (M 0) C κ) ∧
+    (∀ (C κ : ℝ), 0 < κ → 0 ≤ C → ∀ (M M' : ℝ → ℝ),
+      (∀ t, 0 ≤ t → HasDerivAt M (M' t) t) →
+      (∀ t, 0 ≤ t → M' t ≤ C * M t ^ 2 - κ * M t ^ 3) → M 0 ≤ C / κ →
+      ∀ t, 0 ≤ t → M t ≤ C / κ) ∧
+    (∀ (M0 C : ℝ), 0 ≤ C → ∀ (κ₁ κ₂ : ℝ), 0 < κ₁ → κ₁ ≤ κ₂ →
+      MetriplecticWorldModel.ceiling M0 C κ₂ ≤ MetriplecticWorldModel.ceiling M0 C κ₁) ∧
+    ((∀ t : ℝ, t < 1 → ∃ d : ℝ, HasDerivAt (fun s : ℝ => (1 - s)⁻¹) d t ∧
+        d ≤ 1 * ((1 - t)⁻¹) ^ 2 - 0 * ((1 - t)⁻¹) ^ 3) ∧
+      ¬ ∃ B, ∀ t ∈ Set.Ico (0:ℝ) 1, (1 - t)⁻¹ ≤ B)
 
 def paper_claim : Prop :=
-  ∀ (C κ : ℝ) (M : ℝ → ℝ),
-    (∀ t : ℝ, 0 ≤ t → DifferentiableAt ℝ M t) →
-    (∀ t : ℝ, 0 ≤ t → deriv M t ≤ C * M t ^ 2 - κ * M t ^ 3) →
-    0 < κ →
-    ∀ t : ℝ, 0 ≤ t → M t ≤ max (M 0) (max (C / κ) 0)
+  (∀ (C κ : ℝ) (M : ℝ → ℝ),
+      (∀ t : ℝ, 0 ≤ t → DifferentiableAt ℝ M t) →
+      (∀ t : ℝ, 0 ≤ t → deriv M t ≤ C * M t ^ 2 - κ * M t ^ 3) →
+      0 < κ →
+      ∀ t : ℝ, 0 ≤ t → M t ≤ max (M 0) (max (C / κ) 0)) ∧
+    (∀ (C κ : ℝ) (M : ℝ → ℝ),
+      (∀ t : ℝ, 0 ≤ t → DifferentiableAt ℝ M t) →
+      (∀ t : ℝ, 0 ≤ t → deriv M t ≤ C * M t ^ 2 - κ * M t ^ 3) →
+      0 < κ → 0 ≤ C → M 0 ≤ C / κ →
+      ∀ t : ℝ, 0 ≤ t → M t ≤ C / κ) ∧
+    (∀ (M₀ C κ₁ κ₂ : ℝ), 0 ≤ C → 0 < κ₁ → κ₁ ≤ κ₂ →
+      max M₀ (max (C / κ₂) 0) ≤ max M₀ (max (C / κ₁) 0)) ∧
+    ((∀ t : ℝ, t < 1 → DifferentiableAt ℝ (fun s : ℝ => 1 / (1 - s)) t ∧
+        deriv (fun s : ℝ => 1 / (1 - s)) t ≤ (1 / (1 - t)) ^ 2) ∧
+      ¬ ∃ B : ℝ, ∀ t : ℝ, 0 ≤ t → t < 1 → 1 / (1 - t) ≤ B)
 ```
 
-See the doc comment of `MetriplecticWorldModel/Semantics.lean` for the fixed reading of the paper's terms and the scope.
+See the doc comment of `MetriplecticWorldModel/Semantics.lean` for the fixed reading of the paper's terms, the scope and the non-vacuity witness.
 
-## Re-audit (2026-11-16): this lock is NOT certifying
+## Re-audit (2026-11-16): the earlier lock was NOT certifying (superseded by the re-lock below)
 
-Status: **REOPENED. The gate is red on purpose.** `TRUTH_GATE.lock` carries `"certifying": false`, and
+Status at the re-audit: **REOPENED. The gate was red on purpose.** `TRUTH_GATE.lock` carries `"certifying": false`, and
 `scripts/truth_gate_check.py` fails while it does. Nothing was deleted: `Semantics.lean`, the quotes,
 the hashes and the history are unchanged.
 
@@ -124,3 +143,13 @@ Why it is reopened:
 * The comparison inequality M′ ≤ CM² − κM³ is a hypothesis. The paper relabels the results that use `StretchingCZ` as model-only ("false as a sup-norm bound for Navier–Stokes"), so this lock does not certify a step on a Navier–Stokes path by itself.
 
 What would re-certify it: A lock needs the complete theorem as stated, independently transcribed. Its role on the paper's path (tethered model versus Navier–Stokes) also has to be stated.
+
+## Re-lock (2026-11-16): full lock, certifying
+
+With Benjamin Stanley Frohman's approval of 2026-11-16, the lock was replaced by a full lock:
+the whole theorem `uniform_ceiling` of Section "Ceiling and stretching": uniform ceiling, absorbing set, antitone in κ, and no ceiling at κ = 0 (new main theorem `uniform_ceiling_full`, the conjunction of `uniform_ceiling`, `absorbing`, `ceiling_antitone_kappa`, `kappa_zero_no_ceiling`). The paper's theorem gained one sentence ("Explicitly, …") stating the `absorbing` and `ceiling_antitone_kappa` clauses in English, which the paper previously cited by Lean name only; the paper sha256 changed from 02172077… to c9ec8a53…. That sentence needs the author's sign-off.
+
+Previous main theorem(s): `MetriplecticWorldModel.uniform_ceiling`. New main theorem(s): `MetriplecticWorldModel.uniform_ceiling_full`. `TRUTH_GATE.lock` is back to `"certifying": true`; the reopen record is kept under `reaudit_history`.
+All rules still apply: no `sorry`/`admit`/`native_decide`/new axioms; only `propext`, `Classical.choice`, `Quot.sound`;
+`paper_claim` is an independent transcription of the verbatim quote; the correspondence is substantive (not `rfl`/`Iff.rfl`)
+and does not use the main theorems; a non-vacuity witness is proved in `MetriplecticWorldModel/Semantics.lean`.

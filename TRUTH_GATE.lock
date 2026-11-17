@@ -2,11 +2,11 @@
   "semantics_file": "MetriplecticWorldModel/Semantics.lean",
   "semantics_module": "MetriplecticWorldModel.Semantics",
   "paper_path": "paper/metriplectic-world-model.tex",
-  "paper_sha256": "02172077e81762a98db095e55a59a1cf1945cbe68cb26ecd26d0bd1fd1da68c5",
+  "paper_sha256": "c9ec8a5318183d43b11e4c7054f765ea42c2cf6633d28d1c6531f53ce9629c13",
   "main_theorems": [
-    "MetriplecticWorldModel.uniform_ceiling"
+    "MetriplecticWorldModel.uniform_ceiling_full"
   ],
-  "lock_region_sha256": "b506171f20fcfacd790193740a5e3c12f6bc34d577bde5a5a5b2ed99ca205b9d",
+  "lock_region_sha256": "08e56d45ffada7fb1b3a1c2765bc10347b5bd30434d40db77effef052550ea14",
   "draft_dirs": [
     "MetriplecticWorldModel/Draft"
   ],
@@ -16,7 +16,18 @@
     "FrohmanianSymplecticTether",
     "TetherMayForm"
   ],
-  "certifying": false,
-  "reopened_reason": "Partial lock. Only the first sentence of theorem `uniform_ceiling` is locked. The same theorem also states `absorbing`, `ceiling_antitone_kappa` and `kappa_zero_no_ceiling`, and those are not locked.",
-  "reopened_on": "2026-11-16"
+  "certifying": true,
+  "reaudit_history": [
+    {
+      "reopened_on": "2026-11-16",
+      "reopened_reason": "Partial lock. Only the first sentence of theorem `uniform_ceiling` is locked. The same theorem also states `absorbing`, `ceiling_antitone_kappa` and `kappa_zero_no_ceiling`, and those are not locked.",
+      "previous_main_theorems": [
+        "MetriplecticWorldModel.uniform_ceiling"
+      ]
+    },
+    {
+      "relocked_on": "2026-11-16",
+      "relocked_as": "the whole theorem `uniform_ceiling` of Section \"Ceiling and stretching\": uniform ceiling, absorbing set, antitone in κ, and no ceiling at κ = 0 (new main theorem `uniform_ceiling_full`, the conjunction of `uniform_ceiling`, `absorbing`, `ceiling_antitone_kappa`, `kappa_zero_no_ceiling`). The paper's theorem gained one sentence (\"Explicitly, …\") stating the `absorbing` and `ceiling_antitone_kappa` clauses in English, which the paper previously cited by Lean name only; the paper sha256 changed from 02172077… to c9ec8a53…. That sentence needs the author's sign-off."
+    }
+  ]
 }
