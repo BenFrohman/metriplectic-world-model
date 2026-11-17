@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # Author: Benjamin Stanley Frohman
 # Truth Gate static checks (see TRUTH_GATE.md). Exit code 0 only if every check passes.
+#  0. A lock marked `"certifying": false` (re-audit) fails.
 #  1. TRUTH_GATE.lock parses and names existing files.
 #  2. Semantics.lean declares formal_claim, paper_claim, intended_correspondence (inside the lock region).
 #  3. The paper file hash equals the recorded hash, and the quoted paper text occurs verbatim
@@ -50,6 +51,11 @@ for k in ["semantics_file", "semantics_module", "paper_path", "paper_sha256",
           "main_theorems", "lock_region_sha256", "draft_dirs", "lean_roots"]:
     if k not in lock: fail(f"TRUTH_GATE.lock lacks key {k}")
 if FAIL: sys.exit(1)
+
+# 0. Re-audit status: a lock marked non-certifying keeps the gate red (see TRUTH_GATE.md).
+if lock.get("certifying", True) is not True:
+    fail("this lock is NOT certifying (reopened by the re-audit of 2026-11-16): "
+         + str(lock.get("reopened_reason", "see TRUTH_GATE.md")))
 
 sem = os.path.join(ROOT, lock["semantics_file"])
 if not os.path.isfile(sem):

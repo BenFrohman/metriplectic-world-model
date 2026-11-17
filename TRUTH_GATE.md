@@ -101,3 +101,26 @@ def paper_claim : Prop :=
 ```
 
 See the doc comment of `MetriplecticWorldModel/Semantics.lean` for the fixed reading of the paper's terms and the scope.
+
+## Re-audit (2026-11-16): this lock is NOT certifying
+
+Status: **REOPENED. The gate is red on purpose.** `TRUTH_GATE.lock` carries `"certifying": false`, and
+`scripts/truth_gate_check.py` fails while it does. Nothing was deleted: `Semantics.lean`, the quotes,
+the hashes and the history are unchanged.
+
+Rule applied (Benjamin Stanley Frohman, 2026-11-16):
+* There are no partial locks. A lock certifies only a step on the correct path to the full theorem
+  that is kernel-proved as the actual true answer, so that the next step can build on it.
+* Drifted, dummy, placeholder or stand-in types, names or categories are rejected.
+* Cross-ontology connections are not rejected for looking unrelated. The kernel check, and whether
+  the piece genuinely helps reach the full structured proof, decide.
+* `paper_claim` is an independent transcription of the verbatim paper quote, never an alias of
+  `formal_claim`, and the correspondence is never `rfl`/`Iff.rfl`.
+
+Locked claim under review: uniform_ceiling (theorem uniform_ceiling, first sentence only)
+
+Why it is reopened:
+* Partial lock. Only the first sentence of theorem `uniform_ceiling` is locked. The same theorem also states `absorbing`, `ceiling_antitone_kappa` and `kappa_zero_no_ceiling`, and those are not locked.
+* The comparison inequality M′ ≤ CM² − κM³ is a hypothesis. The paper relabels the results that use `StretchingCZ` as model-only ("false as a sup-norm bound for Navier–Stokes"), so this lock does not certify a step on a Navier–Stokes path by itself.
+
+What would re-certify it: A lock needs the complete theorem as stated, independently transcribed. Its role on the paper's path (tethered model versus Navier–Stokes) also has to be stated.
