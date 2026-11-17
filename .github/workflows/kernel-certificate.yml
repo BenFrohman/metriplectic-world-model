@@ -80,6 +80,66 @@ jobs:
           done < cert-out/modules.txt | tee -a cert-out/leanchecker.txt
           if grep -q ': FAILED$' cert-out/leanchecker.txt; then exit 1; fi
           echo "RESULT: $(grep -c ': OK (' cert-out/leanchecker.txt) of $(grep -c . cert-out/modules.txt) modules replayed through the kernel, 0 failures" | tee -a cert-out/leanchecker.txt
+      - name: Collect lake-manifest provenance into cert-out
+        if: always()
+        run: |
+          mkdir -p cert-out
+          if [ -f lake-manifest.json ]; then
+            cp -a lake-manifest.json cert-out/lake-manifest.json
+            sha256sum lake-manifest.json | tee cert-out/lake-manifest.json.sha256sum
+            awk '{print $1}' cert-out/lake-manifest.json.sha256sum > cert-out/lake-manifest.json.sha256
+          else
+            echo "MISSING: lake-manifest.json was not present in the checkout" | tee cert-out/MISSING-lake-manifest.txt
+          fi
+          if [ -f lean-toolchain ]; then
+            cp -a lean-toolchain cert-out/lean-toolchain
+            sha256sum lean-toolchain | tee cert-out/lean-toolchain.sha256sum
+            awk '{print $1}' cert-out/lean-toolchain.sha256sum > cert-out/lean-toolchain.sha256
+          else
+            echo "MISSING: lean-toolchain was not present in the checkout" | tee cert-out/MISSING-lean-toolchain.txt
+          fi
+          {
+            echo "commit: $(git rev-parse HEAD 2>/dev/null || echo not available)"
+            echo "github_sha: ${GITHUB_SHA:-not set in environment}"
+            echo "github_run_id: ${GITHUB_RUN_ID:-not set in environment}"
+            echo "github_run_attempt: ${GITHUB_RUN_ATTEMPT:-not set in environment}"
+            echo "github_event_name: ${GITHUB_EVENT_NAME:-not set in environment}"
+            echo "github_repository: ${GITHUB_REPOSITORY:-not set in environment}"
+            echo "elan --version:"
+            if command -v elan >/dev/null 2>&1; then elan --version; else echo "elan was not on PATH"; fi
+            echo "lake --version:"
+            if command -v lake >/dev/null 2>&1; then lake --version; else echo "lake was not on PATH"; fi
+            echo "lean --version:"
+            if command -v lean >/dev/null 2>&1; then lean --version; else echo "lean was not on PATH"; fi
+          } > cert-out/versions.txt 2>&1
+          cat cert-out/versions.txt
+          python3 -c '
+          import json, pathlib
+          dest = pathlib.Path("cert-out/mathlib-rev.txt")
+          manifest = pathlib.Path("lake-manifest.json")
+          if not manifest.exists():
+              dest.write_text("Mathlib rev: not available; lake-manifest.json missing\n")
+              raise SystemExit(0)
+          try:
+              data = json.loads(manifest.read_text())
+          except Exception as e:
+              dest.write_text("Mathlib rev: could not parse lake-manifest.json (%s)\n" % e)
+              raise SystemExit(0)
+          lines = []
+          found = False
+          for pkg in data.get("packages") or []:
+              if pkg.get("name") == "mathlib":
+                  lines.append("name: mathlib")
+                  lines.append("rev: %s" % pkg.get("rev"))
+                  lines.append("inputRev: %s" % pkg.get("inputRev"))
+                  lines.append("url: %s" % pkg.get("url"))
+                  found = True
+                  break
+          if not found:
+              lines.append("Mathlib rev: no package named mathlib in lake-manifest.json")
+          dest.write_text("\n".join(lines) + "\n")
+          '
+
       - name: Upload certificate files
         if: always()
         uses: actions/upload-artifact@v4
