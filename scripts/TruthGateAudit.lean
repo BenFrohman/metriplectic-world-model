@@ -26,7 +26,7 @@ open Lean Meta Elab Command
 namespace TruthGateAudit
 
 def standard : List Name := [``propext, ``Classical.choice, ``Quot.sound]
-def mains : List Name := [`MetriplecticWorldModel.uniform_ceiling]
+def mains : List Name := [`MetriplecticWorldModel.uniform_ceiling_full]
 
 partial def reach (env : Environment) (todo : List Name) (seen : NameSet) : NameSet :=
   match todo with
