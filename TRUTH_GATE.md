@@ -91,7 +91,7 @@ a proof failure, though every kernel check was green.
 
 Two more labels can appear in the verdict:
 
-* **`[INHERITED]`** appears when the PR touches no lock, Semantics, paper or gate file but a
+* **`[INHERITED]`** appears when the PR touches no lock, vocabulary, Semantics or paper file but a
   LOCK-FORM or PAPER-HASH failure remains. The failure comes from main, so it has to be fixed on
   main.
 * **`UNCLASSIFIED`** appears when a checker crashed or printed a message no rule recognises. It is

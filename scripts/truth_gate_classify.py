@@ -475,6 +475,17 @@ def cmd_paper_diff(args):
 
 # ----------------------------------------------------------------------------- stale base
 
+def claim_files(lock):
+    """The files that define what is claimed: the lock, the vocabulary, Semantics files, papers."""
+    top = git_top(); fs = []
+    for e in [lock] + list(lock.get("additional_locks", [])):
+        for k in ("semantics_file", "paper_path"):
+            if e.get(k):
+                fs.append(os.path.relpath(os.path.normpath(os.path.join(ROOT, e[k])), top))
+    for n in LOCK_NAMES + [VOCAB_FILE]:
+        fs.append(os.path.relpath(os.path.join(ROOT, n), top))
+    return sorted(set(fs))
+
 def gate_files(lock):
     top = git_top(); fs = []
     for e in [lock] + list(lock.get("additional_locks", [])):
@@ -507,6 +518,7 @@ def cmd_stale_base(args):
     files = gate_files(lock)
     ctx.update(base_used=base_used, base_tip=tip, pr_head=pr_head)
     ctx["pr_touches_gate"] = [f for f in git("diff", "--name-only", f"{base_used}...{pr_head}", "--", *files).stdout.split() if f]
+    ctx["pr_touches_claim"] = [f for f in git("diff", "--name-only", f"{base_used}...{pr_head}", "--", *claim_files(lock)).stdout.split() if f]
     if tip and tip != base_used:
         moved = [f for f in git("diff", "--name-only", base_used, tip, "--", *files).stdout.split() if f]
         ctx["main_changed_gate_files"] = moved
@@ -671,9 +683,9 @@ def cmd_report(args):
         out.append("[STALE-BASE note] main changed " + ", ".join(ctx.get("main_changed_gate_files", [])) +
                    " after this PR's merge ref was built; the verdict above is for the fresh merge.")
     lock_classes = {"LOCK-FORM", "PAPER-HASH"}
-    if ctx.get("base_used") and not ctx.get("pr_touches_gate") and set(classes) & lock_classes:
+    if ctx.get("base_used") and not ctx.get("pr_touches_claim", ctx.get("pr_touches_gate")) and set(classes) & lock_classes:
         out.append("")
-        out.append("[INHERITED] This PR changes no lock, Semantics, paper or gate file. The failure above comes from "
+        out.append("[INHERITED] This PR changes no lock, vocabulary, Semantics or paper file. The failure above comes from "
                    f"the base branch ({ctx.get('base_tip','')[:12]}); fix it there, then update this branch.")
     out.append("")
     if not classes:

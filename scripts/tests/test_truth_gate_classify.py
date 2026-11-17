@@ -264,6 +264,7 @@ class StaleBase(unittest.TestCase):
             ctx = load(os.path.join(d, "truth-gate-report", "context.json"))
             self.assertTrue(ctx["stale"]); self.assertTrue(ctx["remerged"])
             self.assertEqual(ctx["pr_touches_gate"], [])
+            self.assertEqual(ctx["pr_touches_claim"], [])
             parents = git(d, "rev-list", "--parents", "-n", "1", "HEAD").split()[1:]
             self.assertEqual(set(parents), {pr, tip})
             self.assertEqual(run(d, "lint").returncode, 0)  # the fresh merge carries main's fixed lock
@@ -285,7 +286,7 @@ class StaleBase(unittest.TestCase):
             write(d, "static.txt", "TRUTH GATE STATIC PASS\n"); write(d, "audit.txt", "TRUTH GATE AUDIT PASS\n")
             out = run(d, "report").stdout
             self.assertIn("[INHERITED]", out)
-            self.assertIn("changes no lock, Semantics, paper or gate file", out)
+            self.assertIn("changes no lock, vocabulary, Semantics or paper file", out)
 
 if __name__ == "__main__":
     unittest.main()
