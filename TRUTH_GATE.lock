@@ -15,5 +15,8 @@
     "MetriplecticWorldModel.lean",
     "FrohmanianSymplecticTether",
     "TetherMayForm"
-  ]
+  ],
+  "certifying": false,
+  "reopened_reason": "Partial lock. Only the first sentence of theorem `uniform_ceiling` is locked. The same theorem also states `absorbing`, `ceiling_antitone_kappa` and `kappa_zero_no_ceiling`, and those are not locked.",
+  "reopened_on": "2026-11-16"
 }
