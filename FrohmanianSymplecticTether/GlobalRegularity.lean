@@ -160,7 +160,7 @@ public theorem frohmanian_tether_theorem (hκ : 0 < kappa)
   · intro u₀ ν hνpos hdiv hsm hE
     let w := hKato u₀ ν hsm hdiv hE hνpos
     have hreg :=
-      global_regularity_of_constructions u₀ ν hdiv hsm hE hνpos
+      global_regularity_of_constructions_conditional u₀ ν hdiv hsm hE hνpos
         (fun u₁ hsm₁ hdiv₁ hE₁ => hKato u₁ ν hsm₁ hdiv₁ hE₁ hνpos)
         (fun u p hNS hu0 hphys =>
           let ⟨C, κ'', hC, hκ, hd, hdd, hc, _⟩ := hDI u₀ ν u p hνpos hNS hu0 hphys
@@ -405,7 +405,7 @@ public theorem stepField_not_physical : ¬ IsPhysicalNSSolution stepField := by
   simp [stepField] at h2
 
 /-- With `IsPhysicalNSSolution v`, the `L²` integrability hypothesis `hInt` of
-`restart_of_kato_quantitative`, `global_regularity_of_constructions`, and
+`restart_of_kato_quantitative`, `global_regularity_of_constructions_conditional`, and
 `frohmanian_tether_theorem` holds **unconditionally** for every initial datum
 `u₀` and viscosity `ν`. -/
 public theorem repaired_hInt (u₀ : VelocityField) (ν : ℝ) :
@@ -422,7 +422,7 @@ public theorem repaired_hInt (u₀ : VelocityField) (ν : ℝ) :
 
 /-- With `IsPhysicalNSSolution v`, the shifted-restart uniqueness hypothesis
 `huniq_shift` of `restart_of_kato_quantitative`,
-`global_regularity_of_constructions`, and `frohmanian_tether_theorem` is
+`global_regularity_of_constructions_conditional`, and `frohmanian_tether_theorem` is
 **provably satisfied** at `u₀ = 0`: both `v` and any restart witness `w'`
 starting at `v t = 0` vanish identically on `[0, ∞)`. -/
 public theorem repaired_huniq_shift_at_zero (ν : ℝ) :

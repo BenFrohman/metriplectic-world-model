@@ -212,8 +212,8 @@ public theorem bkm_regularity_pipeline
 
 /-- The Riccati differential inequality for `M(t) = ‖ω(t)‖_∞` produces the
 uniform ceiling `max(M 0, C/κ'')` together with the standing continuity of
-`M`. This is the assembly `hRiccati` conjunct, discharged from the comparison
-ODE already kernel-checked in this module. -/
+`M`, under the cubic-rate argument `hDI` (the hypothesis `CorrectedMaxRate`), which is
+not proved here. It is the comparison-ODE step only; `hRiccati` is not discharged. -/
 public theorem vorticity_sup_norm_riccati_bound
     (u : TimeDependentVelocity)
     (C κ'' : ℝ) (hC : 0 < C) (hκ : 0 < κ'')
