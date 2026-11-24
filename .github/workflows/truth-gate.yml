@@ -1,0 +1,57 @@
+# Copyright (c) 2026 Benjamin Stanley Frohman. All rights reserved.
+# Released under Apache 2.0 license as described in the file LICENSE.
+# Authors: Benjamin Stanley Frohman
+#
+# Truth Gate (see TRUTH_GATE.md, "Failure classes"):
+#   lock-form-lint  static lint of paper_claim + classifier fixtures (every PR, no Lean)
+#   truth-gate      stale-base check, lake build + scripts/verify-lock.sh, classified verdict
+name: truth-gate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  lock-form-lint:
+    name: lock-form-lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Lock-form lint (paper_claim must not reuse repository Props)
+        run: python3 scripts/truth_gate_classify.py lint --fetch-deps
+      - name: Classifier fixtures (one per failure class)
+        run: python3 -m unittest discover -s scripts/tests -p 'test_truth_gate_classify.py' -v
+
+  truth-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Stale-base check (judge the PR head merged onto the current base)
+        if: github.event_name == 'pull_request'
+        env:
+          BASE_REF: ${{ github.base_ref }}
+          PR_HEAD: ${{ github.event.pull_request.head.sha }}
+        run: python3 scripts/truth_gate_classify.py stale-base --base-ref "$BASE_REF" --head "$PR_HEAD" --fetch --remerge
+      - name: Install elan (toolchain from lean-toolchain)
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Mathlib cache (Mathlib is never rebuilt here)
+        run: lake exe cache get
+      - name: verify-lock (every phase runs; classified TRUTH GATE VERDICT at the end)
+        run: bash scripts/verify-lock.sh
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: truth-gate-report
+          path: truth-gate-report/

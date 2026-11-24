@@ -1,0 +1,148 @@
+name: Kernel certificate
+
+# Rebuilds the development with its pinned toolchain, scans for sorry/admit/native_decide/axiom,
+# runs collectAxioms (#print axioms) on every theorem the build produces, re-checks every module
+# with Lean's external kernel checker (leanchecker / lean4checker), and uploads the raw logs.
+# The committed copies of these files live in certificates/ (see certificates/CERTIFICATE.md).
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  kernel-certificate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan (toolchain from lean-toolchain)
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Toolchain and revision
+        run: |
+          mkdir -p cert-out
+          {
+            echo "commit: $(git rev-parse HEAD)"
+            echo "lean-toolchain: $(cat lean-toolchain)"
+            echo "lean --version: $(lean --version)"
+            echo "lake --version: $(lake --version)"
+            echo "date (UTC): $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            echo "run: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+          } | tee cert-out/environment.txt
+      - name: Get Mathlib cache (never rebuilds Mathlib from source)
+        run: |
+          if grep -q '"name": *"mathlib"' lake-manifest.json 2>/dev/null; then lake exe cache get; else echo "no mathlib dependency"; fi
+      - name: lake build
+        run: |
+          set -o pipefail
+          lake build 2>&1 | tee cert-out/build.log
+      - name: sorry / admit / native_decide / axiom scan
+        run: |
+          set -o pipefail
+          python3 certificates/tools/sorry_scan.py 2>&1 | tee cert-out/sorry-scan.txt
+      - name: '#print axioms (collectAxioms) for every theorem in the built modules'
+        run: |
+          set -o pipefail
+          python3 certificates/tools/gen_audit.py cert-out/KernelCertificateAudit.lean cert-out/modules.txt
+          lake env lean cert-out/KernelCertificateAudit.lean > cert-out/axioms.raw.txt 2>&1 || { cat cert-out/axioms.raw.txt; exit 1; }
+          python3 certificates/tools/check_audit.py cert-out/axioms.raw.txt > cert-out/axioms.txt || { tail -50 cert-out/axioms.txt; exit 1; }
+          tail -1 cert-out/axioms.txt
+      - name: External kernel re-check of every module (leanchecker / lean4checker, one module per run)
+        # The stock checker treats its argument as a module-name prefix and replays every matching
+        # module in parallel, which runs out of memory on a root module that imports the whole
+        # library. We therefore run the checker's own source with the single change
+        # `target.isPrefixOf m` -> `target == m`, once per module, sequentially.
+        run: |
+          set -o pipefail
+          LEANBIN="$(dirname "$(elan which lean)")"
+          PREFIX="$(dirname "$LEANBIN")"
+          VER="$(sed 's/.*://' lean-toolchain | tr -d '[:space:]')"
+          if [ -f "$PREFIX/src/lean/LeanChecker.lean" ]; then
+            sed 's/target\.isPrefixOf m/target == m/' "$PREFIX/src/lean/LeanChecker.lean" > /tmp/LeanCheckerExact.lean
+            echo "checker: leanchecker source shipped with $VER (src/lean/LeanChecker.lean), prefix match -> exact match, run with lean --run" > cert-out/leanchecker.txt
+            diff "$PREFIX/src/lean/LeanChecker.lean" /tmp/LeanCheckerExact.lean | sed 's/^/  patch: /' >> cert-out/leanchecker.txt || true
+            check() { lake env lean --run /tmp/LeanCheckerExact.lean -v "$1"; }
+          elif git ls-remote --exit-code --tags https://github.com/leanprover/lean4checker "refs/tags/$VER" >/dev/null; then
+            git clone -q --depth 1 --branch "$VER" https://github.com/leanprover/lean4checker /tmp/lean4checker
+            cp /tmp/lean4checker/Main.lean /tmp/Main.orig.lean
+            sed -i 's/target\.isPrefixOf m/target == m/' /tmp/lean4checker/Main.lean
+            (cd /tmp/lean4checker && lake build lean4checker)
+            echo "checker: lean4checker tag $VER ($(git -C /tmp/lean4checker rev-parse HEAD)), Main.lean prefix match -> exact match" > cert-out/leanchecker.txt
+            diff /tmp/Main.orig.lean /tmp/lean4checker/Main.lean | sed 's/^/  patch: /' >> cert-out/leanchecker.txt || true
+            check() { lake env /tmp/lean4checker/.lake/build/bin/lean4checker -v "$1"; }
+          else
+            echo "NOT RUN: toolchain $VER ships no leanchecker and lean4checker has no tag $VER" | tee cert-out/leanchecker.txt; exit 0
+          fi
+          while read -r m; do
+            [ -n "$m" ] || continue
+            if out=$(check "$m" 2>&1); then echo "$m: OK ($(echo "$out" | grep -c '^replaying') module replayed)"; else echo "$m: FAILED"; echo "$out" | tail -20; fi
+          done < cert-out/modules.txt | tee -a cert-out/leanchecker.txt
+          if grep -q ': FAILED$' cert-out/leanchecker.txt; then exit 1; fi
+          echo "RESULT: $(grep -c ': OK (' cert-out/leanchecker.txt) of $(grep -c . cert-out/modules.txt) modules replayed through the kernel, 0 failures" | tee -a cert-out/leanchecker.txt
+      - name: Collect lake-manifest provenance into cert-out
+        if: always()
+        run: |
+          mkdir -p cert-out
+          if [ -f lake-manifest.json ]; then
+            cp -a lake-manifest.json cert-out/lake-manifest.json
+            sha256sum lake-manifest.json | tee cert-out/lake-manifest.json.sha256sum
+            awk '{print $1}' cert-out/lake-manifest.json.sha256sum > cert-out/lake-manifest.json.sha256
+          else
+            echo "MISSING: lake-manifest.json was not present in the checkout" | tee cert-out/MISSING-lake-manifest.txt
+          fi
+          if [ -f lean-toolchain ]; then
+            cp -a lean-toolchain cert-out/lean-toolchain
+            sha256sum lean-toolchain | tee cert-out/lean-toolchain.sha256sum
+            awk '{print $1}' cert-out/lean-toolchain.sha256sum > cert-out/lean-toolchain.sha256
+          else
+            echo "MISSING: lean-toolchain was not present in the checkout" | tee cert-out/MISSING-lean-toolchain.txt
+          fi
+          {
+            echo "commit: $(git rev-parse HEAD 2>/dev/null || echo not available)"
+            echo "github_sha: ${GITHUB_SHA:-not set in environment}"
+            echo "github_run_id: ${GITHUB_RUN_ID:-not set in environment}"
+            echo "github_run_attempt: ${GITHUB_RUN_ATTEMPT:-not set in environment}"
+            echo "github_event_name: ${GITHUB_EVENT_NAME:-not set in environment}"
+            echo "github_repository: ${GITHUB_REPOSITORY:-not set in environment}"
+            echo "elan --version:"
+            if command -v elan >/dev/null 2>&1; then elan --version; else echo "elan was not on PATH"; fi
+            echo "lake --version:"
+            if command -v lake >/dev/null 2>&1; then lake --version; else echo "lake was not on PATH"; fi
+            echo "lean --version:"
+            if command -v lean >/dev/null 2>&1; then lean --version; else echo "lean was not on PATH"; fi
+          } > cert-out/versions.txt 2>&1
+          cat cert-out/versions.txt
+          python3 -c '
+          import json, pathlib
+          dest = pathlib.Path("cert-out/mathlib-rev.txt")
+          manifest = pathlib.Path("lake-manifest.json")
+          if not manifest.exists():
+              dest.write_text("Mathlib rev: not available; lake-manifest.json missing\n")
+              raise SystemExit(0)
+          try:
+              data = json.loads(manifest.read_text())
+          except Exception as e:
+              dest.write_text("Mathlib rev: could not parse lake-manifest.json (%s)\n" % e)
+              raise SystemExit(0)
+          lines = []
+          found = False
+          for pkg in data.get("packages") or []:
+              if pkg.get("name") == "mathlib":
+                  lines.append("name: mathlib")
+                  lines.append("rev: %s" % pkg.get("rev"))
+                  lines.append("inputRev: %s" % pkg.get("inputRev"))
+                  lines.append("url: %s" % pkg.get("url"))
+                  found = True
+                  break
+          if not found:
+              lines.append("Mathlib rev: no package named mathlib in lake-manifest.json")
+          dest.write_text("\n".join(lines) + "\n")
+          '
+
+      - name: Upload certificate files
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kernel-certificate
+          path: cert-out/
